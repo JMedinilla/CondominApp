@@ -8,6 +8,6 @@ public class Activity_Login_Admin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login__admin);
+        setContentView(R.layout.activity_login_admin);
     }
 }
