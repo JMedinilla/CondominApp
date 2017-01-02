@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -158,6 +157,15 @@ public class Activity_Home extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_community);
         fragmentTransaction.addToBackStack("list_community");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onHomeFragmentProfileButtonTap() {
+        com.jmed.condominapp.fragments.Profile profile = new com.jmed.condominapp.fragments.Profile();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, profile);
+        fragmentTransaction.addToBackStack("profile");
         fragmentTransaction.commit();
     }
 

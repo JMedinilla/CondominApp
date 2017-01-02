@@ -39,6 +39,8 @@ public class Home extends Fragment {
         void onHomeFragmentUsersButtonTap();
 
         void onHomeFragmentCommunitiesButtonTap();
+
+        void onHomeFragmentProfileButtonTap();
     }
 
     @Override
@@ -114,6 +116,13 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
                 homeCallback.onHomeFragmentCommunitiesButtonTap();
+            }
+        });
+        Button btnHomeProfile = (Button) view.findViewById(R.id.btnHomeProfile);
+        btnHomeProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeCallback.onHomeFragmentProfileButtonTap();
             }
         });
         return view;
