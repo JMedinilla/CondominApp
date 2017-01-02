@@ -10,7 +10,7 @@ import java.util.List;
 public class Repository_Meeting extends ArrayList<Pojo_Meeting> {
     private static Repository_Meeting instance;
 
-    static Repository_Meeting getInstance() {
+    public static Repository_Meeting getInstance() {
         if (instance == null) {
             instance = new Repository_Meeting();
         }

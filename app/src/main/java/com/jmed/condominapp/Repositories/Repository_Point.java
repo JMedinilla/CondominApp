@@ -8,7 +8,7 @@ import java.util.List;
 public class Repository_Point extends ArrayList<Pojo_Point> {
     private static Repository_Point instance;
 
-    static Repository_Point getInstance() {
+    public static Repository_Point getInstance() {
         if (instance == null) {
             instance = new Repository_Point();
         }

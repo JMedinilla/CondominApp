@@ -11,7 +11,7 @@ import java.util.List;
 public class Repository_Incident extends ArrayList<Pojo_Incident> {
     private static Repository_Incident instance;
 
-    static Repository_Incident getInstance() {
+    public static Repository_Incident getInstance() {
         if (instance == null) {
             instance = new Repository_Incident();
         }

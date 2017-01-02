@@ -8,7 +8,7 @@ import java.util.List;
 public class Repository_Document extends ArrayList<Pojo_Document> {
     private static Repository_Document instance;
 
-    static Repository_Document getInstance() {
+    public static Repository_Document getInstance() {
         if (instance == null) {
             instance = new Repository_Document();
         }

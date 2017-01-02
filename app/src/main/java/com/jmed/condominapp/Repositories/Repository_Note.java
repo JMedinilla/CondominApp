@@ -10,7 +10,7 @@ import java.util.List;
 public class Repository_Note extends ArrayList<Pojo_Note> {
     private static Repository_Note instance;
 
-    static Repository_Note getInstance() {
+    public static Repository_Note getInstance() {
         if (instance == null) {
             instance = new Repository_Note();
         }

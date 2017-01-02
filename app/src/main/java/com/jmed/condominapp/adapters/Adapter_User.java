@@ -1,4 +1,12 @@
 package com.jmed.condominapp.adapters;
 
-public class Adapter_User {
+import android.content.Context;
+import android.widget.ArrayAdapter;
+
+import com.jmed.condominapp.pojo.Pojo_User;
+
+public class Adapter_User extends ArrayAdapter<Pojo_User> {
+    public Adapter_User(Context context, int resource) {
+        super(context, resource);
+    }
 }
