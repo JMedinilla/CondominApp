@@ -15,6 +15,8 @@ public class Repository_Community extends ArrayList<Pojo_Community> {
     }
 
     private Repository_Community() {
-
+        add(new Pojo_Community(99, "locality", "municipality", "address",
+                "number", "block", "postal", 12, "admin", "admin address",
+                "admin phone", "admin mail", "president", "president phone"));
     }
 }

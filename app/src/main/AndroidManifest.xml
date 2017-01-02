@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".Activity_Login_Admin" />
         <activity android:name=".Activity_Home" />
+        <activity android:name=".preferences.application.Profile" />
+        <activity android:name=".preferences.application.Settings" />
     </application>
 
 </manifest>

@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">CondominApp</string>
+    <string name="activity_login_txtTitle">CONDOMINAPP</string>
+    <string name="contentDescription">cnt</string>
+    <string name="activity_login_txtWelcome">Welcom</string>
+    <string name="activity_login_txtInfo">Use the code given by the admin</string>
+    <string name="activity_login_edtKey">Access key</string>
+    <string name="activity_login_btnJoin">Login</string>
+    <string name="activity_login_chbRemember">Remember the access key</string>
+    <string name="activity_login_chbStay">Keep session logged</string>
+    <string name="btnHomeIncidents">Incidents</string>
+    <string name="btnHomeDiary">Diary</string>
+    <string name="btnHomeBoard">Board</string>
+    <string name="btnHomeCBoard">Community board</string>
+    <string name="btnHomeDocuments">Documents</string>
+    <string name="btnHomeMeetings">Meetings</string>
+    <string name="btnHomeInformation">Information</string>
+    <string name="btnHomeUsers">Users</string>
+    <string name="btnHomeCommunities">Communities</string>
+    <string name="about_txtTitle">Javier Medinilla</string>
+    <string name="about_txtDescription">Creador de CondominApp</string>
+    <string name="about_txtGit">JMedinilla/CondominApp</string>
 </resources>
