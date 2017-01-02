@@ -28,12 +28,12 @@ public class Repository_Entry_First extends ArrayList<Pojo_Entry> {
         GregorianCalendar calendar_5 = new GregorianCalendar(2016, 4, 12);
         GregorianCalendar calendar_6 = new GregorianCalendar(2016, 4, 25);
 
-        add(new Pojo_Entry(user1, "title 1", "content 1", new Date(calendar_1.getTimeInMillis()), Pojo_Entry.FIRST));
-        add(new Pojo_Entry(user1, "title 2", "content 2", new Date(calendar_2.getTimeInMillis()), Pojo_Entry.FIRST));
-        add(new Pojo_Entry(user1, "title 3", "content 3", new Date(calendar_3.getTimeInMillis()), Pojo_Entry.FIRST));
-        add(new Pojo_Entry(user2, "title 4", "content 4", new Date(calendar_4.getTimeInMillis()), Pojo_Entry.FIRST));
-        add(new Pojo_Entry(user2, "title 5", "content 5", new Date(calendar_5.getTimeInMillis()), Pojo_Entry.FIRST));
-        add(new Pojo_Entry(user2, "title 6", "content 6", new Date(calendar_6.getTimeInMillis()), Pojo_Entry.FIRST));
+        add(new Pojo_Entry(user1, "Ruidos nocturnos",
+                "Se recuerda a los vecinos que el ayuntamiento prohibe el ruido a partir de las 21.00",
+                new Date(calendar_1.getTimeInMillis()), Pojo_Entry.FIRST));
+        add(new Pojo_Entry(user1, "Ascensor",
+                "El ascensor está estropeado dessde el martes pasado. El revisor vendrá el mes que viene",
+                new Date(calendar_2.getTimeInMillis()), Pojo_Entry.FIRST));
     }
 
     public List<Pojo_Entry> getEntries() {

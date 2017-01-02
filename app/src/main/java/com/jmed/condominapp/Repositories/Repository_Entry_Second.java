@@ -28,12 +28,12 @@ public class Repository_Entry_Second extends ArrayList<Pojo_Entry> {
         GregorianCalendar calendar_5 = new GregorianCalendar(2016, 4, 12);
         GregorianCalendar calendar_6 = new GregorianCalendar(2016, 4, 25);
 
-        add(new Pojo_Entry(user1, "title 1", "content 1", new Date(calendar_1.getTimeInMillis()), Pojo_Entry.SECOND));
-        add(new Pojo_Entry(user1, "title 2", "content 2", new Date(calendar_2.getTimeInMillis()), Pojo_Entry.SECOND));
-        add(new Pojo_Entry(user1, "title 3", "content 3", new Date(calendar_3.getTimeInMillis()), Pojo_Entry.SECOND));
-        add(new Pojo_Entry(user2, "title 4", "content 4", new Date(calendar_4.getTimeInMillis()), Pojo_Entry.SECOND));
-        add(new Pojo_Entry(user2, "title 5", "content 5", new Date(calendar_5.getTimeInMillis()), Pojo_Entry.SECOND));
-        add(new Pojo_Entry(user2, "title 6", "content 6", new Date(calendar_6.getTimeInMillis()), Pojo_Entry.SECOND));
+        add(new Pojo_Entry(user1, "Pantalón perdido",
+                "Soy del 1A y tengo un pantalón vaquero que se ha caido al patio, el dueño que se vaya pasando por aquí",
+                new Date(calendar_1.getTimeInMillis()), Pojo_Entry.SECOND));
+        add(new Pojo_Entry(user1, "Ruidos por la noche",
+                "Estoy harto de los putos ruidos de los del atico, o sea, es que me cago en dios ya en serio, como a partir de mañana mismo sigais con la mierda de musica a las 11 de la noche os juro que os meto una denuncia por el culo",
+                new Date(calendar_2.getTimeInMillis()), Pojo_Entry.SECOND));
     }
 
     public List<Pojo_Entry> getEntries() {

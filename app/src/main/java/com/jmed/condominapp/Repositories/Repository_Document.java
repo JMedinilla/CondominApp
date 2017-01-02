@@ -16,11 +16,10 @@ public class Repository_Document extends ArrayList<Pojo_Document> {
     }
 
     private Repository_Document() {
-        add(new Pojo_Document(99, "title 1", "content 1", "url 1"));
-        add(new Pojo_Document(99, "title 2", "content 2", "url 2"));
-        add(new Pojo_Document(99, "title 3", "content 3", "url 3"));
-        add(new Pojo_Document(99, "title 4", "content 4", "url 4"));
-        add(new Pojo_Document(99, "title 5", "content 5", "url 5"));
+        add(new Pojo_Document(99, "Estatutos", "Estatutos de la comunidad actualizados", "url 1"));
+        add(new Pojo_Document(99, "Normativa ruidos", "Normativa del ayuntamiento sobre ruidos", "url 2"));
+        add(new Pojo_Document(99, "Acta junta 16/05/15", "Acta de la junta celebrada el 16 de mayo de 2015", "url 3"));
+        add(new Pojo_Document(99, "Acta junta 10/01/16", "Acta de la junta celebrada el 10 de enero de 2016", "url 4"));
     }
 
     public List<Pojo_Document> getDocuments() {

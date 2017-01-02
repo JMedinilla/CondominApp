@@ -11,6 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jmed.condominapp.fragments.Home;
+import com.jmed.condominapp.fragments.form.Form_Board;
+import com.jmed.condominapp.fragments.form.Form_CBoard;
+import com.jmed.condominapp.fragments.form.Form_Diary;
+import com.jmed.condominapp.fragments.form.Form_Document;
+import com.jmed.condominapp.fragments.form.Form_Incident;
+import com.jmed.condominapp.fragments.form.Form_Meeting;
 import com.jmed.condominapp.fragments.list.List_Board;
 import com.jmed.condominapp.fragments.list.List_CBoard;
 import com.jmed.condominapp.fragments.list.List_Community;
@@ -171,12 +177,20 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageBoardOpen() {
-        //Formulario ENTRY1
+        Form_Board form_board = new Form_Board();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_board);
+        fragmentTransaction.addToBackStack("form_board");
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onManageCBoardOpen() {
-        //Formulario ENTRY2
+        Form_CBoard form_cBoard = new Form_CBoard();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_cBoard);
+        fragmentTransaction.addToBackStack("form_cBoard");
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -186,22 +200,38 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageDiaryOpen() {
-        //Formulario NOTE
+        Form_Diary form_diary = new Form_Diary();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_diary);
+        fragmentTransaction.addToBackStack("form_diary");
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onManageDocumentOpen() {
-        //Formulario DOCUMENT
+        Form_Document form_document = new Form_Document();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_document);
+        fragmentTransaction.addToBackStack("form_document");
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onManageIncidentOpen() {
-        //Formulario INCIDENT
+        Form_Incident form_incident = new Form_Incident();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_incident);
+        fragmentTransaction.addToBackStack("form_incident");
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onManageMeetingOpen() {
-        //Formulario MEETING
+        Form_Meeting form_meeting = new Form_Meeting();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_meeting);
+        fragmentTransaction.addToBackStack("form_meeting");
+        fragmentTransaction.commit();
     }
 
     @Override

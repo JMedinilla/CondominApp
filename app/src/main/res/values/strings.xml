@@ -21,4 +21,10 @@
     <string name="about_txtDescription">Creador de CondominApp</string>
     <string name="about_txtGit">JMedinilla/CondominApp</string>
     <string name="btnHomeProfile">Profile</string>
+    <string name="fragListBoard_edt">Search . . .</string>
+    <string name="fragListCBoard_edt">Search . . .</string>
+    <string name="fragListDiary_edt">Search . . .</string>
+    <string name="fragListDocument_edt">Search . . .</string>
+    <string name="fragListIncident_edt">Search . . .</string>
+    <string name="fragListMeeting_edt">Search . . .</string>
 </resources>

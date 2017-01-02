@@ -5,15 +5,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import com.jmed.condominapp.R;
+import com.jmed.condominapp.adapters.Adapter_Incident;
 
 public class List_Incident extends Fragment {
     private FragmentListIncidentListener homeCallback;
     public static final String TAG_FRAGMENT_LIST_INCIDENT = "fragmentListIncidentTag";
+
+    Adapter_Incident adapter_incident;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,15 +44,38 @@ public class List_Incident extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_incident, container, false);
 
-        /*
-        FloatingActionButton btnListIncicent = (FloatingActionButton) view.findViewById(R.id.btnListIncicent);
-        btnListIncicent.setOnClickListener(new View.OnClickListener() {
+        EditText edt = (EditText) view.findViewById(R.id.fragListIncident_edt);
+        FloatingActionButton btn = (FloatingActionButton) view.findViewById(R.id.fragListIncident_btn);
+        ListView listView = (ListView) view.findViewById(R.id.fragListIncident_list);
+
+        adapter_incident = new Adapter_Incident(getContext());
+        listView.setDivider(null);
+        listView.setAdapter(adapter_incident);
+
+        edt.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 homeCallback.onManageIncidentOpen();
             }
         });
-        */
+
         return view;
     }
 }

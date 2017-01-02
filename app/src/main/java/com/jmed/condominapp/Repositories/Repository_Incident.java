@@ -24,16 +24,10 @@ public class Repository_Incident extends ArrayList<Pojo_Incident> {
         GregorianCalendar calendar_1 = new GregorianCalendar(2016, 3, 2);
         GregorianCalendar calendar_2 = new GregorianCalendar(2016, 3, 14);
         GregorianCalendar calendar_3 = new GregorianCalendar(2016, 3, 27);
-        GregorianCalendar calendar_4 = new GregorianCalendar(2016, 4, 5);
-        GregorianCalendar calendar_5 = new GregorianCalendar(2016, 4, 12);
-        GregorianCalendar calendar_6 = new GregorianCalendar(2016, 4, 25);
 
-        add(new Pojo_Incident(user1, new Date(calendar_1.getTimeInMillis()), "title 1", "desc 1", "url 1", 0));
-        add(new Pojo_Incident(user1, new Date(calendar_2.getTimeInMillis()), "title 2", "desc 2", "url 2", 0));
-        add(new Pojo_Incident(user1, new Date(calendar_3.getTimeInMillis()), "title 3", "desc 3", "url 3", 0));
-        add(new Pojo_Incident(user2, new Date(calendar_4.getTimeInMillis()), "title 4", "desc 4", "url 4", 0));
-        add(new Pojo_Incident(user2, new Date(calendar_5.getTimeInMillis()), "title 5", "desc 5", "url 5", 0));
-        add(new Pojo_Incident(user2, new Date(calendar_6.getTimeInMillis()), "title 6", "desc 6", "url 6", 0));
+        add(new Pojo_Incident(user1, new Date(calendar_1.getTimeInMillis()), "Bombilla fundida", "La luz de la bombilla del rellano del tercero no va", "url 1", 0));
+        add(new Pojo_Incident(user1, new Date(calendar_2.getTimeInMillis()), "Azulejo roto", "En la escalera del segundo al tercero hay un azulejo roto", "url 2", 0));
+        add(new Pojo_Incident(user2, new Date(calendar_3.getTimeInMillis()), "Escalón roto", "A un escalón de la escalera del cuarto al ático le falta un trozo", "url 3", 0));
     }
 
     public List<Pojo_Incident> getIncidents() {

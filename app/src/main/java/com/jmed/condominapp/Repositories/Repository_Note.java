@@ -21,12 +21,10 @@ public class Repository_Note extends ArrayList<Pojo_Note> {
         GregorianCalendar calendar_1 = new GregorianCalendar(2016, 3, 1);
         GregorianCalendar calendar_2 = new GregorianCalendar(2016, 3, 5);
         GregorianCalendar calendar_3 = new GregorianCalendar(2016, 3, 13);
-        GregorianCalendar calendar_4 = new GregorianCalendar(2016, 3, 26);
 
-        add(new Pojo_Note(99, new Date(calendar_1.getTimeInMillis()), "titulo 1", "contenido 1"));
-        add(new Pojo_Note(99, new Date(calendar_2.getTimeInMillis()), "titulo 2", "contenido 2"));
-        add(new Pojo_Note(99, new Date(calendar_3.getTimeInMillis()), "titulo 3", "contenido 3"));
-        add(new Pojo_Note(99, new Date(calendar_4.getTimeInMillis()), "titulo 4", "contenido 4"));
+        add(new Pojo_Note(99, new Date(calendar_1.getTimeInMillis()), "Corte de agua", "El martes 21 hay un corte de agua desde las 4.00 hasta las 8.00"));
+        add(new Pojo_Note(99, new Date(calendar_2.getTimeInMillis()), "Revisión ascensor", "El día 14 de diciembre viene el revisor a ver el ascensor"));
+        add(new Pojo_Note(99, new Date(calendar_3.getTimeInMillis()), "Revisión extintores", "El 15 de enero toca revisión de los extintores de la comunidad"));
     }
 
     public List<Pojo_Note> getNotes() {
