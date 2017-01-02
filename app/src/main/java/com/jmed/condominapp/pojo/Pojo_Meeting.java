@@ -5,12 +5,12 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Pojo_Meeting {
-    private String me_id;
+    private int me_id;
     private int me_community;
     private Date me_date;
 
-    public Pojo_Meeting(int me_community, Date me_date) {
-        this.me_id = UUID.randomUUID().toString();
+    public Pojo_Meeting(int me_id, int me_community, Date me_date) {
+        this.me_id = me_id;
         this.me_community = me_community;
         this.me_date = me_date;
     }
@@ -34,11 +34,11 @@ public class Pojo_Meeting {
         return "Meeting (" + me_date.toString() + ")";
     }
 
-    public String getMe_id() {
+    public int getMe_id() {
         return me_id;
     }
 
-    public void setMe_id(String me_id) {
+    public void setMe_id(int me_id) {
         this.me_id = me_id;
     }
 
