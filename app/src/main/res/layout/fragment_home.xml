@@ -6,21 +6,22 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="40dp">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardHomeIncidents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeIncidents"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_image_black"
                 android:gravity="center"
@@ -31,17 +32,18 @@
             android:id="@+id/cardHomeDiary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_toEndOf="@+id/cardHomeIncidents"
-            android:layout_toRightOf="@id/cardHomeIncidents"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeDiary"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_book_open_page_variant_black"
                 android:gravity="center"
@@ -53,13 +55,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardHomeIncidents"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeBoard"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_clipboard_text_black"
                 android:gravity="center"
@@ -70,18 +74,18 @@
             android:id="@+id/cardHomeCBoard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_below="@+id/cardHomeDiary"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_toEndOf="@+id/cardHomeIncidents"
-            android:layout_toRightOf="@id/cardHomeIncidents"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeCBoard"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_developer_board_black"
                 android:gravity="center"
@@ -93,13 +97,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardHomeBoard"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeDocuments"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_file_document_black"
                 android:gravity="center"
@@ -110,17 +116,17 @@
             android:id="@+id/cardHomeMeetings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_below="@+id/cardHomeCBoard"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_toEndOf="@+id/cardHomeIncidents"
-            android:layout_toRightOf="@id/cardHomeIncidents"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeMeetings"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_calendar_text_black"
                 android:gravity="center"
@@ -136,7 +142,7 @@
             android:layout_alignRight="@+id/cardHomeMeetings"
             android:layout_alignStart="@id/cardHomeDocuments"
             android:layout_below="@id/cardHomeDocuments"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             app:cardElevation="4dp">
 
             <Button
@@ -158,7 +164,7 @@
             android:layout_alignRight="@+id/cardHomeInformation"
             android:layout_alignStart="@id/cardHomeInformation"
             android:layout_below="@id/cardHomeInformation"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             app:cardElevation="4dp">
 
             <Button
@@ -176,13 +182,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/cardHomeProfile"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeUsers"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_account_multiple_black"
                 android:gravity="center"
@@ -193,17 +201,17 @@
             android:id="@+id/cardHomeCommunities"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_below="@id/cardHomeProfile"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_toEndOf="@+id/cardHomeIncidents"
-            android:layout_toRightOf="@id/cardHomeIncidents"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             app:cardElevation="4dp">
 
             <Button
                 android:id="@+id/btnHomeCommunities"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="130dp"
+                android:layout_width="146dp"
                 android:layout_height="100dp"
                 android:drawableBottom="@drawable/ic_home_modern_black"
                 android:gravity="center"

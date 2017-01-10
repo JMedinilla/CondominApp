@@ -2,7 +2,7 @@
     <string name="app_name">CondominApp</string>
     <string name="activity_login_txtTitle">CONDOMINAPP</string>
     <string name="contentDescription">cnt</string>
-    <string name="activity_login_txtWelcome">Welcom</string>
+    <string name="activity_login_txtWelcome">Welcome</string>
     <string name="activity_login_txtInfo">Use the code given by the admin</string>
     <string name="activity_login_edtKey">Access key</string>
     <string name="activity_login_btnJoin">Login</string>
