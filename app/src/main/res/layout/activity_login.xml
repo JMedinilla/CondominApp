@@ -135,9 +135,9 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/activity_login_cardGroupLogin"
         android:layout_alignLeft="@id/activity_login_cardGroupLogin"
-        android:layout_alignParentBottom="true"
         android:layout_alignRight="@id/activity_login_cardGroupLogin"
         android:layout_alignStart="@id/activity_login_cardGroupLogin"
+        android:layout_below="@+id/activity_login_cardGroupLogin"
         android:layout_marginTop="20dp"
         app:cardElevation="4dp">
 

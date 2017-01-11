@@ -17,6 +17,7 @@ public class Profile {
     private static final String USER_MAIL = "user_data_mail";
     private static final String USER_NAME = "user_data_name";
     private static final String USER_CATEGORY = "user_data_category";
+    private static final String USER_PHOTO = "user_data_photo";
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -88,5 +89,13 @@ public class Profile {
 
     public void setUserCategory(int value) {
         editor.putInt(USER_CATEGORY, value).commit();
+    }
+
+    public String getUserPhoto() {
+        return sharedPreferences.getString(USER_PHOTO, "default");
+    }
+
+    public void setUserPhoto(String value) {
+        editor.putString(USER_PHOTO, value).commit();
     }
 }

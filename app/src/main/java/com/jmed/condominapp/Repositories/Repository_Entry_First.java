@@ -19,8 +19,8 @@ public class Repository_Entry_First extends ArrayList<Pojo_Entry> {
     }
 
     private Repository_Entry_First() {
-        Pojo_User user1 = new Pojo_User("12", 99, "-", "-", "656565656", "eliseo@gmail.com", "Eliseo Moreno", Pojo_User.ADMINISTRATOR);
-        Pojo_User user2 = new Pojo_User("1234", 99, "1", "A", "959595959", "medinilla@gmail.com", "Javier Medinilla", Pojo_User.PRESIDENT);
+        Pojo_User user1 = new Pojo_User("12", 99, "-", "-", "656565656", "eliseo@gmail.com", "Eliseo Moreno", Pojo_User.ADMINISTRATOR, "");
+        Pojo_User user2 = new Pojo_User("1234", 99, "1", "A", "959595959", "medinilla@gmail.com", "Javier Medinilla", Pojo_User.PRESIDENT, "");
         GregorianCalendar calendar_1 = new GregorianCalendar(2016, 3, 2);
         GregorianCalendar calendar_2 = new GregorianCalendar(2016, 3, 14);
         GregorianCalendar calendar_3 = new GregorianCalendar(2016, 3, 27);

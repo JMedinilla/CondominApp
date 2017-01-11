@@ -16,9 +16,9 @@ public class Repository_User extends ArrayList<Pojo_User> {
     }
 
     private Repository_User() {
-        add(new Pojo_User("12", 99, "-", "-", "656565656", "eliseo@gmail.com", "Eliseo Moreno", Pojo_User.ADMINISTRATOR));
-        add(new Pojo_User("1234", 99, "1", "A", "959595959", "medinilla@gmail.com", "Javier Medinilla", Pojo_User.PRESIDENT));
-        add(new Pojo_User("123456", 99, "2", "C", "454545454", "amafernan@gmail.com", "Amador Fernández", Pojo_User.NEIGHBOUR));
+        add(new Pojo_User("12", 99, "-", "-", "656565656", "eliseo@gmail.com", "Eliseo Moreno", Pojo_User.ADMINISTRATOR, ""));
+        add(new Pojo_User("1234", 99, "1", "A", "959595959", "medinilla@gmail.com", "Javier Medinilla", Pojo_User.PRESIDENT, ""));
+        add(new Pojo_User("123456", 99, "2", "C", "454545454", "amafernan@gmail.com", "Amador Fernández", Pojo_User.NEIGHBOUR, ""));
     }
 
     public List<Pojo_User> getUsers() {

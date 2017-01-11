@@ -44,30 +44,12 @@ public class List_Incident extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_incident, container, false);
 
-        EditText edt = (EditText) view.findViewById(R.id.fragListIncident_edt);
         FloatingActionButton btn = (FloatingActionButton) view.findViewById(R.id.fragListIncident_btn);
         ListView listView = (ListView) view.findViewById(R.id.fragListIncident_list);
 
         adapter_incident = new Adapter_Incident(getContext());
         listView.setDivider(null);
         listView.setAdapter(adapter_incident);
-
-        edt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -108,7 +108,8 @@ public class Activity_Login extends AppCompatActivity {
                         tmpUsers.get(i).getUs_phone(),
                         tmpUsers.get(i).getUs_mail(),
                         tmpUsers.get(i).getUs_name(),
-                        tmpUsers.get(i).getUs_category());
+                        tmpUsers.get(i).getUs_category(),
+                        tmpUsers.get(i).getUs_photo());
 
                 preferences_profile.setAccess(tmpUser.getUs_id());
                 preferences_profile.setUserCommunity(tmpUser.getUs_community());
@@ -125,7 +126,7 @@ public class Activity_Login extends AppCompatActivity {
             }
         }
         if (!result) {
-            Pojo_User us = new Pojo_User("", 999999, "", "", "", "", "", Pojo_User.NEIGHBOUR);
+            Pojo_User us = new Pojo_User("", 999999, "", "", "", "", "", Pojo_User.NEIGHBOUR, "");
             preferences_profile.setAccess(us.getUs_id());
             preferences_profile.setUserCommunity(us.getUs_community());
             preferences_profile.setUserFloor(us.getUs_floor());

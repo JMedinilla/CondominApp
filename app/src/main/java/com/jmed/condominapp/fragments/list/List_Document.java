@@ -45,30 +45,12 @@ public class List_Document extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_document, container, false);
 
-        EditText edt = (EditText) view.findViewById(R.id.fragListDocument_edt);
         FloatingActionButton btn = (FloatingActionButton) view.findViewById(R.id.fragListDocument_btn);
         ListView listView = (ListView) view.findViewById(R.id.fragListDocument_list);
 
         adapter_document = new Adapter_Document(getContext());
         listView.setDivider(null);
         listView.setAdapter(adapter_document);
-
-        edt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

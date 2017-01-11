@@ -11,17 +11,17 @@ public class Pojo_Incident {
     private String in_title;
     private String in_description;
     private String in_photo;
-    private int in_starts;
+    private int in_stars;
 
     public Pojo_Incident(Pojo_User in_user, Date in_date, String in_title, String in_description,
-                         String in_photo, int in_starts) {
+                         String in_photo, int in_stars) {
         this.in_id = UUID.randomUUID().toString();
         this.in_user = in_user;
         this.in_date = in_date;
         this.in_title = in_title;
         this.in_description = in_description;
         this.in_photo = in_photo;
-        this.in_starts = in_starts;
+        this.in_stars = in_stars;
     }
 
     @Override
@@ -91,12 +91,12 @@ public class Pojo_Incident {
         this.in_photo = in_photo;
     }
 
-    public int getIn_starts() {
-        return in_starts;
+    public int getIn_stars() {
+        return in_stars;
     }
 
-    public void setIn_starts(int in_starts) {
-        this.in_starts = in_starts;
+    public void setIn_stars(int in_stars) {
+        this.in_stars = in_stars;
     }
 
     public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_TITLE_ASC = new Comparator<Pojo_Incident>() {
@@ -128,13 +128,13 @@ public class Pojo_Incident {
     public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_AUTHOR_ASC = new Comparator<Pojo_Incident>() {
         @Override
         public int compare(Pojo_Incident o1, Pojo_Incident o2) {
-            return o1.getIn_starts() - o2.getIn_starts();
+            return o1.getIn_stars() - o2.getIn_stars();
         }
     };
     public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_AUTHOR_DES = new Comparator<Pojo_Incident>() {
         @Override
         public int compare(Pojo_Incident o1, Pojo_Incident o2) {
-            return o2.getIn_starts() - o1.getIn_starts();
+            return o2.getIn_stars() - o1.getIn_stars();
         }
     };
 }

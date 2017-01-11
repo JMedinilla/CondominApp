@@ -15,9 +15,10 @@ public class Pojo_User {
     private String us_mail;
     private String us_name;
     private int us_category;
+    private String us_photo;
 
     public Pojo_User(String us_id, int us_community, String us_floor, String us_door,
-                     String us_phone, String us_mail, String us_name, int us_category) {
+                     String us_phone, String us_mail, String us_name, int us_category, String us_photo) {
         this.us_id = us_id;
         this.us_community = us_community;
         this.us_floor = us_floor;
@@ -26,6 +27,7 @@ public class Pojo_User {
         this.us_mail = us_mail;
         this.us_name = us_name;
         this.us_category = us_category;
+        this.us_photo = us_photo;
     }
 
     @Override
@@ -109,6 +111,14 @@ public class Pojo_User {
 
     public void setUs_category(int us_category) {
         this.us_category = us_category;
+    }
+
+    public String getUs_photo() {
+        return us_photo;
+    }
+
+    public void setUs_photo(String us_photo) {
+        this.us_photo = us_photo;
     }
 
     public static final Comparator<Pojo_User> COMPARATOR_USER_NAME_ASC = new Comparator<Pojo_User>() {

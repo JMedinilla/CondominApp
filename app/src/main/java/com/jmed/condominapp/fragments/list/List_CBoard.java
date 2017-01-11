@@ -44,30 +44,12 @@ public class List_CBoard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_cboard, container, false);
 
-        EditText edt = (EditText) view.findViewById(R.id.fragListCBoard_edt);
         FloatingActionButton btn = (FloatingActionButton) view.findViewById(R.id.fragListCBoard_btn);
         ListView listView = (ListView) view.findViewById(R.id.fragListCBoard_list);
 
         adapter_cBoard = new Adapter_CBoard(getContext());
         listView.setDivider(null);
         listView.setAdapter(adapter_cBoard);
-
-        edt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
