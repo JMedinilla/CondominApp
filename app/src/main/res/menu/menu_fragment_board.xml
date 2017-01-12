@@ -5,13 +5,13 @@
     <item
         android:id="@+id/menuBoard_date"
         android:orderInCategory="1"
-        android:title="Order by date"
+        android:title="@string/menuBoard_date"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/menuBoard_title"
         android:orderInCategory="2"
-        android:title="Order by title"
+        android:title="@string/menuBoard_title"
         app:showAsAction="never" />
 
 </menu>

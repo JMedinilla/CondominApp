@@ -5,7 +5,7 @@
     <item
         android:id="@+id/menuDocuments_title"
         android:orderInCategory="1"
-        android:title="Order by title"
+        android:title="@string/menuDocuments_title"
         app:showAsAction="never" />
 
 </menu>

@@ -5,7 +5,7 @@
             android:key="accesskey"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:summary="User access key"
-            android:title="Key" />
+            android:summary="@string/accesskey_description"
+            android:title="@string/accesskey_title" />
     </PreferenceCategory>
 </PreferenceScreen>
