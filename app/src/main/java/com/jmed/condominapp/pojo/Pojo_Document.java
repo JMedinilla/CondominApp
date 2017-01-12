@@ -78,16 +78,10 @@ public class Pojo_Document {
         this.do_link = do_link;
     }
 
-    public static final Comparator<Pojo_Document> COMPARATOR_DOCUMENT_TITLE_ASC = new Comparator<Pojo_Document>() {
+    public static final Comparator<Pojo_Document> COMPARATOR_DOCUMENT_TITLE = new Comparator<Pojo_Document>() {
         @Override
         public int compare(Pojo_Document o1, Pojo_Document o2) {
             return o1.getDo_title().toUpperCase().compareTo(o2.getDo_title().toUpperCase());
-        }
-    };
-    public static final Comparator<Pojo_Document> COMPARATOR_DOCUMENT_TITLE_DES = new Comparator<Pojo_Document>() {
-        @Override
-        public int compare(Pojo_Document o1, Pojo_Document o2) {
-            return o2.getDo_title().toUpperCase().compareTo(o1.getDo_title().toUpperCase());
         }
     };
 }

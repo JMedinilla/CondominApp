@@ -99,42 +99,24 @@ public class Pojo_Incident {
         this.in_stars = in_stars;
     }
 
-    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_TITLE_ASC = new Comparator<Pojo_Incident>() {
+    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_TITLE = new Comparator<Pojo_Incident>() {
         @Override
         public int compare(Pojo_Incident o1, Pojo_Incident o2) {
             return o1.getIn_title().toUpperCase().compareTo(o2.getIn_title().toUpperCase());
         }
     };
-    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_TITLE_DES = new Comparator<Pojo_Incident>() {
-        @Override
-        public int compare(Pojo_Incident o1, Pojo_Incident o2) {
-            return o2.getIn_title().toUpperCase().compareTo(o1.getIn_title().toUpperCase());
-        }
-    };
 
-    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_DATE_ASC = new Comparator<Pojo_Incident>() {
+    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_DATE = new Comparator<Pojo_Incident>() {
         @Override
         public int compare(Pojo_Incident o1, Pojo_Incident o2) {
             return o1.getIn_date().compareTo(o2.getIn_date());
         }
     };
-    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_DATE_DES = new Comparator<Pojo_Incident>() {
-        @Override
-        public int compare(Pojo_Incident o1, Pojo_Incident o2) {
-            return o2.getIn_date().compareTo(o1.getIn_date());
-        }
-    };
 
-    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_AUTHOR_ASC = new Comparator<Pojo_Incident>() {
+    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_AUTHOR = new Comparator<Pojo_Incident>() {
         @Override
         public int compare(Pojo_Incident o1, Pojo_Incident o2) {
             return o1.getIn_stars() - o2.getIn_stars();
-        }
-    };
-    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_AUTHOR_DES = new Comparator<Pojo_Incident>() {
-        @Override
-        public int compare(Pojo_Incident o1, Pojo_Incident o2) {
-            return o2.getIn_stars() - o1.getIn_stars();
         }
     };
 }

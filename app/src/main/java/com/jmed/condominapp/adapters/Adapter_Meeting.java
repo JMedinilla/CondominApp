@@ -13,13 +13,20 @@ import com.jmed.condominapp.Repositories.Repository_Meeting;
 import com.jmed.condominapp.pojo.Pojo_Meeting;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Adapter_Meeting extends ArrayAdapter<Pojo_Meeting> {
     private Context context;
 
     public Adapter_Meeting(Context context) {
-        super(context, R.layout.adapter_meeting, new ArrayList<>(Repository_Meeting.getInstance().getMeetings()));
+        super(context, R.layout.adapter_meeting, Repository_Meeting.getInstance().getMeetings());
         this.context = context;
+    }
+
+    public void sortMeetings(Comparator<Pojo_Meeting> comparator) {
+        Collections.sort(Repository_Meeting.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 
     @NonNull

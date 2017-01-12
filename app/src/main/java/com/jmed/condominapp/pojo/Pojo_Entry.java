@@ -94,29 +94,16 @@ public class Pojo_Entry {
         this.en_category = en_category;
     }
 
-    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_TITLE_ASC = new Comparator<Pojo_Entry>() {
+    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_TITLE = new Comparator<Pojo_Entry>() {
         @Override
         public int compare(Pojo_Entry o1, Pojo_Entry o2) {
             return o1.getEn_title().toUpperCase().compareTo(o2.getEn_title().toUpperCase());
         }
     };
-    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_TITLE_DES = new Comparator<Pojo_Entry>() {
-        @Override
-        public int compare(Pojo_Entry o1, Pojo_Entry o2) {
-            return o2.getEn_title().toUpperCase().compareTo(o1.getEn_title().toUpperCase());
-        }
-    };
-
-    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_DATE_ASC = new Comparator<Pojo_Entry>() {
+    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_DATE = new Comparator<Pojo_Entry>() {
         @Override
         public int compare(Pojo_Entry o1, Pojo_Entry o2) {
             return o1.getEn_date().compareTo(o2.getEn_date());
-        }
-    };
-    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_DATE_DES = new Comparator<Pojo_Entry>() {
-        @Override
-        public int compare(Pojo_Entry o1, Pojo_Entry o2) {
-            return o2.getEn_date().compareTo(o1.getEn_date());
         }
     };
 }

@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,6 +18,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Diary;
+import com.jmed.condominapp.pojo.Pojo_Note;
 
 public class List_Diary extends Fragment {
     private FragmentListDiaryListener homeCallback;
@@ -59,5 +63,31 @@ public class List_Diary extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        homeCallback = null;
+        adapter_diary = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_fragment_diary, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuDiary_title:
+                adapter_diary.sortDiaries(Pojo_Note.COMPARATOR_NOTE_TITLE);
+                break;
+            case R.id.menuDiary_date:
+                adapter_diary.sortDiaries(Pojo_Note.COMPARATOR_NOTE_DATE);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

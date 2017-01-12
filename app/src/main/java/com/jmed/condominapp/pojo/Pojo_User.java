@@ -121,29 +121,17 @@ public class Pojo_User {
         this.us_photo = us_photo;
     }
 
-    public static final Comparator<Pojo_User> COMPARATOR_USER_NAME_ASC = new Comparator<Pojo_User>() {
+    public static final Comparator<Pojo_User> COMPARATOR_USER_NAME = new Comparator<Pojo_User>() {
         @Override
         public int compare(Pojo_User o1, Pojo_User o2) {
             return o1.getUs_name().toUpperCase().compareTo(o2.getUs_name().toUpperCase());
         }
     };
-    public static final Comparator<Pojo_User> COMPARATOR_USER_NAME_DES = new Comparator<Pojo_User>() {
-        @Override
-        public int compare(Pojo_User o1, Pojo_User o2) {
-            return o2.getUs_name().toUpperCase().compareTo(o1.getUs_name().toUpperCase());
-        }
-    };
 
-    public static final Comparator<Pojo_User> COMPARATOR_USER_PHONE_ASC = new Comparator<Pojo_User>() {
+    public static final Comparator<Pojo_User> COMPARATOR_USER_PHONE = new Comparator<Pojo_User>() {
         @Override
         public int compare(Pojo_User o1, Pojo_User o2) {
             return o1.getUs_phone().compareTo(o2.getUs_phone());
-        }
-    };
-    public static final Comparator<Pojo_User> COMPARATOR_USER_PHONE_DES = new Comparator<Pojo_User>() {
-        @Override
-        public int compare(Pojo_User o1, Pojo_User o2) {
-            return o2.getUs_phone().compareTo(o1.getUs_phone());
         }
     };
 }

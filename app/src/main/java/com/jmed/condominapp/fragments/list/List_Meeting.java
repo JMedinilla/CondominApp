@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,6 +18,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Meeting;
+import com.jmed.condominapp.pojo.Pojo_Meeting;
 
 public class List_Meeting extends Fragment {
     private FragmentListMeetingListener homeCallback;
@@ -59,5 +63,28 @@ public class List_Meeting extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        homeCallback = null;
+        adapter_meeting = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_fragment_meetings, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuMeetings_date:
+                adapter_meeting.sortMeetings(Pojo_Meeting.COMPARATOR_MEETING_DATE);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

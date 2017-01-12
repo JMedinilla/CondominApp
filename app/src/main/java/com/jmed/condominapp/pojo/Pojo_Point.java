@@ -67,16 +67,10 @@ public class Pojo_Point {
         this.po_content = po_content;
     }
 
-    public static final Comparator<Pojo_Point> COMPARATOR_POINT_TITLE_ASC = new Comparator<Pojo_Point>() {
+    public static final Comparator<Pojo_Point> COMPARATOR_POINT_TITLE = new Comparator<Pojo_Point>() {
         @Override
         public int compare(Pojo_Point o1, Pojo_Point o2) {
             return o1.getPo_title().toUpperCase().compareTo(o2.getPo_title().toUpperCase());
-        }
-    };
-    public static final Comparator<Pojo_Point> COMPARATOR_POINT_TITLE_DES = new Comparator<Pojo_Point>() {
-        @Override
-        public int compare(Pojo_Point o1, Pojo_Point o2) {
-            return o2.getPo_title().toUpperCase().compareTo(o1.getPo_title().toUpperCase());
         }
     };
 }

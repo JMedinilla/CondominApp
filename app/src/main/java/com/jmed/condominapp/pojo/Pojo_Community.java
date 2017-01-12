@@ -175,29 +175,17 @@ public class Pojo_Community {
         this.co_president_phone = co_president_phone;
     }
 
-    public static final Comparator<Pojo_Community> COMPARATOR_COMMUNITY_POSTAL_ASC = new Comparator<Pojo_Community>() {
+    public static final Comparator<Pojo_Community> COMPARATOR_COMMUNITY_POSTAL = new Comparator<Pojo_Community>() {
         @Override
         public int compare(Pojo_Community o1, Pojo_Community o2) {
             return o1.getCo_postal().toUpperCase().compareTo(o2.getCo_postal().toUpperCase());
         }
     };
-    public static final Comparator<Pojo_Community> COMPARATOR_COMMUNITY_POSTAL_DES = new Comparator<Pojo_Community>() {
-        @Override
-        public int compare(Pojo_Community o1, Pojo_Community o2) {
-            return o2.getCo_postal().toUpperCase().compareTo(o1.getCo_postal().toUpperCase());
-        }
-    };
 
-    public static final Comparator<Pojo_Community> COMPARATOR_COMMUNITY_APARTMENTS_ASC = new Comparator<Pojo_Community>() {
+    public static final Comparator<Pojo_Community> COMPARATOR_COMMUNITY_APARTMENTS = new Comparator<Pojo_Community>() {
         @Override
         public int compare(Pojo_Community o1, Pojo_Community o2) {
             return o1.getCo_apartments() - o2.getCo_apartments();
-        }
-    };
-    public static final Comparator<Pojo_Community> COMPARATOR_COMMUNITY_APARTMENTS_DES = new Comparator<Pojo_Community>() {
-        @Override
-        public int compare(Pojo_Community o1, Pojo_Community o2) {
-            return o2.getCo_apartments() - o1.getCo_apartments();
         }
     };
 }

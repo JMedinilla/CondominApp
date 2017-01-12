@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,6 +18,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Document;
+import com.jmed.condominapp.pojo.Pojo_Document;
 
 
 public class List_Document extends Fragment {
@@ -60,5 +64,28 @@ public class List_Document extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        homeCallback = null;
+        adapter_document = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_fragment_documents, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuDocuments_title:
+                adapter_document.sortDocuments(Pojo_Document.COMPARATOR_DOCUMENT_TITLE);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

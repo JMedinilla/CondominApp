@@ -78,29 +78,17 @@ public class Pojo_Note {
         this.no_content = no_content;
     }
 
-    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_DATE_ASC = new Comparator<Pojo_Note>() {
+    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_DATE = new Comparator<Pojo_Note>() {
         @Override
         public int compare(Pojo_Note o1, Pojo_Note o2) {
             return o1.getNo_date().compareTo(o2.getNo_date());
         }
     };
-    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_DATE_DES = new Comparator<Pojo_Note>() {
-        @Override
-        public int compare(Pojo_Note o1, Pojo_Note o2) {
-            return o2.getNo_date().compareTo(o1.getNo_date());
-        }
-    };
 
-    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_TITLE_ASC = new Comparator<Pojo_Note>() {
+    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_TITLE = new Comparator<Pojo_Note>() {
         @Override
         public int compare(Pojo_Note o1, Pojo_Note o2) {
             return o1.getNo_title().toUpperCase().compareTo(o2.getNo_title().toUpperCase());
-        }
-    };
-    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_TITLE_DES = new Comparator<Pojo_Note>() {
-        @Override
-        public int compare(Pojo_Note o1, Pojo_Note o2) {
-            return o2.getNo_title().toUpperCase().compareTo(o1.getNo_title().toUpperCase());
         }
     };
 }

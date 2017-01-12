@@ -13,13 +13,20 @@ import com.jmed.condominapp.Repositories.Repository_Note;
 import com.jmed.condominapp.pojo.Pojo_Note;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Adapter_Diary extends ArrayAdapter<Pojo_Note> {
     private Context context;
 
     public Adapter_Diary(Context context) {
-        super(context, R.layout.adapter_diary, new ArrayList<>(Repository_Note.getInstance().getNotes()));
+        super(context, R.layout.adapter_diary, Repository_Note.getInstance().getNotes());
         this.context = context;
+    }
+
+    public void sortDiaries(Comparator<Pojo_Note> comparator) {
+        Collections.sort(Repository_Note.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 
     @NonNull

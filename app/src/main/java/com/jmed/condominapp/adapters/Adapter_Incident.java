@@ -15,13 +15,20 @@ import com.jmed.condominapp.pojo.Pojo_Incident;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
     private Context context;
 
     public Adapter_Incident(Context context) {
-        super(context, R.layout.adapter_incident, new ArrayList<>(Repository_Incident.getInstance().getIncidents()));
+        super(context, R.layout.adapter_incident, Repository_Incident.getInstance().getIncidents());
         this.context = context;
+    }
+
+    public void sortIncidents(Comparator<Pojo_Incident> comparator) {
+        Collections.sort(Repository_Incident.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 
     @NonNull

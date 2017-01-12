@@ -58,16 +58,10 @@ public class Pojo_Meeting {
         this.me_date = me_date;
     }
 
-    public static final Comparator<Pojo_Meeting> COMPARATOR_MEETING_DATE_ASC = new Comparator<Pojo_Meeting>() {
+    public static final Comparator<Pojo_Meeting> COMPARATOR_MEETING_DATE = new Comparator<Pojo_Meeting>() {
         @Override
         public int compare(Pojo_Meeting o1, Pojo_Meeting o2) {
             return o1.getMe_date().compareTo(o2.getMe_date());
-        }
-    };
-    public static final Comparator<Pojo_Meeting> COMPARATOR_MEETING_DATE_DES = new Comparator<Pojo_Meeting>() {
-        @Override
-        public int compare(Pojo_Meeting o1, Pojo_Meeting o2) {
-            return o2.getMe_date().compareTo(o1.getMe_date());
         }
     };
 }

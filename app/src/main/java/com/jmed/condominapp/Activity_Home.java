@@ -56,14 +56,6 @@ public class Activity_Home extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
-            /*
-            case R.id.action_home_profile:
-                intent = new Intent(Activity_Home.this, Activity_Main_Profile.class);
-                startActivity(intent);
-                break;*/
-            case R.id.action_home_profile:
-                startActivity(new Intent(Activity_Home.this, Profile.class));
-                break;
             case R.id.action_home_settings:
                 intent = new Intent(Activity_Home.this, Settings.class);
                 startActivity(intent);

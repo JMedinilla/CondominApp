@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,6 +18,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Incident;
+import com.jmed.condominapp.pojo.Pojo_Incident;
 
 public class List_Incident extends Fragment {
     private FragmentListIncidentListener homeCallback;
@@ -59,5 +63,34 @@ public class List_Incident extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        homeCallback = null;
+        adapter_incident = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_fragment_incidents, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuIncidents_date:
+                adapter_incident.sortIncidents(Pojo_Incident.COMPARATOR_INCIDENT_DATE);
+                break;
+            case R.id.menuIncidents_author:
+                adapter_incident.sortIncidents(Pojo_Incident.COMPARATOR_INCIDENT_AUTHOR);
+                break;
+            case R.id.menuIncidents_title:
+                adapter_incident.sortIncidents(Pojo_Incident.COMPARATOR_INCIDENT_TITLE);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
