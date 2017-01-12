@@ -26,7 +26,6 @@ import com.jmed.condominapp.fragments.list.List_Incident;
 import com.jmed.condominapp.fragments.list.List_Information;
 import com.jmed.condominapp.fragments.list.List_Meeting;
 import com.jmed.condominapp.fragments.list.List_User;
-import com.jmed.condominapp.preferences.application.Profile;
 import com.jmed.condominapp.preferences.application.Settings;
 
 public class Activity_Home extends AppCompatActivity

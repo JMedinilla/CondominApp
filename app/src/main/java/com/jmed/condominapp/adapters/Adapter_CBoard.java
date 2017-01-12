@@ -12,7 +12,6 @@ import com.jmed.condominapp.R;
 import com.jmed.condominapp.Repositories.Repository_Entry_Second;
 import com.jmed.condominapp.pojo.Pojo_Entry;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 

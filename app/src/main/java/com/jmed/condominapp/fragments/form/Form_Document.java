@@ -15,9 +15,6 @@ import com.jmed.condominapp.Repositories.Repository_Document;
 import com.jmed.condominapp.pojo.Pojo_Document;
 import com.jmed.condominapp.preferences.files.Profile;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class Form_Document extends Fragment {
     public static final String TAG_FRAGMENT_FORM_DOCUMENT = "fragmentFormDocumentTag";
 

@@ -14,7 +14,6 @@ import com.jmed.condominapp.Repositories.Repository_Incident;
 import com.jmed.condominapp.pojo.Pojo_Incident;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
