@@ -1,18 +1,19 @@
-package com.jmed.condominapp.pojo;
+package com.jmed.condominapp.pojos;
 
 import java.util.Comparator;
 import java.util.Date;
-import java.util.UUID;
 
 public class Pojo_Meeting {
     private int me_id;
     private int me_community;
     private Date me_date;
+    private boolean me_deleted;
 
-    public Pojo_Meeting(int me_id, int me_community, Date me_date) {
+    public Pojo_Meeting(int me_id, int me_community, Date me_date, boolean me_deleted) {
         this.me_id = me_id;
         this.me_community = me_community;
         this.me_date = me_date;
+        this.me_deleted = me_deleted;
     }
 
     @Override
@@ -56,6 +57,14 @@ public class Pojo_Meeting {
 
     public void setMe_date(Date me_date) {
         this.me_date = me_date;
+    }
+
+    public boolean isMe_deleted() {
+        return me_deleted;
+    }
+
+    public void setMe_deleted(boolean me_deleted) {
+        this.me_deleted = me_deleted;
     }
 
     public static final Comparator<Pojo_Meeting> COMPARATOR_MEETING_DATE = new Comparator<Pojo_Meeting>() {

@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jmed.condominapp.R;
-import com.jmed.condominapp.Repositories.Repository_Incident;
-import com.jmed.condominapp.pojo.Pojo_Incident;
+import com.jmed.condominapp.repositories.Repository_Incident;
+import com.jmed.condominapp.pojos.Pojo_Incident;
 import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.Collections;

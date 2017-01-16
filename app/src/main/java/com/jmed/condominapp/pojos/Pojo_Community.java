@@ -1,4 +1,4 @@
-package com.jmed.condominapp.pojo;
+package com.jmed.condominapp.pojos;
 
 import java.util.Comparator;
 
@@ -11,17 +11,10 @@ public class Pojo_Community {
     private String co_block;
     private String co_postal;
     private int co_apartments;
-    private String co_admin_name;
-    private String co_admin_address;
-    private String co_admin_phone;
-    private String co_admin_mail;
-    private String co_president_name;
-    private String co_president_phone;
+    private boolean co_deleted;
 
     public Pojo_Community(int co_id, String co_locality, String co_municipality, String co_address,
-                          String co_number, String co_block, String co_postal, int co_apartments,
-                          String co_admin_name, String co_admin_address, String co_admin_phone, String co_admin_mail,
-                          String co_president_name, String co_president_phone) {
+                          String co_number, String co_block, String co_postal, int co_apartments, boolean co_deleted) {
         this.co_id = co_id;
         this.co_locality = co_locality;
         this.co_municipality = co_municipality;
@@ -30,12 +23,7 @@ public class Pojo_Community {
         this.co_block = co_block;
         this.co_postal = co_postal;
         this.co_apartments = co_apartments;
-        this.co_admin_name = co_admin_name;
-        this.co_admin_address = co_admin_address;
-        this.co_admin_phone = co_admin_phone;
-        this.co_admin_mail = co_admin_mail;
-        this.co_president_name = co_president_name;
-        this.co_president_phone = co_president_phone;
+        this.co_deleted = co_deleted;
     }
 
     @Override
@@ -47,7 +35,7 @@ public class Pojo_Community {
                 if (this.co_postal.toUpperCase().equals(another.co_postal.toUpperCase())
                         && this.co_address.toUpperCase().equals(another.co_address.toUpperCase())
                         && this.co_number.toUpperCase().equals(another.co_number.toUpperCase())
-                        && this.co_block.toUpperCase().equals(another.co_block.toUpperCase())) {
+                        && this.co_deleted == another.co_deleted) {
                     result = true;
                 }
             }
@@ -59,8 +47,7 @@ public class Pojo_Community {
     public String toString() {
         return "Community: "
                 + co_postal + " (postal), "
-                + co_address + " n" + co_number + " (address), "
-                + co_admin_name + " (admin)";
+                + co_address + " n" + co_number + " (address)";
     }
 
     public int getCo_id() {
@@ -127,52 +114,12 @@ public class Pojo_Community {
         this.co_apartments = co_apartments;
     }
 
-    public String getCo_admin_name() {
-        return co_admin_name;
+    public boolean isCo_deleted() {
+        return co_deleted;
     }
 
-    public void setCo_admin_name(String co_admin_name) {
-        this.co_admin_name = co_admin_name;
-    }
-
-    public String getCo_admin_address() {
-        return co_admin_address;
-    }
-
-    public void setCo_admin_address(String co_admin_address) {
-        this.co_admin_address = co_admin_address;
-    }
-
-    public String getCo_admin_phone() {
-        return co_admin_phone;
-    }
-
-    public void setCo_admin_phone(String co_admin_phone) {
-        this.co_admin_phone = co_admin_phone;
-    }
-
-    public String getCo_admin_mail() {
-        return co_admin_mail;
-    }
-
-    public void setCo_admin_mail(String co_admin_mail) {
-        this.co_admin_mail = co_admin_mail;
-    }
-
-    public String getCo_president_name() {
-        return co_president_name;
-    }
-
-    public void setCo_president_name(String co_president_name) {
-        this.co_president_name = co_president_name;
-    }
-
-    public String getCo_president_phone() {
-        return co_president_phone;
-    }
-
-    public void setCo_president_phone(String co_president_phone) {
-        this.co_president_phone = co_president_phone;
+    public void setCo_deleted(boolean co_deleted) {
+        this.co_deleted = co_deleted;
     }
 
     public static final Comparator<Pojo_Community> COMPARATOR_COMMUNITY_POSTAL = new Comparator<Pojo_Community>() {

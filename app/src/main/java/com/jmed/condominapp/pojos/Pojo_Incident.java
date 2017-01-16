@@ -1,4 +1,4 @@
-package com.jmed.condominapp.pojo;
+package com.jmed.condominapp.pojos;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -6,22 +6,24 @@ import java.util.UUID;
 
 public class Pojo_Incident {
     private String in_id;
-    private Pojo_User in_user;
+    private String in_userid;
     private Date in_date;
     private String in_title;
     private String in_description;
     private String in_photo;
     private int in_stars;
+    private boolean in_deleted;
 
-    public Pojo_Incident(Pojo_User in_user, Date in_date, String in_title, String in_description,
-                         String in_photo, int in_stars) {
+    public Pojo_Incident(String in_userid, Date in_date, String in_title, String in_description,
+                         String in_photo, int in_stars, boolean in_deleted) {
         this.in_id = UUID.randomUUID().toString();
-        this.in_user = in_user;
+        this.in_userid = in_userid;
         this.in_date = in_date;
         this.in_title = in_title;
         this.in_description = in_description;
         this.in_photo = in_photo;
         this.in_stars = in_stars;
+        this.in_deleted = in_deleted;
     }
 
     @Override
@@ -51,12 +53,12 @@ public class Pojo_Incident {
         this.in_id = in_id;
     }
 
-    public Pojo_User getIn_user() {
-        return in_user;
+    public String getIn_userid() {
+        return in_userid;
     }
 
-    public void setIn_user(Pojo_User in_user) {
-        this.in_user = in_user;
+    public void setIn_userid(String in_userid) {
+        this.in_userid = in_userid;
     }
 
     public Date getIn_date() {
@@ -97,6 +99,14 @@ public class Pojo_Incident {
 
     public void setIn_stars(int in_stars) {
         this.in_stars = in_stars;
+    }
+
+    public boolean isIn_deleted() {
+        return in_deleted;
+    }
+
+    public void setIn_deleted(boolean in_deleted) {
+        this.in_deleted = in_deleted;
     }
 
     public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_TITLE = new Comparator<Pojo_Incident>() {

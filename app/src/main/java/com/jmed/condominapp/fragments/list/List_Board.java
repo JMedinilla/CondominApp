@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Board;
-import com.jmed.condominapp.pojo.Pojo_Entry;
+import com.jmed.condominapp.pojos.Pojo_Entry;
 
 public class List_Board extends Fragment {
     private FragmentListBoardListener homeCallback;

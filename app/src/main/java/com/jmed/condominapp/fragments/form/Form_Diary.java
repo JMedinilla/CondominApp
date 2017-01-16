@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jmed.condominapp.R;
-import com.jmed.condominapp.Repositories.Repository_Note;
-import com.jmed.condominapp.pojo.Pojo_Note;
+import com.jmed.condominapp.repositories.Repository_Note;
+import com.jmed.condominapp.pojos.Pojo_Note;
 import com.jmed.condominapp.preferences.files.Profile;
 
 import java.util.Calendar;
@@ -56,7 +56,7 @@ public class Form_Diary extends Fragment {
                 Calendar calendar = Calendar.getInstance();
                 Date date = new Date(calendar.getTimeInMillis());
 
-                Pojo_Note note = new Pojo_Note(profile.getUserCommunity(), date, title.getText().toString(), description.getText().toString());
+                Pojo_Note note = new Pojo_Note(profile.getUserCommunity(), date, title.getText().toString(), description.getText().toString(), false);
 
                 if (!Repository_Note.getInstance().contains(note)) {
                     Repository_Note.getInstance().add(note);

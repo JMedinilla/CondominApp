@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Document;
-import com.jmed.condominapp.pojo.Pojo_Document;
+import com.jmed.condominapp.pojos.Pojo_Document;
 
 
 public class List_Document extends Fragment {

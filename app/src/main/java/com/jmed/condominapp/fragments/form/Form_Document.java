@@ -11,8 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jmed.condominapp.R;
-import com.jmed.condominapp.Repositories.Repository_Document;
-import com.jmed.condominapp.pojo.Pojo_Document;
+import com.jmed.condominapp.repositories.Repository_Document;
+import com.jmed.condominapp.pojos.Pojo_Document;
 import com.jmed.condominapp.preferences.files.Profile;
 
 public class Form_Document extends Fragment {
@@ -55,7 +55,7 @@ public class Form_Document extends Fragment {
                     link.setText("default");
                 }
 
-                Pojo_Document doc = new Pojo_Document(profile.getUserCommunity(), title.getText().toString(), description.getText().toString(), link.getText().toString());
+                Pojo_Document doc = new Pojo_Document(profile.getUserCommunity(), title.getText().toString(), description.getText().toString(), link.getText().toString(), false);
 
                 if (!Repository_Document.getInstance().contains(doc)) {
                     Repository_Document.getInstance().add(doc);

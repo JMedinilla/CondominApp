@@ -11,9 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jmed.condominapp.R;
-import com.jmed.condominapp.Repositories.Repository_Entry_First;
-import com.jmed.condominapp.pojo.Pojo_Entry;
-import com.jmed.condominapp.pojo.Pojo_User;
+import com.jmed.condominapp.repositories.Repository_Entry_First;
+import com.jmed.condominapp.pojos.Pojo_Entry;
 import com.jmed.condominapp.preferences.files.Profile;
 
 import java.util.Calendar;
@@ -44,9 +43,6 @@ public class Form_Board extends Fragment {
         btn = (FloatingActionButton) view.findViewById(R.id.fragFormBoard_btn);
         profile = new Profile(getContext());
 
-        final Pojo_User user = new Pojo_User(profile.getAccess(), profile.getUserCommunity(), profile.getUserFloor(), profile.getUserDoor(),
-                profile.getUserPhone(), profile.getUserMail(), profile.getUserName(), profile.getUserCategory(), profile.getUserPhoto());
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +56,7 @@ public class Form_Board extends Fragment {
                 Calendar calendar = Calendar.getInstance();
                 Date date = new Date(calendar.getTimeInMillis());
 
-                Pojo_Entry entry = new Pojo_Entry(user, title.getText().toString(), description.getText().toString(), date, Pojo_Entry.FIRST);
+                Pojo_Entry entry = new Pojo_Entry(profile.getUserId(), title.getText().toString(), description.getText().toString(), date, Pojo_Entry.FIRST, false);
 
                 if (!Repository_Entry_First.getInstance().contains(entry)) {
                     Repository_Entry_First.getInstance().add(entry);

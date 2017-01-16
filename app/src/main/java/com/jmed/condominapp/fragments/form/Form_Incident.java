@@ -12,9 +12,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.jmed.condominapp.R;
-import com.jmed.condominapp.Repositories.Repository_Incident;
-import com.jmed.condominapp.pojo.Pojo_Incident;
-import com.jmed.condominapp.pojo.Pojo_User;
+import com.jmed.condominapp.repositories.Repository_Incident;
+import com.jmed.condominapp.pojos.Pojo_Incident;
 import com.jmed.condominapp.preferences.files.Profile;
 
 import java.util.Calendar;
@@ -39,16 +38,13 @@ public class Form_Incident extends Fragment {
         final EditText title;
         final EditText description;
         FloatingActionButton btn;
-        Profile profile;
+        final Profile profile;
 
         img = (ImageView) view.findViewById(R.id.fragFormIncident_img);
         title = (EditText) view.findViewById(R.id.fragFormIncident_title);
         description = (EditText) view.findViewById(R.id.fragFormIncident_description);
         btn = (FloatingActionButton) view.findViewById(R.id.fragFormIncident_btn);
         profile = new Profile(getContext());
-
-        final Pojo_User user = new Pojo_User(profile.getAccess(), profile.getUserCommunity(), profile.getUserFloor(), profile.getUserDoor(),
-                profile.getUserPhone(), profile.getUserMail(), profile.getUserName(), profile.getUserCategory(), profile.getUserPhoto());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +59,8 @@ public class Form_Incident extends Fragment {
                 Calendar calendar = Calendar.getInstance();
                 Date date = new Date(calendar.getTimeInMillis());
 
-                Pojo_Incident incident = new Pojo_Incident(user, date, title.getText().toString(),
-                        description.getText().toString(), "url", 0);
+                Pojo_Incident incident = new Pojo_Incident(profile.getUserId(), date, title.getText().toString(),
+                        description.getText().toString(), "url", 0, false);
 
                 if (!Repository_Incident.getInstance().contains(incident)) {
                     Repository_Incident.getInstance().add(incident);

@@ -1,4 +1,4 @@
-package com.jmed.condominapp.pojo;
+package com.jmed.condominapp.pojos;
 
 import java.util.Comparator;
 
@@ -16,9 +16,10 @@ public class Pojo_User {
     private String us_name;
     private int us_category;
     private String us_photo;
+    private boolean us_deleted;
 
     public Pojo_User(String us_id, int us_community, String us_floor, String us_door,
-                     String us_phone, String us_mail, String us_name, int us_category, String us_photo) {
+                     String us_phone, String us_mail, String us_name, int us_category, String us_photo, boolean us_deleted) {
         this.us_id = us_id;
         this.us_community = us_community;
         this.us_floor = us_floor;
@@ -28,6 +29,7 @@ public class Pojo_User {
         this.us_name = us_name;
         this.us_category = us_category;
         this.us_photo = us_photo;
+        this.us_deleted = us_deleted;
     }
 
     @Override
@@ -119,6 +121,14 @@ public class Pojo_User {
 
     public void setUs_photo(String us_photo) {
         this.us_photo = us_photo;
+    }
+
+    public boolean isUs_deleted() {
+        return us_deleted;
+    }
+
+    public void setUs_deleted(boolean us_deleted) {
+        this.us_deleted = us_deleted;
     }
 
     public static final Comparator<Pojo_User> COMPARATOR_USER_NAME = new Comparator<Pojo_User>() {

@@ -1,4 +1,4 @@
-package com.jmed.condominapp.pojo;
+package com.jmed.condominapp.pojos;
 
 import java.util.Comparator;
 import java.util.UUID;
@@ -9,13 +9,15 @@ public class Pojo_Document {
     private String do_title;
     private String do_description;
     private String do_link;
+    private boolean do_deleted;
 
-    public Pojo_Document(int do_community, String do_title, String do_description, String do_link) {
+    public Pojo_Document(int do_community, String do_title, String do_description, String do_link, boolean do_deleted) {
         this.do_id = UUID.randomUUID().toString();
         this.do_community = do_community;
         this.do_title = do_title;
         this.do_description = do_description;
         this.do_link = do_link;
+        this.do_deleted = do_deleted;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class Pojo_Document {
             if (obj instanceof Pojo_Document) {
                 Pojo_Document another = (Pojo_Document) obj;
                 if (this.do_title.toUpperCase().equals(another.do_title.toUpperCase())
-                        && this.do_link.toUpperCase().equals(another.do_link.toUpperCase())) {
+                        && this.do_deleted == another.do_deleted) {
                     result = true;
                 }
             }
@@ -76,6 +78,14 @@ public class Pojo_Document {
 
     public void setDo_link(String do_link) {
         this.do_link = do_link;
+    }
+
+    public boolean isDo_deleted() {
+        return do_deleted;
+    }
+
+    public void setDo_deleted(boolean do_deleted) {
+        this.do_deleted = do_deleted;
     }
 
     public static final Comparator<Pojo_Document> COMPARATOR_DOCUMENT_TITLE = new Comparator<Pojo_Document>() {

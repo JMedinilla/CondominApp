@@ -1,6 +1,6 @@
-package com.jmed.condominapp.Repositories;
+package com.jmed.condominapp.repositories;
 
-import com.jmed.condominapp.pojo.Pojo_Point;
+import com.jmed.condominapp.pojos.Pojo_Point;
 
 import java.util.ArrayList;
 import java.util.List;

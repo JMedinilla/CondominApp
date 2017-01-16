@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Meeting;
-import com.jmed.condominapp.pojo.Pojo_Meeting;
+import com.jmed.condominapp.pojos.Pojo_Meeting;
 
 public class List_Meeting extends Fragment {
     private FragmentListMeetingListener homeCallback;

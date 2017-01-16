@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Incident;
-import com.jmed.condominapp.pojo.Pojo_Incident;
+import com.jmed.condominapp.pojos.Pojo_Incident;
 
 public class List_Incident extends Fragment {
     private FragmentListIncidentListener homeCallback;

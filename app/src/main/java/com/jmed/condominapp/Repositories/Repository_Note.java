@@ -1,6 +1,6 @@
-package com.jmed.condominapp.Repositories;
+package com.jmed.condominapp.repositories;
 
-import com.jmed.condominapp.pojo.Pojo_Note;
+import com.jmed.condominapp.pojos.Pojo_Note;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,9 +22,9 @@ public class Repository_Note extends ArrayList<Pojo_Note> {
         GregorianCalendar calendar_2 = new GregorianCalendar(2016, 3, 5);
         GregorianCalendar calendar_3 = new GregorianCalendar(2016, 3, 13);
 
-        add(new Pojo_Note(99, new Date(calendar_1.getTimeInMillis()), "Corte de agua", "El martes 21 hay un corte de agua desde las 4.00 hasta las 8.00"));
-        add(new Pojo_Note(99, new Date(calendar_2.getTimeInMillis()), "Revisión ascensor", "El día 14 de diciembre viene el revisor a ver el ascensor"));
-        add(new Pojo_Note(99, new Date(calendar_3.getTimeInMillis()), "Revisión extintores", "El 15 de enero toca revisión de los extintores de la comunidad"));
+        add(new Pojo_Note(99, new Date(calendar_1.getTimeInMillis()), "Corte de agua", "El martes 21 hay un corte de agua desde las 4.00 hasta las 8.00", false));
+        add(new Pojo_Note(99, new Date(calendar_2.getTimeInMillis()), "Revisión ascensor", "El día 14 de diciembre viene el revisor a ver el ascensor", false));
+        add(new Pojo_Note(99, new Date(calendar_3.getTimeInMillis()), "Revisión extintores", "El 15 de enero toca revisión de los extintores de la comunidad", false));
     }
 
     public List<Pojo_Note> getNotes() {

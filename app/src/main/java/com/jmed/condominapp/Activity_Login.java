@@ -9,8 +9,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
-import com.jmed.condominapp.Repositories.Repository_User;
-import com.jmed.condominapp.pojo.Pojo_User;
+import com.jmed.condominapp.repositories.Repository_User;
+import com.jmed.condominapp.pojos.Pojo_User;
 import com.jmed.condominapp.preferences.files.Profile;
 import com.jmed.condominapp.preferences.files.Settings;
 
@@ -35,7 +35,7 @@ public class Activity_Login extends AppCompatActivity {
         initializeComponents();
 
         if (preferences_settings.getRemember()) {
-            activity_login_edtKey.setText(preferences_profile.getAccess());
+            activity_login_edtKey.setText(preferences_profile.getUserId());
         } else {
             preferences_settings.setStay(false);
         }
@@ -109,9 +109,10 @@ public class Activity_Login extends AppCompatActivity {
                         tmpUsers.get(i).getUs_mail(),
                         tmpUsers.get(i).getUs_name(),
                         tmpUsers.get(i).getUs_category(),
-                        tmpUsers.get(i).getUs_photo());
+                        tmpUsers.get(i).getUs_photo(),
+                        tmpUsers.get(i).isUs_deleted());
 
-                preferences_profile.setAccess(tmpUser.getUs_id());
+                preferences_profile.setUserId(tmpUser.getUs_id());
                 preferences_profile.setUserCommunity(tmpUser.getUs_community());
                 preferences_profile.setUserFloor(tmpUser.getUs_floor());
                 preferences_profile.setUserDoor(tmpUser.getUs_door());
@@ -126,8 +127,8 @@ public class Activity_Login extends AppCompatActivity {
             }
         }
         if (!result) {
-            Pojo_User us = new Pojo_User("", 999999, "", "", "", "", "", Pojo_User.NEIGHBOUR, "");
-            preferences_profile.setAccess(us.getUs_id());
+            Pojo_User us = new Pojo_User("", 999999, "", "", "", "", "", Pojo_User.NEIGHBOUR, "", false);
+            preferences_profile.setUserId(us.getUs_id());
             preferences_profile.setUserCommunity(us.getUs_community());
             preferences_profile.setUserFloor(us.getUs_floor());
             preferences_profile.setUserDoor(us.getUs_door());

@@ -1,4 +1,4 @@
-package com.jmed.condominapp.pojo;
+package com.jmed.condominapp.pojos;
 
 import java.util.Comparator;
 import java.util.Date;
@@ -10,13 +10,15 @@ public class Pojo_Note {
     private Date no_date;
     private String no_title;
     private String no_content;
+    private boolean no_deleted;
 
-    public Pojo_Note(int no_community, Date no_date, String no_title, String no_content) {
+    public Pojo_Note(int no_community, Date no_date, String no_title, String no_content, boolean no_deleted) {
         this.no_id = UUID.randomUUID().toString();
         this.no_community = no_community;
         this.no_date = no_date;
         this.no_title = no_title;
         this.no_content = no_content;
+        this.no_deleted = no_deleted;
     }
 
     @Override
@@ -76,6 +78,14 @@ public class Pojo_Note {
 
     public void setNo_content(String no_content) {
         this.no_content = no_content;
+    }
+
+    public boolean isNo_deleted() {
+        return no_deleted;
+    }
+
+    public void setNo_deleted(boolean no_deleted) {
+        this.no_deleted = no_deleted;
     }
 
     public static final Comparator<Pojo_Note> COMPARATOR_NOTE_DATE = new Comparator<Pojo_Note>() {

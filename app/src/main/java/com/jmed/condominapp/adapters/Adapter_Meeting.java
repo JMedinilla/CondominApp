@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.jmed.condominapp.R;
-import com.jmed.condominapp.Repositories.Repository_Meeting;
-import com.jmed.condominapp.pojo.Pojo_Meeting;
+import com.jmed.condominapp.repositories.Repository_Meeting;
+import com.jmed.condominapp.pojos.Pojo_Meeting;
 
 import java.util.Collections;
 import java.util.Comparator;

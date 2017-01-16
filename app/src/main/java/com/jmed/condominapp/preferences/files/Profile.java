@@ -3,13 +3,14 @@ package com.jmed.condominapp.preferences.files;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.jmed.condominapp.pojo.Pojo_User;
+import com.jmed.condominapp.pojos.Pojo_User;
 
 public class Profile {
     private static final int MODE = Context.MODE_PRIVATE;
     private static final String FILE = "com.jmed.condominapp_preferences";
 
-    private static final String ACCESS = "accesskey";
+    private static final String USER_ID = "";
+    private static final String USER_ACCESS = "accesskey";
     private static final String USER_COMMUNITY = "user_data_community";
     private static final String USER_FLOOR = "user_data_floor";
     private static final String USER_DOOR = "user_data_door";
@@ -27,12 +28,20 @@ public class Profile {
         editor = sharedPreferences.edit();
     }
 
-    public String getAccess() {
-        return sharedPreferences.getString(ACCESS, "default");
+    public String getUserId() {
+        return sharedPreferences.getString(USER_ID, "default");
     }
 
-    public void setAccess(String value) {
-        editor.putString(ACCESS, value).commit();
+    public void setUserId(String value) {
+        editor.putString(USER_ID, value).commit();
+    }
+
+    public String getUserAccess() {
+        return sharedPreferences.getString(USER_ACCESS, "default");
+    }
+
+    public void setUserAccess(String value) {
+        editor.putString(USER_ACCESS, value).commit();
     }
 
     public int getUserCommunity() {

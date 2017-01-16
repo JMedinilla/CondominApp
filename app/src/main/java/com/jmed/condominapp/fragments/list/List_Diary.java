@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Diary;
-import com.jmed.condominapp.pojo.Pojo_Note;
+import com.jmed.condominapp.pojos.Pojo_Note;
 
 public class List_Diary extends Fragment {
     private FragmentListDiaryListener homeCallback;
