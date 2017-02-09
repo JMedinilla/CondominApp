@@ -1,14 +1,16 @@
 package com.jmed.condominapp;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.jmed.condominapp.fragments.Home;
 import com.jmed.condominapp.fragments.form.Form_Board;
@@ -29,59 +31,43 @@ import com.jmed.condominapp.fragments.list.List_User;
 import com.jmed.condominapp.preferences.application.Settings;
 
 public class Activity_Home extends AppCompatActivity
-        implements Home.FragmentHomeListener, List_Board.FragmentListBoardListener, List_CBoard.FragmentListCBoardListener,
+        implements NavigationView.OnNavigationItemSelectedListener, Home.FragmentHomeListener, List_Board.FragmentListBoardListener, List_CBoard.FragmentListCBoardListener,
         List_Community.FragmentListCommunityListener, List_Diary.FragmentListDiaryListener, List_Document.FragmentListDocumentListener,
         List_Incident.FragmentListIncidentListener, List_Meeting.FragmentListMeetingListener, List_User.FragmentListUserListener {
+
+    private Toolbar homeToolbar;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
+    private boolean exit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.layout_navigation);
 
-        Home fragmentHome = (Home) getSupportFragmentManager().findFragmentByTag(Home.TAG_FRAGMENT_HOME);
-        if (fragmentHome == null) {
-            fragmentHome = new Home();
-            getSupportFragmentManager().beginTransaction().add(R.id.activity_home, fragmentHome, Home.TAG_FRAGMENT_HOME).commit();
-        }
+        homeToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(homeToolbar);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setupDrawerContent();
+        showHome();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_home, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.action_home_settings:
-                intent = new Intent(Activity_Home.this, Settings.class);
-                startActivity(intent);
-                break;
-            case R.id.action_home_about:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Home.this);
-                View dialoglayout = View.inflate(Activity_Home.this, R.layout.dialog_about, null);
-                builder.setCancelable(false);
-                builder.setView(dialoglayout);
-                builder.setPositiveButton("Cerrar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //
-                    }
-                });
-                builder.show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    public void showHome() {
+        Home fragmentHome = new Home();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, fragmentHome, "list_incident");
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onHomeFragmentIncidentsButtonTap() {
         List_Incident list_incident = new List_Incident();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_incident);
-        fragmentTransaction.addToBackStack("list_incident");
+        fragmentTransaction.replace(R.id.activity_home, list_incident, "list_incident");
         fragmentTransaction.commit();
     }
 
@@ -89,8 +75,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentDiaryButtonTap() {
         List_Diary list_diary = new List_Diary();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_diary);
-        fragmentTransaction.addToBackStack("list_diary");
+        fragmentTransaction.replace(R.id.activity_home, list_diary, "list_diary");
         fragmentTransaction.commit();
     }
 
@@ -98,8 +83,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentBoardButtonTap() {
         List_Board list_board = new List_Board();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_board);
-        fragmentTransaction.addToBackStack("list_board");
+        fragmentTransaction.replace(R.id.activity_home, list_board, "list_board");
         fragmentTransaction.commit();
     }
 
@@ -107,8 +91,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentCBoardButtonTap() {
         List_CBoard list_cBoard = new List_CBoard();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_cBoard);
-        fragmentTransaction.addToBackStack("list_cBoard");
+        fragmentTransaction.replace(R.id.activity_home, list_cBoard, "list_cBoard");
         fragmentTransaction.commit();
     }
 
@@ -116,8 +99,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentDocumentsButtonTap() {
         List_Document list_document = new List_Document();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_document);
-        fragmentTransaction.addToBackStack("list_document");
+        fragmentTransaction.replace(R.id.activity_home, list_document, "list_document");
         fragmentTransaction.commit();
     }
 
@@ -125,8 +107,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentMeetingsButtonTap() {
         List_Meeting list_meeting = new List_Meeting();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_meeting);
-        fragmentTransaction.addToBackStack("list_meeting");
+        fragmentTransaction.replace(R.id.activity_home, list_meeting, "list_meeting");
         fragmentTransaction.commit();
     }
 
@@ -134,8 +115,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentInformationButtonTap() {
         List_Information list_information = new List_Information();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_information);
-        fragmentTransaction.addToBackStack("list_information");
+        fragmentTransaction.replace(R.id.activity_home, list_information, "list_information");
         fragmentTransaction.commit();
     }
 
@@ -143,8 +123,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentUsersButtonTap() {
         List_User list_user = new List_User();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_user);
-        fragmentTransaction.addToBackStack("list_user");
+        fragmentTransaction.replace(R.id.activity_home, list_user, "list_user");
         fragmentTransaction.commit();
     }
 
@@ -152,8 +131,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentCommunitiesButtonTap() {
         List_Community list_community = new List_Community();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, list_community);
-        fragmentTransaction.addToBackStack("list_community");
+        fragmentTransaction.replace(R.id.activity_home, list_community, "list_community");
         fragmentTransaction.commit();
     }
 
@@ -161,8 +139,7 @@ public class Activity_Home extends AppCompatActivity
     public void onHomeFragmentProfileButtonTap() {
         com.jmed.condominapp.fragments.Profile profile = new com.jmed.condominapp.fragments.Profile();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_home, profile);
-        fragmentTransaction.addToBackStack("profile");
+        fragmentTransaction.replace(R.id.activity_home, profile, "profile");
         fragmentTransaction.commit();
     }
 
@@ -228,5 +205,102 @@ public class Activity_Home extends AppCompatActivity
     @Override
     public void onManageUserOpen() {
         //Formulario USER
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else if (getSupportFragmentManager().getBackStackEntryCount() > 0 || exit)
+            super.onBackPressed();
+        else {
+            exit = true;
+            Snackbar.make(findViewById(R.id.activity_home), getString(R.string.back_pressed_twice), Snackbar.LENGTH_LONG)
+                    .addCallback(new Snackbar.Callback() {
+                        @Override
+                        public void onDismissed(Snackbar snackbar, int event) {
+                            super.onDismissed(snackbar, event);
+                            exit = false;
+                        }
+                    }).show();
+        }
+
+    }
+
+    private void setupDrawerContent() {
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        item.setChecked(true);
+
+        switch (item.getItemId()) {
+            case R.id.navHome:
+                showHome();
+                break;
+            case R.id.navIncidents:
+                onHomeFragmentIncidentsButtonTap();
+                break;
+            case R.id.navDiary:
+                onHomeFragmentDiaryButtonTap();
+                break;
+            case R.id.navBoard:
+                onHomeFragmentBoardButtonTap();
+                break;
+            case R.id.navCBoard:
+                onHomeFragmentCBoardButtonTap();
+                break;
+            case R.id.navDocuments:
+                onHomeFragmentDocumentsButtonTap();
+                break;
+            case R.id.navMeetings:
+                onHomeFragmentMeetingsButtonTap();
+                break;
+            case R.id.navInformation:
+                onHomeFragmentInformationButtonTap();
+                break;
+            case R.id.navProfile:
+                onHomeFragmentProfileButtonTap();
+                break;
+            case R.id.navUsers:
+                onHomeFragmentUsersButtonTap();
+                break;
+            case R.id.navCommunities:
+                onHomeFragmentCommunitiesButtonTap();
+                break;
+            case R.id.twoNavShop:
+                //
+                break;
+            case R.id.twoNavGame:
+                //
+                break;
+            case R.id.threeNavSettings:
+                Intent intent = new Intent(Activity_Home.this, Settings.class);
+                startActivity(intent);
+                break;
+            case R.id.threeNavHelp:
+                //
+                break;
+            case R.id.fourNavAbout:
+                break;
+            default:
+                item.setChecked(false);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        setTitle(item.getTitle());
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

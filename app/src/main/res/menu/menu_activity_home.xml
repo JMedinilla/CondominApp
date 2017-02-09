@@ -1,17 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/action_home_settings"
-        android:orderInCategory="88"
-        android:title="@string/action_home_settings"
-        app:showAsAction="never" />
+    <group
+        android:id="@+id/groupZero"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navHome"
+            android:icon="@drawable/app_image"
+            android:title="@string/navHome" />
+    </group>
 
-    <item
-        android:id="@+id/action_home_about"
-        android:orderInCategory="99"
-        android:title="@string/action_home_about"
-        app:showAsAction="never" />
+    <group
+        android:id="@+id/groupOne"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navIncidents"
+            android:icon="@drawable/ic_image_grey"
+            android:title="@string/navIncidents" />
+        <item
+            android:id="@+id/navDiary"
+            android:icon="@drawable/ic_book_open_page_variant_grey"
+            android:title="@string/navDiary" />
+        <item
+            android:id="@+id/navBoard"
+            android:icon="@drawable/ic_clipboard_text_grey"
+            android:title="@string/navBoard" />
+        <item
+            android:id="@+id/navCBoard"
+            android:icon="@drawable/ic_developer_board_grey"
+            android:title="@string/navCBoard" />
+        <item
+            android:id="@+id/navDocuments"
+            android:icon="@drawable/ic_file_document_grey"
+            android:title="@string/navDocuments" />
+        <item
+            android:id="@+id/navMeetings"
+            android:icon="@drawable/ic_calendar_text_grey"
+            android:title="@string/navMeetings" />
+        <item
+            android:id="@+id/navInformation"
+            android:icon="@drawable/ic_information_variant_grey"
+            android:title="@string/navInformation" />
+        <item
+            android:id="@+id/navProfile"
+            android:icon="@drawable/ic_face_profile_grey"
+            android:title="@string/navProfile" />
+        <item
+            android:id="@+id/navUsers"
+            android:icon="@drawable/ic_account_multiple_grey"
+            android:title="@string/navUsers" />
+        <item
+            android:id="@+id/navCommunities"
+            android:icon="@drawable/ic_home_modern_grey"
+            android:title="@string/navCommunities" />
+    </group>
 
+    <group
+        android:id="@+id/groupTwo"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/twoNavShop"
+            android:icon="@drawable/app_image"
+            android:title="@string/twoNavShop" />
+        <item
+            android:id="@+id/twoNavGame"
+            android:icon="@drawable/app_image"
+            android:title="@string/twoNavGame" />
+    </group>
+
+    <group
+        android:id="@+id/groupThree"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/threeNavSettings"
+            android:icon="@drawable/app_image"
+            android:title="@string/threeNavSettings" />
+        <item
+            android:id="@+id/threeNavHelp"
+            android:icon="@drawable/app_image"
+            android:title="@string/threeNavHelp" />
+    </group>
+
+    <group
+        android:id="@+id/groupFour"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/fourNavAbout"
+            android:icon="@drawable/app_image"
+            android:title="@string/fourNavAbout" />
+    </group>
 </menu>

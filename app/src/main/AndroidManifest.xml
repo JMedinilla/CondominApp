@@ -8,17 +8,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity_Login">
+        <activity
+            android:name=".Activity_Login"
+            android:theme="@style/AppTheme.ActionBar"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Login_Admin" />
+        <activity
+            android:name=".Activity_Login_Admin"
+            android:theme="@style/AppTheme.ActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Activity_Home" />
-        <activity android:name=".preferences.application.Profile" />
-        <activity android:name=".preferences.application.Settings" />
+        <activity
+            android:name=".preferences.application.Profile"
+            android:theme="@style/AppTheme.ActionBar" />
+        <activity
+            android:name=".preferences.application.Settings"
+            android:theme="@style/AppTheme.ActionBar" />
     </application>
 
 </manifest>

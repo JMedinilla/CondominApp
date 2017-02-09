@@ -51,4 +51,24 @@
     <string name="keepuserconnected_description">Stay logged after closing the application</string>
     <string name="accesskey_title">Key</string>
     <string name="accesskey_description">User access key</string>
+    <string name="navIncidents">Incidents</string>
+    <string name="navDiary">Diary</string>
+    <string name="navBoard">Main board</string>
+    <string name="navCBoard">Community board</string>
+    <string name="navDocuments">Documents</string>
+    <string name="navMeetings">Meetings</string>
+    <string name="navInformation">Information</string>
+    <string name="navProfile">Profile</string>
+    <string name="navUsers">Community users</string>
+    <string name="navCommunities">Communities</string>
+    <string name="twoNavOption">Extras</string>
+    <string name="twoNavShop">Shopping cart</string>
+    <string name="twoNavGame">Games</string>
+    <string name="threeNavOption">Settings</string>
+    <string name="threeNavSettings">Settings</string>
+    <string name="threeNavHelp">Help</string>
+    <string name="fourNavOption">Other</string>
+    <string name="fourNavAbout">About</string>
+    <string name="back_pressed_twice">Press back again to exit</string>
+    <string name="navHome">Home menu</string>
 </resources>
