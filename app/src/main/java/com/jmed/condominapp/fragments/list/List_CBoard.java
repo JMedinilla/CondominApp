@@ -14,14 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_CBoard;
-import com.jmed.condominapp.fragments.form.Form_CBoard;
 import com.jmed.condominapp.interfaces.ICBoardPresenter;
 import com.jmed.condominapp.pojos.Pojo_Entry;
 import com.jmed.condominapp.presenters.CBoardPresenterImpl;
-import com.jmed.condominapp.repositories.Repository_Entry_Second;
 
 public class List_CBoard extends Fragment implements ICBoardPresenter.View {
     private FragmentListCBoardListener homeCallback;

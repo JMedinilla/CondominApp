@@ -25,8 +25,7 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
             Repository_Incident.getInstance().add(incident);
             result = 0;
             view.showMessage("Inserted");
-        }
-        else {
+        } else {
             view.showMessage("Already exists");
         }
         return result;

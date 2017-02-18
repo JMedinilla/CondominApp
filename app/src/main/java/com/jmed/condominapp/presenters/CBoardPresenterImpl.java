@@ -25,8 +25,7 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
             Repository_Entry_Second.getInstance().add(entry);
             result = 0;
             view.showMessage("Inserted");
-        }
-        else {
+        } else {
             view.showMessage("Already exists");
         }
         return result;

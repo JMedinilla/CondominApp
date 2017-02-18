@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IIncidentPresenter {
     List<Pojo_Incident> selectIncidents();
+
     int insertIncident(Pojo_Incident incident);
 
     interface View {

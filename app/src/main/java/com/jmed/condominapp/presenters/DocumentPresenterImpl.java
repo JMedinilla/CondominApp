@@ -25,8 +25,7 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
             Repository_Document.getInstance().add(document);
             result = 0;
             view.showMessage("Inserted");
-        }
-        else {
+        } else {
             view.showMessage("Already exists");
         }
         return result;

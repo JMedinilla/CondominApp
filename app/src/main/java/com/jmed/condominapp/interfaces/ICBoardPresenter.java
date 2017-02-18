@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ICBoardPresenter {
     List<Pojo_Entry> selectSecondEntries();
+
     int insertSecondEntry(Pojo_Entry entry);
 
     interface View {

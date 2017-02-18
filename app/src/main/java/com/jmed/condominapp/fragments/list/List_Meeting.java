@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Meeting;
-import com.jmed.condominapp.fragments.form.Form_Meeting;
 import com.jmed.condominapp.interfaces.IMeetingPresenter;
 import com.jmed.condominapp.pojos.Pojo_Meeting;
 import com.jmed.condominapp.presenters.MeetingPresenterImpl;

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IDocumentPresenter {
     List<Pojo_Document> selectDocuments();
+
     int insertDocument(Pojo_Document document);
 
     interface View {

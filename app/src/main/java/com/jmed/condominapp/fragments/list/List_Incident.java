@@ -14,14 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Incident;
-import com.jmed.condominapp.fragments.form.Form_Incident;
 import com.jmed.condominapp.interfaces.IIncidentPresenter;
 import com.jmed.condominapp.pojos.Pojo_Incident;
 import com.jmed.condominapp.presenters.IncidentPresenterImpl;
-import com.jmed.condominapp.repositories.Repository_Incident;
 
 public class List_Incident extends Fragment implements IIncidentPresenter.View {
     private FragmentListIncidentListener homeCallback;

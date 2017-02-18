@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IDiaryPresenter {
     List<Pojo_Note> selectNotes();
+
     int insertNote(Pojo_Note note);
 
     interface View {

@@ -25,8 +25,7 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
             Repository_Note.getInstance().add(note);
             result = 0;
             view.showMessage("Inserted");
-        }
-        else {
+        } else {
             view.showMessage("Already exists");
         }
         return result;

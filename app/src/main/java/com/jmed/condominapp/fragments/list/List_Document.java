@@ -14,14 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Document;
-import com.jmed.condominapp.fragments.form.Form_Document;
 import com.jmed.condominapp.interfaces.IDocumentPresenter;
 import com.jmed.condominapp.pojos.Pojo_Document;
 import com.jmed.condominapp.presenters.DocumentPresenterImpl;
-import com.jmed.condominapp.repositories.Repository_Document;
 
 
 public class List_Document extends Fragment implements IDocumentPresenter.View {

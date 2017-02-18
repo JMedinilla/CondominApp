@@ -25,8 +25,7 @@ public class BoardPresenterImpl implements IBoardPresenter {
             Repository_Entry_First.getInstance().add(entry);
             result = 0;
             view.showMessage("Inserted");
-        }
-        else {
+        } else {
             view.showMessage("Already exists");
         }
         return result;

@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.jmed.condominapp.R;
-import com.jmed.condominapp.repositories.Repository_Entry_First;
 import com.jmed.condominapp.pojos.Pojo_Entry;
 import com.jmed.condominapp.preferences.files.Profile;
 

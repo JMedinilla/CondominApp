@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.jmed.condominapp.fragments.Home;
 import com.jmed.condominapp.fragments.form.Form_Board;
@@ -35,11 +34,6 @@ import com.jmed.condominapp.pojos.Pojo_Incident;
 import com.jmed.condominapp.pojos.Pojo_Meeting;
 import com.jmed.condominapp.pojos.Pojo_Note;
 import com.jmed.condominapp.preferences.application.Settings;
-import com.jmed.condominapp.repositories.Repository_Document;
-import com.jmed.condominapp.repositories.Repository_Entry_First;
-import com.jmed.condominapp.repositories.Repository_Entry_Second;
-import com.jmed.condominapp.repositories.Repository_Incident;
-import com.jmed.condominapp.repositories.Repository_Note;
 
 public class Activity_Home extends AppCompatActivity
         implements

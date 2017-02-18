@@ -14,14 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Diary;
-import com.jmed.condominapp.fragments.form.Form_Diary;
 import com.jmed.condominapp.interfaces.IDiaryPresenter;
 import com.jmed.condominapp.pojos.Pojo_Note;
 import com.jmed.condominapp.presenters.DiaryPresenterImpl;
-import com.jmed.condominapp.repositories.Repository_Note;
 
 public class List_Diary extends Fragment implements IDiaryPresenter.View {
     private FragmentListDiaryListener homeCallback;
