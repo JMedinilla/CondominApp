@@ -6,4 +6,5 @@
     <color name="colorBackOne">#C8E6C9</color>
     <color name="colorBackTwo">#D9E9C9</color>
     <color name="colorError">#FF5852</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

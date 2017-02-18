@@ -30,9 +30,9 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
         if (!Repository_Document.getInstance().contains(document)) {
             Repository_Document.getInstance().add(document);
             result = 0;
-            view.showMessage(R.string.inserted);
+            view.showMessage(R.string.inserted, false);
         } else {
-            view.showMessage(R.string.exists);
+            view.showMessage(R.string.exists, false);
         }
         return result;
     }
@@ -52,13 +52,13 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
         boolean result;
         if (document.getDo_title().length() == 0) {
             result = false;
-            view.showMessage(R.string.error_Title);
+            view.showMessage(R.string.error_Title, true);
         } else if (document.getDo_description().length() == 0) {
             result = false;
-            view.showMessage(R.string.error_Description);
+            view.showMessage(R.string.error_Description, true);
         } else if (document.getDo_link().length() == 0) {
             result = false;
-            view.showMessage(R.string.error_Link);
+            view.showMessage(R.string.error_Link, true);
         } else {
             result = true;
         }

@@ -30,9 +30,9 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
         if (!Repository_Entry_Second.getInstance().contains(entry)) {
             Repository_Entry_Second.getInstance().add(entry);
             result = 0;
-            view.showMessage(R.string.inserted);
+            view.showMessage(R.string.inserted, false);
         } else {
-            view.showMessage(R.string.exists);
+            view.showMessage(R.string.exists, false);
         }
         return result;
     }
@@ -52,10 +52,10 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
         boolean result;
         if (entry.getEn_title().length() == 0) {
             result = false;
-            view.showMessage(R.string.error_Title);
+            view.showMessage(R.string.error_Title, true);
         } else if (entry.getEn_title().length() == 0) {
             result = false;
-            view.showMessage(R.string.error_Description);
+            view.showMessage(R.string.error_Description, true);
         } else {
             result = true;
         }

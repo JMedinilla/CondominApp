@@ -18,6 +18,6 @@ public interface IDocumentPresenter {
     boolean validateDocument(Pojo_Document document);
 
     interface View {
-        void showMessage(int msg);
+        void showMessage(int msg, boolean error);
     }
 }

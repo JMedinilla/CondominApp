@@ -18,6 +18,6 @@ public interface IMeetingPresenter {
     boolean validateMeeting(Pojo_Meeting meeting);
 
     interface View {
-        void showMessage(String msg);
+        void showMessage(int msg, boolean error);
     }
 }

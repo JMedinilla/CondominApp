@@ -18,6 +18,6 @@ public interface IBoardPresenter {
     boolean validateFirstEntry(Pojo_Entry entry);
 
     interface View {
-        void showMessage(int msg);
+        void showMessage(int msg, boolean error);
     }
 }

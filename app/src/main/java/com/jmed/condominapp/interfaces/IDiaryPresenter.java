@@ -18,6 +18,6 @@ public interface IDiaryPresenter {
     boolean validateNote(Pojo_Note note);
 
     interface View {
-        void showMessage(int msg);
+        void showMessage(int msg, boolean error);
     }
 }

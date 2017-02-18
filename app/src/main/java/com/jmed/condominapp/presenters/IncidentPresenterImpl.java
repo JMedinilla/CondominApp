@@ -30,9 +30,9 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
         if (!Repository_Incident.getInstance().contains(incident)) {
             Repository_Incident.getInstance().add(incident);
             result = 0;
-            view.showMessage(R.string.inserted);
+            view.showMessage(R.string.inserted, false);
         } else {
-            view.showMessage(R.string.exists);
+            view.showMessage(R.string.exists, false);
         }
         return result;
     }
@@ -52,10 +52,10 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
         boolean result;
         if (incident.getIn_title().length() == 0) {
             result = false;
-            view.showMessage(R.string.error_Title);
+            view.showMessage(R.string.error_Title, true);
         } else if (incident.getIn_description().length() == 0) {
             result = false;
-            view.showMessage(R.string.error_Description);
+            view.showMessage(R.string.error_Description, true);
         } else {
             result = true;
         }

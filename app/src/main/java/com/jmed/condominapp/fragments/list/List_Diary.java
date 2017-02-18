@@ -12,8 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Diary;
 import com.jmed.condominapp.interfaces.IDiaryPresenter;
@@ -43,8 +43,8 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
     }
 
     @Override
-    public void showMessage(int msg) {
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    public void showMessage(int msg, boolean error) {
+        ((Activity_Home) getActivity()).showSnackbar(getString(msg),error);
     }
 
     public interface FragmentListDiaryListener {

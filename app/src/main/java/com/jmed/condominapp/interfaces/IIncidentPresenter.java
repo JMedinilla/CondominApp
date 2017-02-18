@@ -18,6 +18,6 @@ public interface IIncidentPresenter {
     boolean validateIncident(Pojo_Incident incident);
 
     interface View {
-        void showMessage(int msg);
+        void showMessage(int msg, boolean error);
     }
 }

@@ -5,12 +5,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.jmed.condominapp.fragments.Home;
 import com.jmed.condominapp.fragments.form.Form_Board;
@@ -251,6 +254,21 @@ public class Activity_Home extends AppCompatActivity
                     }).show();
         }
 
+    }
+
+    public void showSnackbar(String msg, boolean error) {
+        Snackbar snackbar;
+        snackbar = Snackbar.make(findViewById(R.id.activity_home), msg, Snackbar.LENGTH_SHORT);
+        View snackBarView = snackbar.getView();
+        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        if (error) {
+            snackBarView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorError));
+            textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+        } else {
+            snackBarView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+            textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+        }
+        snackbar.show();
     }
 
     private void setupDrawerContent() {
