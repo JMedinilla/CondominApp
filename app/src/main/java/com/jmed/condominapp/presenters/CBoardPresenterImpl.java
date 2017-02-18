@@ -20,6 +20,11 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
     }
 
     @Override
+    public Pojo_Entry selectSecondEntry(String id) {
+        return null;
+    }
+
+    @Override
     public int insertSecondEntry(Pojo_Entry entry) {
         int result = -1;
         if (!Repository_Entry_Second.getInstance().contains(entry)) {
@@ -30,6 +35,16 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
             view.showMessage(R.string.exists);
         }
         return result;
+    }
+
+    @Override
+    public int updateSecondEntry(Pojo_Entry entry) {
+        return 0;
+    }
+
+    @Override
+    public int deleteSecondEntry(Pojo_Entry entry) {
+        return 0;
     }
 
     @Override

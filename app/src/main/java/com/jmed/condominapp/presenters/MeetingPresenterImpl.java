@@ -19,7 +19,22 @@ public class MeetingPresenterImpl implements IMeetingPresenter {
     }
 
     @Override
+    public Pojo_Meeting selectMeeting(int id) {
+        return null;
+    }
+
+    @Override
     public int insertMeeting(Pojo_Meeting meeting) {
+        return 0;
+    }
+
+    @Override
+    public int updateMeeting(Pojo_Meeting meeting) {
+        return 0;
+    }
+
+    @Override
+    public int deleteMeeting(Pojo_Meeting meeting) {
         return 0;
     }
 

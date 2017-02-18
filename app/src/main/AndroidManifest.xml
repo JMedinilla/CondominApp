@@ -21,8 +21,10 @@
         <activity
             android:name=".Activity_Login_Admin"
             android:theme="@style/AppTheme.ActionBar"
-            android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Activity_Home" />
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Activity_Home"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".preferences.application.Profile"
             android:theme="@style/AppTheme.ActionBar" />

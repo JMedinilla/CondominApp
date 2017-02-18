@@ -20,6 +20,11 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
     }
 
     @Override
+    public Pojo_Incident selectIncident(String id) {
+        return null;
+    }
+
+    @Override
     public int insertIncident(Pojo_Incident incident) {
         int result = -1;
         if (!Repository_Incident.getInstance().contains(incident)) {
@@ -30,6 +35,16 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
             view.showMessage(R.string.exists);
         }
         return result;
+    }
+
+    @Override
+    public int updateIncident(Pojo_Incident incident) {
+        return 0;
+    }
+
+    @Override
+    public int deleteIncident(Pojo_Incident incident) {
+        return 0;
     }
 
     @Override

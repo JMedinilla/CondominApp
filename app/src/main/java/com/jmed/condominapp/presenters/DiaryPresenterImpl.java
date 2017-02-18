@@ -20,6 +20,11 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
     }
 
     @Override
+    public Pojo_Note selectNote(String id) {
+        return null;
+    }
+
+    @Override
     public int insertNote(Pojo_Note note) {
         int result = -1;
         if (!Repository_Note.getInstance().contains(note)) {
@@ -30,6 +35,16 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
             view.showMessage(R.string.exists);
         }
         return result;
+    }
+
+    @Override
+    public int updateNote(Pojo_Note note) {
+        return 0;
+    }
+
+    @Override
+    public int deleteNote(Pojo_Note note) {
+        return 0;
     }
 
     @Override

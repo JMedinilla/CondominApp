@@ -20,6 +20,11 @@ public class BoardPresenterImpl implements IBoardPresenter {
     }
 
     @Override
+    public Pojo_Entry selectFirstEntry(String id) {
+        return null;
+    }
+
+    @Override
     public int insertFirstEntry(Pojo_Entry entry) {
         int result = -1;
         if (!Repository_Entry_First.getInstance().contains(entry)) {
@@ -30,6 +35,16 @@ public class BoardPresenterImpl implements IBoardPresenter {
             view.showMessage(R.string.exists);
         }
         return result;
+    }
+
+    @Override
+    public int updateFirstEntry(Pojo_Entry entry) {
+        return 0;
+    }
+
+    @Override
+    public int deleteFirstEntry(Pojo_Entry entry) {
+        return 0;
     }
 
     @Override

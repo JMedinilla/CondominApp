@@ -20,6 +20,11 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
     }
 
     @Override
+    public Pojo_Document selectDocument(String id) {
+        return null;
+    }
+
+    @Override
     public int insertDocument(Pojo_Document document) {
         int result = -1;
         if (!Repository_Document.getInstance().contains(document)) {
@@ -30,6 +35,16 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
             view.showMessage(R.string.exists);
         }
         return result;
+    }
+
+    @Override
+    public int updateDocument(Pojo_Document document) {
+        return 0;
+    }
+
+    @Override
+    public int deleteDocument(Pojo_Document document) {
+        return 0;
     }
 
     @Override
