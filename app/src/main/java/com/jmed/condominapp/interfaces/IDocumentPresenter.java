@@ -9,7 +9,9 @@ public interface IDocumentPresenter {
 
     int insertDocument(Pojo_Document document);
 
+    boolean validateDocument(Pojo_Document document);
+
     interface View {
-        void showMessage(String msg);
+        void showMessage(int msg);
     }
 }

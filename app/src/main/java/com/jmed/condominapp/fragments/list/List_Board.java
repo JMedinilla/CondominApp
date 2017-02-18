@@ -34,13 +34,17 @@ public class List_Board extends Fragment implements IBoardPresenter.View {
         setHasOptionsMenu(true);
     }
 
-    public void recieveEntryFromHome(Pojo_Entry entry) {
-        boardPresenter.insertFirstEntry(entry);
+    public boolean recieveEntryFromHome(Pojo_Entry entry) {
+        boolean result = false;
+        if (boardPresenter.validateFirstEntry(entry)) {
+            result = boardPresenter.insertFirstEntry(entry) == 0;
+        }
+        return result;
     }
 
     @Override
-    public void showMessage(String msg) {
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    public void showMessage(int msg) {
+        Toast.makeText(getContext(), getString(msg), Toast.LENGTH_SHORT).show();
     }
 
     public interface FragmentListBoardListener {

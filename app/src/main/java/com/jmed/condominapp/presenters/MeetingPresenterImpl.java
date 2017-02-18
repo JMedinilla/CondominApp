@@ -22,4 +22,9 @@ public class MeetingPresenterImpl implements IMeetingPresenter {
     public int insertMeeting(Pojo_Meeting meeting) {
         return 0;
     }
+
+    @Override
+    public boolean validateMeeting(Pojo_Meeting meeting) {
+        return false;
+    }
 }

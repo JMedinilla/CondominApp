@@ -56,13 +56,6 @@ public class Form_CBoard extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (title.getText().toString().length() == 0) {
-                    title.setText("default");
-                }
-                if (description.getText().toString().length() == 0) {
-                    description.setText("default");
-                }
-
                 Calendar calendar = Calendar.getInstance();
                 Date date = new Date(calendar.getTimeInMillis());
 

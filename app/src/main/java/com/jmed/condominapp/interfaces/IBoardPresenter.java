@@ -9,7 +9,9 @@ public interface IBoardPresenter {
 
     int insertFirstEntry(Pojo_Entry entry);
 
+    boolean validateFirstEntry(Pojo_Entry entry);
+
     interface View {
-        void showMessage(String msg);
+        void showMessage(int msg);
     }
 }

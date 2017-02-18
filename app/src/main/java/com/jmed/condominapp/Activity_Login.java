@@ -46,6 +46,8 @@ public class Activity_Login extends AppCompatActivity {
         if (activity_login_chbRemember.isChecked()) {
             activity_login_chbStay.setEnabled(true);
         }
+
+        activity_login_edtKey.clearFocus();
     }
 
     private void initializeComponents() {

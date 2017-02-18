@@ -9,7 +9,9 @@ public interface IDiaryPresenter {
 
     int insertNote(Pojo_Note note);
 
+    boolean validateNote(Pojo_Note note);
+
     interface View {
-        void showMessage(String msg);
+        void showMessage(int msg);
     }
 }

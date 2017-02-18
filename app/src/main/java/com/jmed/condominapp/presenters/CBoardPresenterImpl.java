@@ -1,5 +1,6 @@
 package com.jmed.condominapp.presenters;
 
+import com.jmed.condominapp.R;
 import com.jmed.condominapp.interfaces.ICBoardPresenter;
 import com.jmed.condominapp.pojos.Pojo_Entry;
 import com.jmed.condominapp.repositories.Repository_Entry_Second;
@@ -24,9 +25,24 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
         if (!Repository_Entry_Second.getInstance().contains(entry)) {
             Repository_Entry_Second.getInstance().add(entry);
             result = 0;
-            view.showMessage("Inserted");
+            view.showMessage(R.string.inserted);
         } else {
-            view.showMessage("Already exists");
+            view.showMessage(R.string.exists);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean validateSecondEntry(Pojo_Entry entry) {
+        boolean result;
+        if (entry.getEn_title().length() == 0) {
+            result = false;
+            view.showMessage(R.string.error_Title);
+        } else if (entry.getEn_title().length() == 0) {
+            result = false;
+            view.showMessage(R.string.error_Description);
+        } else {
+            result = true;
         }
         return result;
     }

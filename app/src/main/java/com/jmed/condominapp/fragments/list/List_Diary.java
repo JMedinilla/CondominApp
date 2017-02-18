@@ -34,12 +34,16 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
         setHasOptionsMenu(true);
     }
 
-    public void recieveNoteFromHome(Pojo_Note note) {
-        diaryPresenter.insertNote(note);
+    public boolean recieveNoteFromHome(Pojo_Note note) {
+        boolean result = false;
+        if (diaryPresenter.validateNote(note)) {
+            result = diaryPresenter.insertNote(note) == 0;
+        }
+        return result;
     }
 
     @Override
-    public void showMessage(String msg) {
+    public void showMessage(int msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 

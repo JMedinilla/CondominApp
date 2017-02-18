@@ -1,5 +1,6 @@
 package com.jmed.condominapp.presenters;
 
+import com.jmed.condominapp.R;
 import com.jmed.condominapp.interfaces.IIncidentPresenter;
 import com.jmed.condominapp.pojos.Pojo_Incident;
 import com.jmed.condominapp.repositories.Repository_Incident;
@@ -24,9 +25,24 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
         if (!Repository_Incident.getInstance().contains(incident)) {
             Repository_Incident.getInstance().add(incident);
             result = 0;
-            view.showMessage("Inserted");
+            view.showMessage(R.string.inserted);
         } else {
-            view.showMessage("Already exists");
+            view.showMessage(R.string.exists);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean validateIncident(Pojo_Incident incident) {
+        boolean result;
+        if (incident.getIn_title().length() == 0) {
+            result = false;
+            view.showMessage(R.string.error_Title);
+        } else if (incident.getIn_description().length() == 0) {
+            result = false;
+            view.showMessage(R.string.error_Description);
+        } else {
+            result = true;
         }
         return result;
     }

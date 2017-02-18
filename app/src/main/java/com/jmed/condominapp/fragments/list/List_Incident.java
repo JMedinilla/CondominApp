@@ -34,12 +34,16 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
         setHasOptionsMenu(true);
     }
 
-    public void recieveIncidentFromHome(Pojo_Incident incident) {
-        incidentPresenter.insertIncident(incident);
+    public boolean recieveIncidentFromHome(Pojo_Incident incident) {
+        boolean result = false;
+        if (incidentPresenter.validateIncident(incident)) {
+            result = incidentPresenter.insertIncident(incident) == 0;
+        }
+        return result;
     }
 
     @Override
-    public void showMessage(String msg) {
+    public void showMessage(int msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 

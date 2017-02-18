@@ -9,6 +9,8 @@ public interface IMeetingPresenter {
 
     int insertMeeting(Pojo_Meeting meeting);
 
+    boolean validateMeeting(Pojo_Meeting meeting);
+
     interface View {
         void showMessage(String msg);
     }

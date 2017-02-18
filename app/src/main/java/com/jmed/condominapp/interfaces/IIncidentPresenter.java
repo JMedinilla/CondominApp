@@ -9,7 +9,9 @@ public interface IIncidentPresenter {
 
     int insertIncident(Pojo_Incident incident);
 
+    boolean validateIncident(Pojo_Incident incident);
+
     interface View {
-        void showMessage(String msg);
+        void showMessage(int msg);
     }
 }

@@ -71,4 +71,11 @@
     <string name="fourNavAbout">About</string>
     <string name="back_pressed_twice">Press back again to exit</string>
     <string name="navHome">Home menu</string>
+
+    <!-- showMessage -->
+    <string name="inserted">Inserted</string>
+    <string name="exists">Already exists</string>
+    <string name="error_Title">Title is not valid</string>
+    <string name="error_Description">Description is not valid</string>
+    <string name="error_Link">Link is not valid</string>
 </resources>

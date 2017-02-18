@@ -1,5 +1,6 @@
 package com.jmed.condominapp.presenters;
 
+import com.jmed.condominapp.R;
 import com.jmed.condominapp.interfaces.IDiaryPresenter;
 import com.jmed.condominapp.pojos.Pojo_Note;
 import com.jmed.condominapp.repositories.Repository_Note;
@@ -24,9 +25,24 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
         if (!Repository_Note.getInstance().contains(note)) {
             Repository_Note.getInstance().add(note);
             result = 0;
-            view.showMessage("Inserted");
+            view.showMessage(R.string.inserted);
         } else {
-            view.showMessage("Already exists");
+            view.showMessage(R.string.exists);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean validateNote(Pojo_Note note) {
+        boolean result;
+        if (note.getNo_title().length() == 0) {
+            result = false;
+            view.showMessage(R.string.error_Title);
+        } else if (note.getNo_content().length() == 0) {
+            result = false;
+            view.showMessage(R.string.error_Description);
+        } else {
+            result = true;
         }
         return result;
     }

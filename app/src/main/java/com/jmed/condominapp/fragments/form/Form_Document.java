@@ -55,16 +55,6 @@ public class Form_Document extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (title.getText().toString().length() == 0) {
-                    title.setText("default");
-                }
-                if (description.getText().toString().length() == 0) {
-                    description.setText("default");
-                }
-                if (link.getText().toString().length() == 0) {
-                    link.setText("default");
-                }
-
                 Pojo_Document doc = new Pojo_Document(profile.getUserCommunity(), title.getText().toString(), description.getText().toString(), link.getText().toString(), false);
 
                 listCallback.onAcceptDocument(doc);

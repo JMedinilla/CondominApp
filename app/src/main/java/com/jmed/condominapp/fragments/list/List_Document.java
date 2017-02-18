@@ -35,12 +35,16 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
         setHasOptionsMenu(true);
     }
 
-    public void recieveDocumentFromHome(Pojo_Document document) {
-        documentPresenter.insertDocument(document);
+    public boolean recieveDocumentFromHome(Pojo_Document document) {
+        boolean result = false;
+        if (documentPresenter.validateDocument(document)) {
+            result = documentPresenter.insertDocument(document) == 0;
+        }
+        return result;
     }
 
     @Override
-    public void showMessage(String msg) {
+    public void showMessage(int msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 

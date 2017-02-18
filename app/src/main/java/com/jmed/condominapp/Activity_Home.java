@@ -329,32 +329,37 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onAcceptIncident(Pojo_Incident incident) {
-        list_incident.recieveIncidentFromHome(incident);
-        onBackPressed();
+        if (list_incident.recieveIncidentFromHome(incident)) {
+            onBackPressed();
+        }
     }
 
     @Override
     public void onAcceptBoard(Pojo_Entry entry) {
-        list_board.recieveEntryFromHome(entry);
-        onBackPressed();
+        if (list_board.recieveEntryFromHome(entry)) {
+            onBackPressed();
+        }
     }
 
     @Override
     public void onAcceptCBoard(Pojo_Entry entry) {
-        list_cBoard.recieveEntryFromHome(entry);
-        onBackPressed();
+        if (list_cBoard.recieveEntryFromHome(entry)) {
+            onBackPressed();
+        }
     }
 
     @Override
     public void onAcceptDiary(Pojo_Note note) {
-        list_diary.recieveNoteFromHome(note);
-        onBackPressed();
+        if (list_diary.recieveNoteFromHome(note)) {
+            onBackPressed();
+        }
     }
 
     @Override
     public void onAcceptDocument(Pojo_Document document) {
-        list_document.recieveDocumentFromHome(document);
-        onBackPressed();
+        if (list_document.recieveDocumentFromHome(document)) {
+            onBackPressed();
+        }
     }
 
     @Override
