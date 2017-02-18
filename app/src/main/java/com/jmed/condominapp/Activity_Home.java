@@ -261,12 +261,11 @@ public class Activity_Home extends AppCompatActivity
         snackbar = Snackbar.make(findViewById(R.id.activity_home), msg, Snackbar.LENGTH_SHORT);
         View snackBarView = snackbar.getView();
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
         if (error) {
             snackBarView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorError));
-            textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
         } else {
-            snackBarView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
-            textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+            snackBarView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorSuccess));
         }
         snackbar.show();
     }
