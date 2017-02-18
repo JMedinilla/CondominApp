@@ -12,16 +12,16 @@ import android.widget.TextView;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.repositories.Repository_Incident;
 import com.jmed.condominapp.pojos.Pojo_Incident;
-import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
     private Context context;
 
-    public Adapter_Incident(Context context) {
-        super(context, R.layout.adapter_incident, Repository_Incident.getInstance().getIncidents());
+    public Adapter_Incident(Context context, List<Pojo_Incident> pojo_incidents) {
+        super(context, R.layout.adapter_incident, pojo_incidents);
         this.context = context;
     }
 
@@ -43,7 +43,6 @@ public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
             incidentHolder.txtTitle = (TextView) view.findViewById(R.id.adapterIncident_txtTitle);
             incidentHolder.txtDate = (TextView) view.findViewById(R.id.adapterIncident_txtDate);
             incidentHolder.txtContent = (TextView) view.findViewById(R.id.adapterIncident_txtContent);
-            incidentHolder.btnLike = (ShineButton) view.findViewById(R.id.adapterIncident_like);
 
             view.setTag(incidentHolder);
         } else {
@@ -70,6 +69,5 @@ public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
         TextView txtTitle;
         TextView txtDate;
         TextView txtContent;
-        ShineButton btnLike;
     }
 }

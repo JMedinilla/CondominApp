@@ -12,15 +12,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Diary;
+import com.jmed.condominapp.fragments.form.Form_Diary;
+import com.jmed.condominapp.interfaces.IDiaryPresenter;
 import com.jmed.condominapp.pojos.Pojo_Note;
+import com.jmed.condominapp.presenters.DiaryPresenterImpl;
+import com.jmed.condominapp.repositories.Repository_Note;
 
-public class List_Diary extends Fragment {
+public class List_Diary extends Fragment implements IDiaryPresenter.View {
     private FragmentListDiaryListener homeCallback;
     public static final String TAG_FRAGMENT_LIST_DIARY = "fragmentListDiaryTag";
 
+    DiaryPresenterImpl diaryPresenter;
     Adapter_Diary adapter_diary;
 
     @Override
@@ -28,6 +35,15 @@ public class List_Diary extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
+    }
+
+    public void recieveNoteFromHome(Pojo_Note note) {
+        diaryPresenter.insertNote(note);
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public interface FragmentListDiaryListener {
@@ -43,12 +59,13 @@ public class List_Diary extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        diaryPresenter = new DiaryPresenterImpl(this);
         View view = inflater.inflate(R.layout.fragment_list_diary, container, false);
 
         FloatingActionButton btn = (FloatingActionButton) view.findViewById(R.id.fragListDiary_btn);
         ListView listView = (ListView) view.findViewById(R.id.fragListDiary_list);
 
-        adapter_diary = new Adapter_Diary(getContext());
+        adapter_diary = new Adapter_Diary(getContext(), diaryPresenter.selectNotes());
         listView.setDivider(null);
         listView.setAdapter(adapter_diary);
 

@@ -1,5 +1,6 @@
 package com.jmed.condominapp.fragments.form;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +17,14 @@ import com.jmed.condominapp.pojos.Pojo_Document;
 import com.jmed.condominapp.preferences.files.Profile;
 
 public class Form_Document extends Fragment {
+    private FragmentFormDocumentListener listCallback;
     public static final String TAG_FRAGMENT_FORM_DOCUMENT = "fragmentFormDocumentTag";
+
+    EditText title;
+    EditText description;
+    EditText link;
+    FloatingActionButton btn;
+    Profile profile;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,16 +33,20 @@ public class Form_Document extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    public interface FragmentFormDocumentListener {
+        void onAcceptDocument(Pojo_Document document);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listCallback = (FragmentFormDocumentListener) context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_form_document, container, false);
-
-        final EditText title;
-        final EditText description;
-        final EditText link;
-        FloatingActionButton btn;
-        final Profile profile;
 
         title = (EditText) view.findViewById(R.id.fragFormDocument_title);
         description = (EditText) view.findViewById(R.id.fragFormDocument_description);
@@ -57,15 +69,16 @@ public class Form_Document extends Fragment {
 
                 Pojo_Document doc = new Pojo_Document(profile.getUserCommunity(), title.getText().toString(), description.getText().toString(), link.getText().toString(), false);
 
-                if (!Repository_Document.getInstance().contains(doc)) {
-                    Repository_Document.getInstance().add(doc);
-                    getActivity().onBackPressed();
-                } else {
-                    Toast.makeText(getContext(), "Already exists", Toast.LENGTH_SHORT).show();
-                }
+                listCallback.onAcceptDocument(doc);
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listCallback = null;
     }
 }

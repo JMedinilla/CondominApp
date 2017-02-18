@@ -71,24 +71,6 @@
             android:padding="4dp"
             android:textColor="#666666"
             android:textSize="12sp" />
-
-        <com.sackcentury.shinebuttonlib.ShineButton
-            android:id="@+id/adapterIncident_like"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:color/darker_gray"
-            app:allow_random_color="false"
-            app:big_shine_color="#FFEB3B"
-            app:btn_color="@android:color/darker_gray"
-            app:btn_fill_color="#FFEB3B"
-            app:click_animation_duration="200"
-            app:enable_flashing="false"
-            app:shine_animation_duration="1800"
-            app:shine_count="24"
-            app:shine_turn_angle="160"
-            app:siShape="@raw/star"
-            app:small_shine_color="#FFF176"
-            app:small_shine_offset_angle="120" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

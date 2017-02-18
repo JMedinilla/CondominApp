@@ -1,5 +1,6 @@
 package com.jmed.condominapp.fragments.form;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -19,7 +20,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Form_Board extends Fragment {
+    private FragmentFormBoardListener listCallback;
     public static final String TAG_FRAGMENT_FORM_BOARD = "fragmentFormBoardTag";
+
+    EditText title;
+    EditText description;
+    FloatingActionButton btn;
+    Profile profile;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,15 +35,20 @@ public class Form_Board extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    public interface FragmentFormBoardListener {
+        void onAcceptBoard(Pojo_Entry entry);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listCallback = (FragmentFormBoardListener) context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_form_board, container, false);
-
-        final EditText title;
-        final EditText description;
-        FloatingActionButton btn;
-        final Profile profile;
 
         title = (EditText) view.findViewById(R.id.fragFormBoard_title);
         description = (EditText) view.findViewById(R.id.fragFormBoard_description);
@@ -58,15 +70,16 @@ public class Form_Board extends Fragment {
 
                 Pojo_Entry entry = new Pojo_Entry(profile.getUserId(), title.getText().toString(), description.getText().toString(), date, Pojo_Entry.FIRST, false);
 
-                if (!Repository_Entry_First.getInstance().contains(entry)) {
-                    Repository_Entry_First.getInstance().add(entry);
-                    getActivity().onBackPressed();
-                } else {
-                    Toast.makeText(getContext(), "Already exists", Toast.LENGTH_SHORT).show();
-                }
+                listCallback.onAcceptBoard(entry);
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listCallback = null;
     }
 }

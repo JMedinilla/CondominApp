@@ -12,16 +12,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Document;
+import com.jmed.condominapp.fragments.form.Form_Document;
+import com.jmed.condominapp.interfaces.IDocumentPresenter;
 import com.jmed.condominapp.pojos.Pojo_Document;
+import com.jmed.condominapp.presenters.DocumentPresenterImpl;
+import com.jmed.condominapp.repositories.Repository_Document;
 
 
-public class List_Document extends Fragment {
+public class List_Document extends Fragment implements IDocumentPresenter.View {
     private FragmentListDocumentListener homeCallback;
     public static final String TAG_FRAGMENT_LIST_DOCUMENT = "fragmentListDocumentTag";
 
+    DocumentPresenterImpl documentPresenter;
     Adapter_Document adapter_document;
 
     @Override
@@ -29,6 +36,15 @@ public class List_Document extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
+    }
+
+    public void recieveDocumentFromHome(Pojo_Document document) {
+        documentPresenter.insertDocument(document);
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     public interface FragmentListDocumentListener {
@@ -44,12 +60,13 @@ public class List_Document extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        documentPresenter = new DocumentPresenterImpl(this);
         View view = inflater.inflate(R.layout.fragment_list_document, container, false);
 
         FloatingActionButton btn = (FloatingActionButton) view.findViewById(R.id.fragListDocument_btn);
         ListView listView = (ListView) view.findViewById(R.id.fragListDocument_list);
 
-        adapter_document = new Adapter_Document(getContext());
+        adapter_document = new Adapter_Document(getContext(), documentPresenter.selectDocuments());
         listView.setDivider(null);
         listView.setAdapter(adapter_document);
 

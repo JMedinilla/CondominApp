@@ -1,5 +1,6 @@
 package com.jmed.condominapp.fragments.form;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -20,7 +21,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Form_Incident extends Fragment {
+    private FragmentFormIncidentListener listCallback;
     public static final String TAG_FRAGMENT_FORM_INCIDENT = "fragmentFormIncidentTag";
+
+    ImageView img;
+    EditText title;
+    EditText description;
+    FloatingActionButton btn;
+    Profile profile;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,16 +37,20 @@ public class Form_Incident extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    public interface FragmentFormIncidentListener {
+        void onAcceptIncident(Pojo_Incident incident);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listCallback = (FragmentFormIncidentListener) context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_form_incident, container, false);
-
-        ImageView img;
-        final EditText title;
-        final EditText description;
-        FloatingActionButton btn;
-        final Profile profile;
 
         img = (ImageView) view.findViewById(R.id.fragFormIncident_img);
         title = (EditText) view.findViewById(R.id.fragFormIncident_title);
@@ -62,15 +74,16 @@ public class Form_Incident extends Fragment {
                 Pojo_Incident incident = new Pojo_Incident(profile.getUserId(), date, title.getText().toString(),
                         description.getText().toString(), "url", 0, false);
 
-                if (!Repository_Incident.getInstance().contains(incident)) {
-                    Repository_Incident.getInstance().add(incident);
-                    getActivity().onBackPressed();
-                } else {
-                    Toast.makeText(getContext(), "Already exists", Toast.LENGTH_SHORT).show();
-                }
+                listCallback.onAcceptIncident(incident);
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listCallback = null;
     }
 }

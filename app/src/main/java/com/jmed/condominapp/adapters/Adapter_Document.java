@@ -14,12 +14,13 @@ import com.jmed.condominapp.pojos.Pojo_Document;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class Adapter_Document extends ArrayAdapter<Pojo_Document> {
     private Context context;
 
-    public Adapter_Document(Context context) {
-        super(context, R.layout.adapter_document, Repository_Document.getInstance().getDocuments());
+    public Adapter_Document(Context context, List<Pojo_Document> pojo_documents) {
+        super(context, R.layout.adapter_document, pojo_documents);
         this.context = context;
     }
 

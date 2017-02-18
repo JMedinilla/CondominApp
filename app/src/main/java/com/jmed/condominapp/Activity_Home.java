@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.jmed.condominapp.fragments.Home;
 import com.jmed.condominapp.fragments.form.Form_Board;
@@ -28,12 +29,42 @@ import com.jmed.condominapp.fragments.list.List_Incident;
 import com.jmed.condominapp.fragments.list.List_Information;
 import com.jmed.condominapp.fragments.list.List_Meeting;
 import com.jmed.condominapp.fragments.list.List_User;
+import com.jmed.condominapp.pojos.Pojo_Document;
+import com.jmed.condominapp.pojos.Pojo_Entry;
+import com.jmed.condominapp.pojos.Pojo_Incident;
+import com.jmed.condominapp.pojos.Pojo_Meeting;
+import com.jmed.condominapp.pojos.Pojo_Note;
 import com.jmed.condominapp.preferences.application.Settings;
+import com.jmed.condominapp.repositories.Repository_Document;
+import com.jmed.condominapp.repositories.Repository_Entry_First;
+import com.jmed.condominapp.repositories.Repository_Entry_Second;
+import com.jmed.condominapp.repositories.Repository_Incident;
+import com.jmed.condominapp.repositories.Repository_Note;
 
 public class Activity_Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Home.FragmentHomeListener, List_Board.FragmentListBoardListener, List_CBoard.FragmentListCBoardListener,
-        List_Community.FragmentListCommunityListener, List_Diary.FragmentListDiaryListener, List_Document.FragmentListDocumentListener,
-        List_Incident.FragmentListIncidentListener, List_Meeting.FragmentListMeetingListener, List_User.FragmentListUserListener {
+        implements
+        NavigationView.OnNavigationItemSelectedListener, Home.FragmentHomeListener,
+        List_Board.FragmentListBoardListener, List_CBoard.FragmentListCBoardListener, List_Community.FragmentListCommunityListener,
+        List_Diary.FragmentListDiaryListener, List_Document.FragmentListDocumentListener, List_Incident.FragmentListIncidentListener,
+        List_Meeting.FragmentListMeetingListener, List_User.FragmentListUserListener,
+        Form_Incident.FragmentFormIncidentListener, Form_Board.FragmentFormBoardListener, Form_CBoard.FragmentFormCBoardListener,
+        Form_Diary.FragmentFormDiaryListener, Form_Document.FragmentFormDocumentListener, Form_Meeting.FragmentFormMeetingListener {
+
+    List_Incident list_incident;
+    List_Diary list_diary;
+    List_Board list_board;
+    List_CBoard list_cBoard;
+    List_Document list_document;
+    List_Meeting list_meeting;
+    List_Information list_information;
+    List_User list_user;
+    List_Community list_community;
+    Form_Board form_board;
+    Form_CBoard form_cBoard;
+    Form_Diary form_diary;
+    Form_Document form_document;
+    Form_Incident form_incident;
+    Form_Meeting form_meeting;
 
     private Toolbar homeToolbar;
     private NavigationView navigationView;
@@ -44,6 +75,16 @@ public class Activity_Home extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_navigation);
+
+        list_incident = new List_Incident();
+        list_diary = new List_Diary();
+        list_board = new List_Board();
+        list_cBoard = new List_CBoard();
+        list_document = new List_Document();
+        list_meeting = new List_Meeting();
+        list_information = new List_Information();
+        list_user = new List_User();
+        list_community = new List_Community();
 
         homeToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(homeToolbar);
@@ -65,7 +106,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentIncidentsButtonTap() {
-        List_Incident list_incident = new List_Incident();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_incident, "list_incident");
         fragmentTransaction.commit();
@@ -73,7 +113,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentDiaryButtonTap() {
-        List_Diary list_diary = new List_Diary();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_diary, "list_diary");
         fragmentTransaction.commit();
@@ -81,7 +120,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentBoardButtonTap() {
-        List_Board list_board = new List_Board();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_board, "list_board");
         fragmentTransaction.commit();
@@ -89,7 +127,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentCBoardButtonTap() {
-        List_CBoard list_cBoard = new List_CBoard();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_cBoard, "list_cBoard");
         fragmentTransaction.commit();
@@ -97,7 +134,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentDocumentsButtonTap() {
-        List_Document list_document = new List_Document();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_document, "list_document");
         fragmentTransaction.commit();
@@ -105,7 +141,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentMeetingsButtonTap() {
-        List_Meeting list_meeting = new List_Meeting();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_meeting, "list_meeting");
         fragmentTransaction.commit();
@@ -113,7 +148,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentInformationButtonTap() {
-        List_Information list_information = new List_Information();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_information, "list_information");
         fragmentTransaction.commit();
@@ -121,7 +155,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentUsersButtonTap() {
-        List_User list_user = new List_User();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_user, "list_user");
         fragmentTransaction.commit();
@@ -129,7 +162,6 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onHomeFragmentCommunitiesButtonTap() {
-        List_Community list_community = new List_Community();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_community, "list_community");
         fragmentTransaction.commit();
@@ -145,7 +177,7 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageBoardOpen() {
-        Form_Board form_board = new Form_Board();
+        form_board = new Form_Board();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_board);
         fragmentTransaction.addToBackStack("form_board");
@@ -154,7 +186,7 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageCBoardOpen() {
-        Form_CBoard form_cBoard = new Form_CBoard();
+        form_cBoard = new Form_CBoard();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_cBoard);
         fragmentTransaction.addToBackStack("form_cBoard");
@@ -168,7 +200,7 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageDiaryOpen() {
-        Form_Diary form_diary = new Form_Diary();
+        form_diary = new Form_Diary();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_diary);
         fragmentTransaction.addToBackStack("form_diary");
@@ -177,7 +209,7 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageDocumentOpen() {
-        Form_Document form_document = new Form_Document();
+        form_document = new Form_Document();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_document);
         fragmentTransaction.addToBackStack("form_document");
@@ -186,7 +218,7 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageIncidentOpen() {
-        Form_Incident form_incident = new Form_Incident();
+        form_incident = new Form_Incident();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_incident);
         fragmentTransaction.addToBackStack("form_incident");
@@ -195,7 +227,7 @@ public class Activity_Home extends AppCompatActivity
 
     @Override
     public void onManageMeetingOpen() {
-        Form_Meeting form_meeting = new Form_Meeting();
+        form_meeting = new Form_Meeting();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_meeting);
         fragmentTransaction.addToBackStack("form_meeting");
@@ -215,7 +247,7 @@ public class Activity_Home extends AppCompatActivity
             super.onBackPressed();
         else {
             exit = true;
-            Snackbar.make(findViewById(R.id.activity_home), getString(R.string.back_pressed_twice), Snackbar.LENGTH_LONG)
+            Snackbar.make(findViewById(R.id.activity_home), getString(R.string.back_pressed_twice), Snackbar.LENGTH_SHORT)
                     .addCallback(new Snackbar.Callback() {
                         @Override
                         public void onDismissed(Snackbar snackbar, int event) {
@@ -237,9 +269,6 @@ public class Activity_Home extends AppCompatActivity
         item.setChecked(true);
 
         switch (item.getItemId()) {
-            case R.id.navHome:
-                showHome();
-                break;
             case R.id.navIncidents:
                 onHomeFragmentIncidentsButtonTap();
                 break;
@@ -302,5 +331,40 @@ public class Activity_Home extends AppCompatActivity
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onAcceptIncident(Pojo_Incident incident) {
+        list_incident.recieveIncidentFromHome(incident);
+        onBackPressed();
+    }
+
+    @Override
+    public void onAcceptBoard(Pojo_Entry entry) {
+        list_board.recieveEntryFromHome(entry);
+        onBackPressed();
+    }
+
+    @Override
+    public void onAcceptCBoard(Pojo_Entry entry) {
+        list_cBoard.recieveEntryFromHome(entry);
+        onBackPressed();
+    }
+
+    @Override
+    public void onAcceptDiary(Pojo_Note note) {
+        list_diary.recieveNoteFromHome(note);
+        onBackPressed();
+    }
+
+    @Override
+    public void onAcceptDocument(Pojo_Document document) {
+        list_document.recieveDocumentFromHome(document);
+        onBackPressed();
+    }
+
+    @Override
+    public void onAcceptMeeting(Pojo_Meeting meeting) {
+
     }
 }

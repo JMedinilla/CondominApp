@@ -14,12 +14,13 @@ import com.jmed.condominapp.pojos.Pojo_Meeting;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class Adapter_Meeting extends ArrayAdapter<Pojo_Meeting> {
     private Context context;
 
-    public Adapter_Meeting(Context context) {
-        super(context, R.layout.adapter_meeting, Repository_Meeting.getInstance().getMeetings());
+    public Adapter_Meeting(Context context, List<Pojo_Meeting> pojo_meetings) {
+        super(context, R.layout.adapter_meeting, pojo_meetings);
         this.context = context;
     }
 
