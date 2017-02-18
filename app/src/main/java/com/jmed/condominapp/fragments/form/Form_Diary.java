@@ -18,6 +18,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Form_Diary extends Fragment {
+    private boolean UPDATE_MODE = false;
+    private Pojo_Note update = null;
+
     private FragmentFormDiaryListener listCallback;
     public static final String TAG_FRAGMENT_FORM_DIARY = "fragmentFormDiaryTag";
 
@@ -34,7 +37,7 @@ public class Form_Diary extends Fragment {
     }
 
     public interface FragmentFormDiaryListener {
-        void onAcceptDiary(Pojo_Note note);
+        void onAcceptDiary(Pojo_Note note, boolean update);
     }
 
     @Override
@@ -56,14 +59,24 @@ public class Form_Diary extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                Date date = new Date(calendar.getTimeInMillis());
-
-                Pojo_Note note = new Pojo_Note(profile.getUserCommunity(), date, title.getText().toString(), description.getText().toString(), false);
-
-                listCallback.onAcceptDiary(note);
+                if (UPDATE_MODE) {
+                    listCallback.onAcceptDiary(update, true);
+                } else {
+                    Calendar calendar = Calendar.getInstance();
+                    Date date = new Date(calendar.getTimeInMillis());
+                    Pojo_Note note = new Pojo_Note(profile.getUserCommunity(), date, title.getText().toString(), description.getText().toString(), false);
+                    listCallback.onAcceptDiary(note, false);
+                }
             }
         });
+
+        Pojo_Note pojo_note = getArguments().getParcelable("pojo_note");
+        if (pojo_note != null) {
+            update = pojo_note;
+            UPDATE_MODE = true;
+            title.setText(pojo_note.getNo_title());
+            description.setText(pojo_note.getNo_content());
+        }
 
         return view;
     }

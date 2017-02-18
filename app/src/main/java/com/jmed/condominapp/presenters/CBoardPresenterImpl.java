@@ -44,7 +44,11 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
 
     @Override
     public int deleteSecondEntry(Pojo_Entry entry) {
-        return 0;
+        int result = -1;
+        if (Repository_Entry_Second.getInstance().getEntries().remove(entry)) {
+            result = 0;
+        }
+        return result;
     }
 
     @Override

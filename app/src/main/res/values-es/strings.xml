@@ -77,4 +77,8 @@
     <string name="twoNavGame">Juegos</string>
     <string name="twoNavOption">Entras</string>
     <string name="twoNavShop">Carrito de la compra</string>
+    <string name="deleted">Elemento eliminado</string>
+    <string name="menuContext_delete">Eliminar</string>
+    <string name="menuContext_update">Actualizar</string>
+    <string name="no_deleted">No se ha podido eliminar</string>
 </resources>

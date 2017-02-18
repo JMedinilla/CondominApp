@@ -44,7 +44,11 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
 
     @Override
     public int deleteDocument(Pojo_Document document) {
-        return 0;
+        int result = -1;
+        if (Repository_Document.getInstance().getDocuments().remove(document)) {
+            result = 0;
+        }
+        return result;
     }
 
     @Override

@@ -176,7 +176,7 @@ public class Activity_Home extends AppCompatActivity
     public void onManageBoardOpen() {
         form_board = new Form_Board();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("board_entryf", null);
+        bundle.putParcelable("pojo_entryf", null);
         form_board.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_board);
@@ -188,7 +188,7 @@ public class Activity_Home extends AppCompatActivity
     public void onManageBoardOpenEdit(Pojo_Entry entry) {
         form_board = new Form_Board();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("board_entryf", entry);
+        bundle.putParcelable("pojo_entryf", entry);
         form_board.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_board);
@@ -200,7 +200,7 @@ public class Activity_Home extends AppCompatActivity
     public void onManageCBoardOpen() {
         form_cBoard = new Form_CBoard();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("board_entrys", null);
+        bundle.putParcelable("pojo_entrys", null);
         form_cBoard.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_cBoard);
@@ -212,7 +212,7 @@ public class Activity_Home extends AppCompatActivity
     public void onManageCBoardOpenEdit(Pojo_Entry entry) {
         form_cBoard = new Form_CBoard();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("board_entrys", entry);
+        bundle.putParcelable("pojo_entrys", entry);
         form_cBoard.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_cBoard);
@@ -229,7 +229,7 @@ public class Activity_Home extends AppCompatActivity
     public void onManageDiaryOpen() {
         form_diary = new Form_Diary();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("diary_note", null);
+        bundle.putParcelable("pojo_note", null);
         form_diary.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_diary);
@@ -241,7 +241,7 @@ public class Activity_Home extends AppCompatActivity
     public void onManageDiaryOpenEdit(Pojo_Note note) {
         form_diary = new Form_Diary();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("diary_note", note);
+        bundle.putParcelable("pojo_note", note);
         form_diary.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_diary);
@@ -435,42 +435,42 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
-    public void onAcceptIncident(Pojo_Incident incident) {
-        if (list_incident.recieveIncidentFromHome(incident)) {
+    public void onAcceptIncident(Pojo_Incident incident, boolean update) {
+        if (list_incident.recieveIncidentFromHome(incident, update)) {
             onBackPressed();
         }
     }
 
     @Override
-    public void onAcceptBoard(Pojo_Entry entry) {
-        if (list_board.recieveEntryFromHome(entry)) {
+    public void onAcceptBoard(Pojo_Entry entry, boolean update) {
+        if (list_board.recieveEntryFromHome(entry, update)) {
             onBackPressed();
         }
     }
 
     @Override
-    public void onAcceptCBoard(Pojo_Entry entry) {
-        if (list_cBoard.recieveEntryFromHome(entry)) {
+    public void onAcceptCBoard(Pojo_Entry entry, boolean update) {
+        if (list_cBoard.recieveEntryFromHome(entry, update)) {
             onBackPressed();
         }
     }
 
     @Override
-    public void onAcceptDiary(Pojo_Note note) {
-        if (list_diary.recieveNoteFromHome(note)) {
+    public void onAcceptDiary(Pojo_Note note, boolean update) {
+        if (list_diary.recieveNoteFromHome(note, update)) {
             onBackPressed();
         }
     }
 
     @Override
-    public void onAcceptDocument(Pojo_Document document) {
-        if (list_document.recieveDocumentFromHome(document)) {
+    public void onAcceptDocument(Pojo_Document document, boolean update) {
+        if (list_document.recieveDocumentFromHome(document, update)) {
             onBackPressed();
         }
     }
 
     @Override
-    public void onAcceptMeeting(Pojo_Meeting meeting) {
+    public void onAcceptMeeting(Pojo_Meeting meeting, boolean update) {
 
     }
 }

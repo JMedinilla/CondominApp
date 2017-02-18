@@ -36,10 +36,14 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
         setHasOptionsMenu(true);
     }
 
-    public boolean recieveIncidentFromHome(Pojo_Incident incident) {
+    public boolean recieveIncidentFromHome(Pojo_Incident incident, boolean update) {
         boolean result = false;
         if (incidentPresenter.validateIncident(incident)) {
-            result = incidentPresenter.insertIncident(incident) == 0;
+            if (update) {
+                result = incidentPresenter.updateIncident(incident) == 0;
+            } else {
+                result = incidentPresenter.insertIncident(incident) == 0;
+            }
         }
         return result;
     }
@@ -85,7 +89,7 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Pojo_Incident incident = adapter_incident.getItem(i);
+                //Dialog
             }
         });
 
@@ -130,10 +134,21 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+        Pojo_Incident incident = adapter_incident.getItem(index);
+
         switch (item.getItemId()) {
             case R.id.menuContext_update:
+                homeCallback.onManageIncidentOpenEdit(incident);
                 return true;
             case R.id.menuContext_delete:
+                if (incidentPresenter.deleteIncident(incident) == 0) {
+                    showMessage(R.string.deleted, false);
+                    adapter_incident.notifyDataSetChanged();
+                } else {
+                    showMessage(R.string.no_deleted, true);
+                }
                 return true;
             default:
                 return super.onContextItemSelected(item);

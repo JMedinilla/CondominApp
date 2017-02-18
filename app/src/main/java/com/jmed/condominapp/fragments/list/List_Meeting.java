@@ -77,7 +77,7 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Pojo_Meeting meeting = adapter_meeting.getItem(i);
+                //Dialog
             }
         });
 
@@ -116,10 +116,21 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+        Pojo_Meeting meeting = adapter_meeting.getItem(index);
+
         switch (item.getItemId()) {
             case R.id.menuContext_update:
+                homeCallback.onManageMeetingOpenEdit(meeting);
                 return true;
             case R.id.menuContext_delete:
+                if (meetingPresenter.deleteMeeting(meeting) == 0) {
+                    showMessage(R.string.deleted, false);
+                    adapter_meeting.notifyDataSetChanged();
+                } else {
+                    showMessage(R.string.no_deleted, true);
+                }
                 return true;
             default:
                 return super.onContextItemSelected(item);

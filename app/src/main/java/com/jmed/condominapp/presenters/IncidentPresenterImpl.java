@@ -44,7 +44,11 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
 
     @Override
     public int deleteIncident(Pojo_Incident incident) {
-        return 0;
+        int result = -1;
+        if (Repository_Incident.getInstance().getIncidents().remove(incident)) {
+            result = 0;
+        }
+        return result;
     }
 
     @Override

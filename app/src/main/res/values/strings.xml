@@ -74,6 +74,8 @@
 
     <!-- showMessage -->
     <string name="inserted">Inserted</string>
+    <string name="deleted">Element has been deleted</string>
+    <string name="no_deleted">Element could not be deleted</string>
     <string name="exists">Already exists</string>
     <string name="error_Title">Title is not valid</string>
     <string name="error_Description">Description is not valid</string>

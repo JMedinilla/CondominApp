@@ -37,10 +37,14 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
         setHasOptionsMenu(true);
     }
 
-    public boolean recieveDocumentFromHome(Pojo_Document document) {
+    public boolean recieveDocumentFromHome(Pojo_Document document, boolean update) {
         boolean result = false;
         if (documentPresenter.validateDocument(document)) {
-            result = documentPresenter.insertDocument(document) == 0;
+            if (update) {
+                result = documentPresenter.updateDocument(document) == 0;
+            } else {
+                result = documentPresenter.insertDocument(document) == 0;
+            }
         }
         return result;
     }
@@ -86,7 +90,7 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Pojo_Document document = adapter_document.getItem(i);
+                //Dialog
             }
         });
 
@@ -125,10 +129,21 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+        Pojo_Document document = adapter_document.getItem(index);
+
         switch (item.getItemId()) {
             case R.id.menuContext_update:
+                homeCallback.onManageDocumentOpenEdit(document);
                 return true;
             case R.id.menuContext_delete:
+                if (documentPresenter.deleteDocument(document) == 0) {
+                    showMessage(R.string.deleted, false);
+                    adapter_document.notifyDataSetChanged();
+                } else {
+                    showMessage(R.string.no_deleted, true);
+                }
                 return true;
             default:
                 return super.onContextItemSelected(item);

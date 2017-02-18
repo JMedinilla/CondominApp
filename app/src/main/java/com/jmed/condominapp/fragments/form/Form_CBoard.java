@@ -18,6 +18,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Form_CBoard extends Fragment {
+    private boolean UPDATE_MODE = false;
+    private Pojo_Entry update = null;
+
     private FragmentFormCBoardListener listCallback;
     public static final String TAG_FRAGMENT_FORM_CBOARD = "fragmentFormCBoardTag";
 
@@ -34,7 +37,7 @@ public class Form_CBoard extends Fragment {
     }
 
     public interface FragmentFormCBoardListener {
-        void onAcceptCBoard(Pojo_Entry entry);
+        void onAcceptCBoard(Pojo_Entry entry, boolean update);
     }
 
     @Override
@@ -56,14 +59,24 @@ public class Form_CBoard extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                Date date = new Date(calendar.getTimeInMillis());
-
-                Pojo_Entry entry = new Pojo_Entry(profile.getUserId(), title.getText().toString(), description.getText().toString(), date, Pojo_Entry.SECOND, false);
-
-                listCallback.onAcceptCBoard(entry);
+                if (UPDATE_MODE) {
+                    listCallback.onAcceptCBoard(update, true);
+                } else {
+                    Calendar calendar = Calendar.getInstance();
+                    Date date = new Date(calendar.getTimeInMillis());
+                    Pojo_Entry entry = new Pojo_Entry(profile.getUserId(), title.getText().toString(), description.getText().toString(), date, Pojo_Entry.SECOND, false);
+                    listCallback.onAcceptCBoard(entry, false);
+                }
             }
         });
+
+        Pojo_Entry pojo_entry = getArguments().getParcelable("pojo_entrys");
+        if (pojo_entry != null) {
+            update = pojo_entry;
+            UPDATE_MODE = true;
+            title.setText(pojo_entry.getEn_title());
+            description.setText(pojo_entry.getEn_content());
+        }
 
         return view;
     }

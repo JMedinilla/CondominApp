@@ -44,7 +44,11 @@ public class DiaryPresenterImpl implements IDiaryPresenter {
 
     @Override
     public int deleteNote(Pojo_Note note) {
-        return 0;
+        int result = -1;
+        if (Repository_Note.getInstance().getNotes().remove(note)) {
+            result = 0;
+        }
+        return result;
     }
 
     @Override

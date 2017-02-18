@@ -15,6 +15,9 @@ import com.jmed.condominapp.pojos.Pojo_Document;
 import com.jmed.condominapp.preferences.files.Profile;
 
 public class Form_Document extends Fragment {
+    private boolean UPDATE_MODE = false;
+    private Pojo_Document update = null;
+
     private FragmentFormDocumentListener listCallback;
     public static final String TAG_FRAGMENT_FORM_DOCUMENT = "fragmentFormDocumentTag";
 
@@ -32,7 +35,7 @@ public class Form_Document extends Fragment {
     }
 
     public interface FragmentFormDocumentListener {
-        void onAcceptDocument(Pojo_Document document);
+        void onAcceptDocument(Pojo_Document document, boolean update);
     }
 
     @Override
@@ -55,11 +58,23 @@ public class Form_Document extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Pojo_Document doc = new Pojo_Document(profile.getUserCommunity(), title.getText().toString(), description.getText().toString(), link.getText().toString(), false);
-
-                listCallback.onAcceptDocument(doc);
+                if (UPDATE_MODE) {
+                    listCallback.onAcceptDocument(update, true);
+                } else {
+                    Pojo_Document doc = new Pojo_Document(profile.getUserCommunity(), title.getText().toString(), description.getText().toString(), link.getText().toString(), false);
+                    listCallback.onAcceptDocument(doc, false);
+                }
             }
         });
+
+        Pojo_Document pojo_document = getArguments().getParcelable("pojo_document");
+        if (pojo_document != null) {
+            update = pojo_document;
+            UPDATE_MODE = true;
+            title.setText(pojo_document.getDo_title());
+            description.setText(pojo_document.getDo_description());
+            link.setText(pojo_document.getDo_link());
+        }
 
         return view;
     }

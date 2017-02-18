@@ -12,6 +12,9 @@ import com.jmed.condominapp.R;
 import com.jmed.condominapp.pojos.Pojo_Meeting;
 
 public class Form_Meeting extends Fragment {
+    private boolean UPDATE_MODE = false;
+    private Pojo_Meeting update = null;
+
     private FragmentFormMeetingListener listCallback;
     public static final String TAG_FRAGMENT_FORM_MEETING = "fragmentFormMeetingTag";
 
@@ -23,7 +26,7 @@ public class Form_Meeting extends Fragment {
     }
 
     public interface FragmentFormMeetingListener {
-        void onAcceptMeeting(Pojo_Meeting meeting);
+        void onAcceptMeeting(Pojo_Meeting meeting, boolean update);
     }
 
     @Override
