@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,6 +70,8 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
             }
         });
 
+        registerForContextMenu(listView);
+
         return view;
     }
 
@@ -93,5 +96,24 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_context_list, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuContext_update:
+                return true;
+            case R.id.menuContext_delete:
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }
