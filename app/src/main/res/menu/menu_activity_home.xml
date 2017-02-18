@@ -50,11 +50,11 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/twoNavShop"
-            android:icon="@drawable/app_image"
+            android:icon="@drawable/ic_shopping_grey"
             android:title="@string/twoNavShop" />
         <item
             android:id="@+id/twoNavGame"
-            android:icon="@drawable/app_image"
+            android:icon="@drawable/ic_gamepad_variant_grey"
             android:title="@string/twoNavGame" />
     </group>
 
@@ -63,11 +63,11 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/threeNavSettings"
-            android:icon="@drawable/app_image"
+            android:icon="@drawable/ic_settings_grey"
             android:title="@string/threeNavSettings" />
         <item
             android:id="@+id/threeNavHelp"
-            android:icon="@drawable/app_image"
+            android:icon="@drawable/ic_help_grey"
             android:title="@string/threeNavHelp" />
     </group>
 
@@ -76,7 +76,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/fourNavAbout"
-            android:icon="@drawable/app_image"
+            android:icon="@drawable/ic_comment_account_outline_grey"
             android:title="@string/fourNavAbout" />
     </group>
 </menu>
