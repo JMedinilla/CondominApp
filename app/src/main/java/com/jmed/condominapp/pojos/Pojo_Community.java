@@ -1,8 +1,11 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 
-public class Pojo_Community {
+public class Pojo_Community implements Parcelable {
     private int co_id;
     private String co_locality;
     private String co_municipality;
@@ -25,6 +28,30 @@ public class Pojo_Community {
         this.co_apartments = co_apartments;
         this.co_deleted = co_deleted;
     }
+
+    protected Pojo_Community(Parcel in) {
+        co_id = in.readInt();
+        co_locality = in.readString();
+        co_municipality = in.readString();
+        co_address = in.readString();
+        co_number = in.readString();
+        co_block = in.readString();
+        co_postal = in.readString();
+        co_apartments = in.readInt();
+        co_deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Pojo_Community> CREATOR = new Creator<Pojo_Community>() {
+        @Override
+        public Pojo_Community createFromParcel(Parcel in) {
+            return new Pojo_Community(in);
+        }
+
+        @Override
+        public Pojo_Community[] newArray(int size) {
+            return new Pojo_Community[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -135,4 +162,22 @@ public class Pojo_Community {
             return o1.getCo_apartments() - o2.getCo_apartments();
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(co_id);
+        parcel.writeString(co_locality);
+        parcel.writeString(co_municipality);
+        parcel.writeString(co_address);
+        parcel.writeString(co_number);
+        parcel.writeString(co_block);
+        parcel.writeString(co_postal);
+        parcel.writeInt(co_apartments);
+        parcel.writeByte((byte) (co_deleted ? 1 : 0));
+    }
 }

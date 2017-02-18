@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.jmed.condominapp.Activity_Home;
@@ -42,6 +43,8 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
 
     public interface FragmentListMeetingListener {
         void onManageMeetingOpen();
+
+        void onManageMeetingOpenEdit(Pojo_Meeting meeting);
     }
 
     @Override
@@ -71,6 +74,12 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
         });
 
         registerForContextMenu(listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Pojo_Meeting meeting = adapter_meeting.getItem(i);
+            }
+        });
 
         return view;
     }

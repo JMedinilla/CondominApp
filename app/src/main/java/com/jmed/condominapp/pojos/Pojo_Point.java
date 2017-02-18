@@ -1,9 +1,12 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 import java.util.UUID;
 
-public class Pojo_Point {
+public class Pojo_Point implements Parcelable {
     private String po_id;
     private int po_meeting;
     private String po_title;
@@ -15,6 +18,25 @@ public class Pojo_Point {
         this.po_title = po_title;
         this.po_content = po_content;
     }
+
+    protected Pojo_Point(Parcel in) {
+        po_id = in.readString();
+        po_meeting = in.readInt();
+        po_title = in.readString();
+        po_content = in.readString();
+    }
+
+    public static final Creator<Pojo_Point> CREATOR = new Creator<Pojo_Point>() {
+        @Override
+        public Pojo_Point createFromParcel(Parcel in) {
+            return new Pojo_Point(in);
+        }
+
+        @Override
+        public Pojo_Point[] newArray(int size) {
+            return new Pojo_Point[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -73,4 +95,17 @@ public class Pojo_Point {
             return o1.getPo_title().toUpperCase().compareTo(o2.getPo_title().toUpperCase());
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(po_id);
+        parcel.writeInt(po_meeting);
+        parcel.writeString(po_title);
+        parcel.writeString(po_content);
+    }
 }

@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.jmed.condominapp.Activity_Home;
@@ -50,6 +51,8 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
 
     public interface FragmentListIncidentListener {
         void onManageIncidentOpen();
+
+        void onManageIncidentOpenEdit(Pojo_Incident incident);
     }
 
     @Override
@@ -79,6 +82,12 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
         });
 
         registerForContextMenu(listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Pojo_Incident incident = adapter_incident.getItem(i);
+            }
+        });
 
         return view;
     }

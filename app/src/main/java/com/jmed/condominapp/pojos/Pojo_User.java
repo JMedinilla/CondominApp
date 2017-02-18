@@ -1,8 +1,11 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 
-public class Pojo_User {
+public class Pojo_User implements Parcelable {
     public static final int ADMINISTRATOR = 0;
     public static final int PRESIDENT = 1;
     public static final int NEIGHBOUR = 2;
@@ -31,6 +34,31 @@ public class Pojo_User {
         this.us_photo = us_photo;
         this.us_deleted = us_deleted;
     }
+
+    protected Pojo_User(Parcel in) {
+        us_id = in.readString();
+        us_community = in.readInt();
+        us_floor = in.readString();
+        us_door = in.readString();
+        us_phone = in.readString();
+        us_mail = in.readString();
+        us_name = in.readString();
+        us_category = in.readInt();
+        us_photo = in.readString();
+        us_deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Pojo_User> CREATOR = new Creator<Pojo_User>() {
+        @Override
+        public Pojo_User createFromParcel(Parcel in) {
+            return new Pojo_User(in);
+        }
+
+        @Override
+        public Pojo_User[] newArray(int size) {
+            return new Pojo_User[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -144,4 +172,23 @@ public class Pojo_User {
             return o1.getUs_phone().compareTo(o2.getUs_phone());
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(us_id);
+        parcel.writeInt(us_community);
+        parcel.writeString(us_floor);
+        parcel.writeString(us_door);
+        parcel.writeString(us_phone);
+        parcel.writeString(us_mail);
+        parcel.writeString(us_name);
+        parcel.writeInt(us_category);
+        parcel.writeString(us_photo);
+        parcel.writeByte((byte) (us_deleted ? 1 : 0));
+    }
 }

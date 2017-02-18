@@ -1,9 +1,12 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 import java.util.Date;
 
-public class Pojo_Meeting {
+public class Pojo_Meeting implements Parcelable {
     private int me_id;
     private int me_community;
     private Date me_date;
@@ -15,6 +18,24 @@ public class Pojo_Meeting {
         this.me_date = me_date;
         this.me_deleted = me_deleted;
     }
+
+    protected Pojo_Meeting(Parcel in) {
+        me_id = in.readInt();
+        me_community = in.readInt();
+        me_deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Pojo_Meeting> CREATOR = new Creator<Pojo_Meeting>() {
+        @Override
+        public Pojo_Meeting createFromParcel(Parcel in) {
+            return new Pojo_Meeting(in);
+        }
+
+        @Override
+        public Pojo_Meeting[] newArray(int size) {
+            return new Pojo_Meeting[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -73,4 +94,16 @@ public class Pojo_Meeting {
             return o1.getMe_date().compareTo(o2.getMe_date());
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(me_id);
+        parcel.writeInt(me_community);
+        parcel.writeByte((byte) (me_deleted ? 1 : 0));
+    }
 }

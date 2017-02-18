@@ -1,10 +1,13 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 import java.util.Date;
 import java.util.UUID;
 
-public class Pojo_Entry {
+public class Pojo_Entry implements Parcelable {
     public static final int FIRST = 0;
     public static final int SECOND = 1;
 
@@ -26,6 +29,27 @@ public class Pojo_Entry {
         this.en_category = en_category;
         this.en_deleted = en_deleted;
     }
+
+    protected Pojo_Entry(Parcel in) {
+        en_id = in.readString();
+        en_userid = in.readString();
+        en_title = in.readString();
+        en_content = in.readString();
+        en_category = in.readInt();
+        en_deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Pojo_Entry> CREATOR = new Creator<Pojo_Entry>() {
+        @Override
+        public Pojo_Entry createFromParcel(Parcel in) {
+            return new Pojo_Entry(in);
+        }
+
+        @Override
+        public Pojo_Entry[] newArray(int size) {
+            return new Pojo_Entry[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -116,4 +140,19 @@ public class Pojo_Entry {
             return o1.getEn_date().compareTo(o2.getEn_date());
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(en_id);
+        parcel.writeString(en_userid);
+        parcel.writeString(en_title);
+        parcel.writeString(en_content);
+        parcel.writeInt(en_category);
+        parcel.writeByte((byte) (en_deleted ? 1 : 0));
+    }
 }

@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.jmed.condominapp.Activity_Home;
@@ -51,6 +52,8 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
 
     public interface FragmentListDocumentListener {
         void onManageDocumentOpen();
+
+        void onManageDocumentOpenEdit(Pojo_Document document);
     }
 
     @Override
@@ -80,6 +83,12 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
         });
 
         registerForContextMenu(listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Pojo_Document document = adapter_document.getItem(i);
+            }
+        });
 
         return view;
     }

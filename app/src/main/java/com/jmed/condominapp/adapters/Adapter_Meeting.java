@@ -56,6 +56,11 @@ public class Adapter_Meeting extends ArrayAdapter<Pojo_Meeting> {
         return view;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
     private class MeetingHolder {
         TextView txtTitle;
     }

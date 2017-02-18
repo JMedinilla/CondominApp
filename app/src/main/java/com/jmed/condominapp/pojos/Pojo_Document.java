@@ -1,9 +1,12 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 import java.util.UUID;
 
-public class Pojo_Document {
+public class Pojo_Document implements Parcelable {
     private String do_id;
     private int do_community;
     private String do_title;
@@ -19,6 +22,27 @@ public class Pojo_Document {
         this.do_link = do_link;
         this.do_deleted = do_deleted;
     }
+
+    protected Pojo_Document(Parcel in) {
+        do_id = in.readString();
+        do_community = in.readInt();
+        do_title = in.readString();
+        do_description = in.readString();
+        do_link = in.readString();
+        do_deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Pojo_Document> CREATOR = new Creator<Pojo_Document>() {
+        @Override
+        public Pojo_Document createFromParcel(Parcel in) {
+            return new Pojo_Document(in);
+        }
+
+        @Override
+        public Pojo_Document[] newArray(int size) {
+            return new Pojo_Document[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -94,4 +118,19 @@ public class Pojo_Document {
             return o1.getDo_title().toUpperCase().compareTo(o2.getDo_title().toUpperCase());
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(do_id);
+        parcel.writeInt(do_community);
+        parcel.writeString(do_title);
+        parcel.writeString(do_description);
+        parcel.writeString(do_link);
+        parcel.writeByte((byte) (do_deleted ? 1 : 0));
+    }
 }

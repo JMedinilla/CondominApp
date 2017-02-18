@@ -1,10 +1,13 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 import java.util.Date;
 import java.util.UUID;
 
-public class Pojo_Incident {
+public class Pojo_Incident implements Parcelable {
     private String in_id;
     private String in_userid;
     private Date in_date;
@@ -25,6 +28,28 @@ public class Pojo_Incident {
         this.in_stars = in_stars;
         this.in_deleted = in_deleted;
     }
+
+    protected Pojo_Incident(Parcel in) {
+        in_id = in.readString();
+        in_userid = in.readString();
+        in_title = in.readString();
+        in_description = in.readString();
+        in_photo = in.readString();
+        in_stars = in.readInt();
+        in_deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Pojo_Incident> CREATOR = new Creator<Pojo_Incident>() {
+        @Override
+        public Pojo_Incident createFromParcel(Parcel in) {
+            return new Pojo_Incident(in);
+        }
+
+        @Override
+        public Pojo_Incident[] newArray(int size) {
+            return new Pojo_Incident[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -129,4 +154,20 @@ public class Pojo_Incident {
             return o1.getIn_stars() - o2.getIn_stars();
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(in_id);
+        parcel.writeString(in_userid);
+        parcel.writeString(in_title);
+        parcel.writeString(in_description);
+        parcel.writeString(in_photo);
+        parcel.writeInt(in_stars);
+        parcel.writeByte((byte) (in_deleted ? 1 : 0));
+    }
 }

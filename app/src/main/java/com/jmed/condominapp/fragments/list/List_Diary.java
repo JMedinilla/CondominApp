@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.jmed.condominapp.Activity_Home;
@@ -45,11 +46,13 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
 
     @Override
     public void showMessage(int msg, boolean error) {
-        ((Activity_Home) getActivity()).showSnackbar(getString(msg),error);
+        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
     }
 
     public interface FragmentListDiaryListener {
         void onManageDiaryOpen();
+
+        void onManageDiaryOpenEdit(Pojo_Note note);
     }
 
     @Override
@@ -79,6 +82,12 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
         });
 
         registerForContextMenu(listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Pojo_Note note = adapter_diary.getItem(i);
+            }
+        });
 
         return view;
     }

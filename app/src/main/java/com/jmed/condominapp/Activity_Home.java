@@ -175,6 +175,21 @@ public class Activity_Home extends AppCompatActivity
     @Override
     public void onManageBoardOpen() {
         form_board = new Form_Board();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("board_entryf", null);
+        form_board.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_board);
+        fragmentTransaction.addToBackStack("form_board");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onManageBoardOpenEdit(Pojo_Entry entry) {
+        form_board = new Form_Board();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("board_entryf", entry);
+        form_board.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_board);
         fragmentTransaction.addToBackStack("form_board");
@@ -184,6 +199,21 @@ public class Activity_Home extends AppCompatActivity
     @Override
     public void onManageCBoardOpen() {
         form_cBoard = new Form_CBoard();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("board_entrys", null);
+        form_cBoard.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_cBoard);
+        fragmentTransaction.addToBackStack("form_cBoard");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onManageCBoardOpenEdit(Pojo_Entry entry) {
+        form_cBoard = new Form_CBoard();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("board_entrys", entry);
+        form_cBoard.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_cBoard);
         fragmentTransaction.addToBackStack("form_cBoard");
@@ -198,6 +228,21 @@ public class Activity_Home extends AppCompatActivity
     @Override
     public void onManageDiaryOpen() {
         form_diary = new Form_Diary();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("diary_note", null);
+        form_diary.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_diary);
+        fragmentTransaction.addToBackStack("form_diary");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onManageDiaryOpenEdit(Pojo_Note note) {
+        form_diary = new Form_Diary();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("diary_note", note);
+        form_diary.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_diary);
         fragmentTransaction.addToBackStack("form_diary");
@@ -207,6 +252,21 @@ public class Activity_Home extends AppCompatActivity
     @Override
     public void onManageDocumentOpen() {
         form_document = new Form_Document();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("pojo_document", null);
+        form_document.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_document);
+        fragmentTransaction.addToBackStack("form_document");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onManageDocumentOpenEdit(Pojo_Document document) {
+        form_document = new Form_Document();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("pojo_document", document);
+        form_document.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_document);
         fragmentTransaction.addToBackStack("form_document");
@@ -216,6 +276,21 @@ public class Activity_Home extends AppCompatActivity
     @Override
     public void onManageIncidentOpen() {
         form_incident = new Form_Incident();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("pojo_incident", null);
+        form_incident.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_incident);
+        fragmentTransaction.addToBackStack("form_incident");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onManageIncidentOpenEdit(Pojo_Incident incident) {
+        form_incident = new Form_Incident();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("pojo_incident", incident);
+        form_incident.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_incident);
         fragmentTransaction.addToBackStack("form_incident");
@@ -225,6 +300,21 @@ public class Activity_Home extends AppCompatActivity
     @Override
     public void onManageMeetingOpen() {
         form_meeting = new Form_Meeting();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("pojo_meeting", null);
+        form_meeting.setArguments(bundle);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_home, form_meeting);
+        fragmentTransaction.addToBackStack("form_meeting");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onManageMeetingOpenEdit(Pojo_Meeting meeting) {
+        form_meeting = new Form_Meeting();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("pojo_meeting", meeting);
+        form_meeting.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, form_meeting);
         fragmentTransaction.addToBackStack("form_meeting");

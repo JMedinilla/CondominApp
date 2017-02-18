@@ -1,10 +1,13 @@
 package com.jmed.condominapp.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Comparator;
 import java.util.Date;
 import java.util.UUID;
 
-public class Pojo_Note {
+public class Pojo_Note implements Parcelable {
     private String no_id;
     private int no_community;
     private Date no_date;
@@ -20,6 +23,26 @@ public class Pojo_Note {
         this.no_content = no_content;
         this.no_deleted = no_deleted;
     }
+
+    protected Pojo_Note(Parcel in) {
+        no_id = in.readString();
+        no_community = in.readInt();
+        no_title = in.readString();
+        no_content = in.readString();
+        no_deleted = in.readByte() != 0;
+    }
+
+    public static final Creator<Pojo_Note> CREATOR = new Creator<Pojo_Note>() {
+        @Override
+        public Pojo_Note createFromParcel(Parcel in) {
+            return new Pojo_Note(in);
+        }
+
+        @Override
+        public Pojo_Note[] newArray(int size) {
+            return new Pojo_Note[size];
+        }
+    };
 
     @Override
     public boolean equals(Object obj) {
@@ -101,4 +124,18 @@ public class Pojo_Note {
             return o1.getNo_title().toUpperCase().compareTo(o2.getNo_title().toUpperCase());
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(no_id);
+        parcel.writeInt(no_community);
+        parcel.writeString(no_title);
+        parcel.writeString(no_content);
+        parcel.writeByte((byte) (no_deleted ? 1 : 0));
+    }
 }
