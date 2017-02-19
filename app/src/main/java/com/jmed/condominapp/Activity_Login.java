@@ -17,7 +17,6 @@ import com.jmed.condominapp.preferences.files.Settings;
 import java.util.List;
 
 public class Activity_Login extends AppCompatActivity {
-
     private EditText activity_login_edtKey;
     private CheckBox activity_login_chbRemember;
     private CheckBox activity_login_chbStay;
@@ -98,13 +97,6 @@ public class Activity_Login extends AppCompatActivity {
     }
 
     /**
-     * Method that executes a QR scan
-     */
-    private void qrCodeScan() {
-        //
-    }
-
-    /**
      * Method that find an user with the given key
      * It will start a different Activity if the user is an admin or not
      *
@@ -157,6 +149,23 @@ public class Activity_Login extends AppCompatActivity {
             preferences_profile.setUserName(us.getUs_name());
             preferences_profile.setUserCategory(us.getUs_category());
             Snackbar.make(findViewById(R.id.activity_login), R.string.no_user, Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    /**
+     * Method that executes a QR scan
+     */
+    private void qrCodeScan() {
+        startActivityForResult(new Intent(Activity_Login.this, Activity_QR.class), 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                activity_login_edtKey.setText(data.getStringExtra("key_qr_read"));
+            }
         }
     }
 }

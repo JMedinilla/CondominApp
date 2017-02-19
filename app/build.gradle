@@ -50,4 +50,6 @@ dependencies {
     compile 'com.github.barteksc:android-pdf-viewer:2.3.0'
     //https://github.com/afollestad/material-dialogs
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
+    //https://github.com/dlazaro66/QRCodeReaderView
+    compile 'com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.1'
 }

@@ -91,4 +91,6 @@
     <string name="detail_incident_id_default">ID:</string>
     <string name="detail_incident_title_default">Título:</string>
     <string name="detail_incident_user_default">Autor:</string>
+    <string name="fragment_qr_txtFlash">Activar flash</string>
+    <string name="no_user">El usuario no existe</string>
 </resources>
