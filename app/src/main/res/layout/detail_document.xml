@@ -48,8 +48,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_cloud_black"
-                    android:drawableStart="@drawable/ic_cloud_black"
+                    android:drawableLeft="@drawable/cloud"
+                    android:drawableStart="@drawable/cloud"
                     android:text="@string/detail_document_btnOnline" />
 
                 <Button
@@ -58,8 +58,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_cloud_download_black"
-                    android:drawableStart="@drawable/ic_cloud_download_black"
+                    android:drawableLeft="@drawable/cloud_download"
+                    android:drawableStart="@drawable/cloud_download"
                     android:text="@string/detail_document_btnDownload" />
             </LinearLayout>
         </RelativeLayout>

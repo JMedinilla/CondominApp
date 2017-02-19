@@ -81,4 +81,14 @@
     <string name="menuContext_delete">Eliminar</string>
     <string name="menuContext_update">Actualizar</string>
     <string name="no_deleted">No se ha podido eliminar</string>
+    <string name="detail_close">Cerrar</string>
+    <string name="detail_delete">Eliminar</string>
+    <string name="detail_document_btnDownload">Descargar</string>
+    <string name="detail_document_btnOnline">Ver online</string>
+    <string name="detail_edit">Editar</string>
+    <string name="detail_incident_date_default">Fecha:</string>
+    <string name="detail_incident_description_default">Descripción:</string>
+    <string name="detail_incident_id_default">ID:</string>
+    <string name="detail_incident_title_default">Título:</string>
+    <string name="detail_incident_user_default">Autor:</string>
 </resources>

@@ -19,7 +19,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:contentDescription="@string/contentDescription"
-            android:src="@drawable/ic_image_black" />
+            android:src="@drawable/image" />
 
         <LinearLayout
             android:id="@+id/adapterIncident_linear"

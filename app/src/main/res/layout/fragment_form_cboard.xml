@@ -52,6 +52,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"
-        android:src="@drawable/ic_marked_circle_white" />
+        android:src="@drawable/ic_checkbox_marked_circle_outline_white_36dp" />
 
 </RelativeLayout>

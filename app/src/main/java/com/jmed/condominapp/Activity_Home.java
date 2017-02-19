@@ -87,7 +87,7 @@ public class Activity_Home extends AppCompatActivity
         setSupportActionBar(homeToolbar);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_36dp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setupDrawerContent();

@@ -56,7 +56,7 @@ public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
             String year = (String) android.text.format.DateFormat.format("yyyy", incident.getIn_date());
             String day = (String) android.text.format.DateFormat.format("dd", incident.getIn_date());
 
-            incidentHolder.imgPhoto.setImageResource(R.drawable.ic_image_black);
+            incidentHolder.imgPhoto.setImageResource(R.drawable.image);
             incidentHolder.txtTitle.setText(incident.getIn_title());
             incidentHolder.txtDate.setText(day + " " + month + " " + year);
             incidentHolder.txtContent.setText(incident.getIn_description());

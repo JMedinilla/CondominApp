@@ -18,7 +18,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:contentDescription="@string/contentDescription"
-            android:src="@drawable/ic_book_open_page_variant_black" />
+            android:src="@drawable/book_open_page_variant" />
 
         <TextView
             android:id="@+id/adapterDiary_txtTitle"

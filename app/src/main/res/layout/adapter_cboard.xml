@@ -18,7 +18,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:contentDescription="@string/contentDescription"
-            android:src="@drawable/ic_developer_board_black" />
+            android:src="@drawable/developer_board" />
 
         <LinearLayout
             android:id="@+id/adapterCBoard_linear"

@@ -18,7 +18,7 @@
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:contentDescription="@string/contentDescription"
-            android:src="@drawable/ic_file_document_black" />
+            android:src="@drawable/file_document" />
 
         <TextView
             android:id="@+id/adapterDocument_txtTitle"

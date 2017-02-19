@@ -17,5 +17,5 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="8dp"
-        android:src="@drawable/ic_plus_white" />
+        android:src="@drawable/ic_plus_outline_white_36dp" />
 </RelativeLayout>
