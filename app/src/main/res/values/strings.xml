@@ -71,6 +71,16 @@
     <string name="fourNavAbout">About</string>
     <string name="back_pressed_twice">Press back again to exit</string>
     <string name="navHome">Home menu</string>
+    <string name="menuContext_update">Update</string>
+    <string name="menuContext_delete">Delete</string>
+    <string name="detail_incident_description_default">Description:</string>
+    <string name="detail_incident_title_default">Title:</string>
+    <string name="detail_incident_date_default">Date:</string>
+    <string name="detail_incident_user_default">Author:</string>
+    <string name="detail_incident_id_default">ID:</string>
+    <string name="detail_delete">Delete</string>
+    <string name="detail_edit">Edit</string>
+    <string name="detail_close">Close</string>
 
     <!-- showMessage -->
     <string name="inserted">Inserted</string>
@@ -80,6 +90,6 @@
     <string name="error_Title">Title is not valid</string>
     <string name="error_Description">Description is not valid</string>
     <string name="error_Link">Link is not valid</string>
-    <string name="menuContext_update">Update</string>
-    <string name="menuContext_delete">Delete</string>
+    <string name="detail_document_btnOnline">See online</string>
+    <string name="detail_document_btnDownload">Download</string>
 </resources>

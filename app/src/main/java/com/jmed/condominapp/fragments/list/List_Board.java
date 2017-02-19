@@ -2,9 +2,11 @@ package com.jmed.condominapp.fragments.list;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.jmed.condominapp.Activity_Home;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Board;
@@ -85,15 +90,56 @@ public class List_Board extends Fragment implements IBoardPresenter.View {
             }
         });
 
-        registerForContextMenu(listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Dialog
+                Pojo_Entry entry = adapter_board.getItem(i);
+                showDetailEntry(entry);
             }
         });
 
         return view;
+    }
+
+    private void showDetailEntry(final Pojo_Entry entry) {
+        MaterialDialog.Builder dialog = new MaterialDialog.Builder(getActivity())
+                .title(entry.getEn_title())
+                .customView(R.layout.detail_entry, true)
+                .cancelable(true)
+                .canceledOnTouchOutside(true)
+                .titleColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark))
+                .positiveText(R.string.detail_delete)
+                .negativeText(R.string.detail_edit)
+                .neutralText(R.string.detail_close)
+                .autoDismiss(true)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        if (boardPresenter.deleteFirstEntry(entry) == 0) {
+                            showMessage(R.string.deleted, false);
+                            adapter_board.notifyDataSetChanged();
+                        } else {
+                            showMessage(R.string.no_deleted, true);
+                        }
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        homeCallback.onManageBoardOpenEdit(entry);
+                    }
+                });
+        View content = dialog.build().getCustomView();
+        if (content != null) {
+            TextView txtUser = (TextView) content.findViewById(R.id.detail_entry_user);
+            TextView txtDate = (TextView) content.findViewById(R.id.detail_entry_date);
+            TextView txtDescription = (TextView) content.findViewById(R.id.detail_entry_description);
+
+            txtUser.setText(entry.getEn_userid());
+            txtDate.setText(entry.getEn_date().toString());
+            txtDescription.setText(entry.getEn_content());
+        }
+        dialog.show();
     }
 
     @Override
@@ -120,35 +166,5 @@ public class List_Board extends Fragment implements IBoardPresenter.View {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.menu_context_list, menu);
-        super.onCreateContextMenu(menu, v, menuInfo);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int index = info.position;
-        Pojo_Entry entry = adapter_board.getItem(index);
-
-        switch (item.getItemId()) {
-            case R.id.menuContext_update:
-                homeCallback.onManageBoardOpenEdit(entry);
-                return true;
-            case R.id.menuContext_delete:
-                if (boardPresenter.deleteFirstEntry(entry) == 0) {
-                    showMessage(R.string.deleted, false);
-                    adapter_board.notifyDataSetChanged();
-                } else {
-                    showMessage(R.string.no_deleted, true);
-                }
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
     }
 }
