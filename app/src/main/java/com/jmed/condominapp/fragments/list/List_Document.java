@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,40 +35,20 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
     DocumentPresenterImpl documentPresenter;
     Adapter_Document adapter_document;
 
+    /**
+     * Listener from the fragment to the Activity
+     */
+    public interface FragmentListDocumentListener {
+        void onManageDocumentOpen();
+
+        void onManageDocumentOpen(Pojo_Document document);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
-    }
-
-    public boolean recieveDocumentFromHome(Pojo_Document document, boolean update) {
-        boolean result = false;
-        if (documentPresenter.validateDocument(document)) {
-            if (update) {
-                result = documentPresenter.updateDocument(document) == 0;
-            } else {
-                result = documentPresenter.insertDocument(document) == 0;
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public void showMessage(int msg, boolean error) {
-        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
-    }
-
-    public interface FragmentListDocumentListener {
-        void onManageDocumentOpen();
-
-        void onManageDocumentOpenEdit(Pojo_Document document);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        homeCallback = (FragmentListDocumentListener) context;
     }
 
     @Nullable
@@ -103,6 +82,38 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
         return view;
     }
 
+    /**
+     * Method that recieves an element from the Activity and insert or update it
+     *
+     * @param document Document to handle
+     * @param update Boolean to know if the element has to be inserted or updated
+     * @return True or False depending on the succes of the operation
+     */
+    public boolean recieveDocumentFromHome(Pojo_Document document, boolean update) {
+        boolean result = false;
+        if (documentPresenter.validateDocument(document)) {
+            if (update) {
+                result = documentPresenter.updateDocument(document) == 0;
+            } else {
+                result = documentPresenter.insertDocument(document) == 0;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    /**
+     * Method to send a message to the Activity
+     */
+    public void showMessage(int msg, boolean error) {
+        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
+    }
+
+    /**
+     * Method that shows a detailed view of the element
+     *
+     * @param document Element to be shown
+     */
     private void showDetailDocument(final Pojo_Document document) {
         MaterialDialog.Builder dialog = new MaterialDialog.Builder(getActivity())
                 .title(document.getDo_title())
@@ -128,7 +139,7 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        homeCallback.onManageDocumentOpenEdit(document);
+                        homeCallback.onManageDocumentOpen(document);
                     }
                 });
         View content = dialog.build().getCustomView();
@@ -152,6 +163,12 @@ public class List_Document extends Fragment implements IDocumentPresenter.View {
             });
         }
         dialog.show();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homeCallback = (FragmentListDocumentListener) context;
     }
 
     @Override

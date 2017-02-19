@@ -18,19 +18,31 @@ public class Settings {
         editor = sharedPreferences.edit();
     }
 
+    //region Getter
+    //---------------------------------------------------------------------------------------------
+
     public boolean getRemember() {
         return sharedPreferences.getBoolean(REMEMBER, false);
-    }
-
-    public void setRemember(boolean value) {
-        editor.putBoolean(REMEMBER, value).commit();
     }
 
     public boolean getStay() {
         return sharedPreferences.getBoolean(STAY, false);
     }
 
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Setter
+    //---------------------------------------------------------------------------------------------
+
+    public void setRemember(boolean value) {
+        editor.putBoolean(REMEMBER, value).commit();
+    }
+
     public void setStay(boolean value) {
         editor.putBoolean(STAY, value).commit();
     }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
 }

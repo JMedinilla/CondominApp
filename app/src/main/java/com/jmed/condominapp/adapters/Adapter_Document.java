@@ -25,9 +25,9 @@ public class Adapter_Document extends ArrayAdapter<Pojo_Document> {
         this.context = context;
     }
 
-    public void sortDocuments(Comparator<Pojo_Document> comparator) {
-        Collections.sort(Repository_Document.getInstance(), comparator);
-        notifyDataSetChanged();
+    private class DocumentHolder {
+        TextView txtTitle;
+        TextView txtDescription;
     }
 
     @NonNull
@@ -62,8 +62,13 @@ public class Adapter_Document extends ArrayAdapter<Pojo_Document> {
         return super.getItem(position);
     }
 
-    private class DocumentHolder {
-        TextView txtTitle;
-        TextView txtDescription;
+    /**
+     * Method to sort the list with a given comparator
+     *
+     * @param comparator Order criterion
+     */
+    public void sortDocuments(Comparator<Pojo_Document> comparator) {
+        Collections.sort(Repository_Document.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 }

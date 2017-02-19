@@ -29,28 +29,20 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
     MeetingPresenterImpl meetingPresenter;
     Adapter_Meeting adapter_meeting;
 
+    /**
+     * Listener from the fragment to the Activity
+     */
+    public interface FragmentListMeetingListener {
+        void onManageMeetingOpen();
+
+        void onManageMeetingOpen(Pojo_Meeting meeting);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void showMessage(int msg, boolean error) {
-        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
-    }
-
-    public interface FragmentListMeetingListener {
-        void onManageMeetingOpen();
-
-        void onManageMeetingOpenEdit(Pojo_Meeting meeting);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        homeCallback = (FragmentListMeetingListener) context;
     }
 
     @Nullable
@@ -82,6 +74,20 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
         });
 
         return view;
+    }
+
+    @Override
+    /**
+     * Method to send a message to the Activity
+     */
+    public void showMessage(int msg, boolean error) {
+        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homeCallback = (FragmentListMeetingListener) context;
     }
 
     @Override
@@ -122,7 +128,7 @@ public class List_Meeting extends Fragment implements IMeetingPresenter.View {
 
         switch (item.getItemId()) {
             case R.id.menuContext_update:
-                homeCallback.onManageMeetingOpenEdit(meeting);
+                homeCallback.onManageMeetingOpen(meeting);
                 return true;
             case R.id.menuContext_delete:
                 if (meetingPresenter.deleteMeeting(meeting) == 0) {

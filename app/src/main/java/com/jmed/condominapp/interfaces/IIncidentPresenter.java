@@ -4,6 +4,9 @@ import com.jmed.condominapp.pojos.Pojo_Incident;
 
 import java.util.List;
 
+/**
+ * Presenter for the incidents
+ */
 public interface IIncidentPresenter {
     List<Pojo_Incident> selectIncidents();
 
@@ -17,6 +20,9 @@ public interface IIncidentPresenter {
 
     boolean validateIncident(Pojo_Incident incident);
 
+    /**
+     * Presenter for the incidents list
+     */
     interface View {
         void showMessage(int msg, boolean error);
     }

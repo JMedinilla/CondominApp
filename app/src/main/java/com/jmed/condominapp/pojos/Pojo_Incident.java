@@ -29,27 +29,89 @@ public class Pojo_Incident implements Parcelable {
         this.in_deleted = in_deleted;
     }
 
-    protected Pojo_Incident(Parcel in) {
-        in_id = in.readString();
-        in_userid = in.readString();
-        in_title = in.readString();
-        in_description = in.readString();
-        in_photo = in.readString();
-        in_stars = in.readInt();
-        in_deleted = in.readByte() != 0;
+    //region Getter
+    //---------------------------------------------------------------------------------------------
+
+    public String getIn_id() {
+        return in_id;
     }
 
-    public static final Creator<Pojo_Incident> CREATOR = new Creator<Pojo_Incident>() {
-        @Override
-        public Pojo_Incident createFromParcel(Parcel in) {
-            return new Pojo_Incident(in);
-        }
+    public String getIn_userid() {
+        return in_userid;
+    }
 
-        @Override
-        public Pojo_Incident[] newArray(int size) {
-            return new Pojo_Incident[size];
-        }
-    };
+    public Date getIn_date() {
+        return in_date;
+    }
+
+    public String getIn_title() {
+        return in_title;
+    }
+
+    public String getIn_description() {
+        return in_description;
+    }
+
+    public String getIn_photo() {
+        return in_photo;
+    }
+
+    public int getIn_stars() {
+        return in_stars;
+    }
+
+    public boolean isIn_deleted() {
+        return in_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Setter
+    //---------------------------------------------------------------------------------------------
+
+    public void setIn_id(String in_id) {
+        this.in_id = in_id;
+    }
+
+    public void setIn_userid(String in_userid) {
+        this.in_userid = in_userid;
+    }
+
+    public void setIn_date(Date in_date) {
+        this.in_date = in_date;
+    }
+
+    public void setIn_title(String in_title) {
+        this.in_title = in_title;
+    }
+
+    public void setIn_description(String in_description) {
+        this.in_description = in_description;
+    }
+
+    public void setIn_photo(String in_photo) {
+        this.in_photo = in_photo;
+    }
+
+    public void setIn_stars(int in_stars) {
+        this.in_stars = in_stars;
+    }
+
+    public void setIn_deleted(boolean in_deleted) {
+        this.in_deleted = in_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Override methods
+    //---------------------------------------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "Incident: " + in_title + " (" + in_date.toString() + ")";
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -65,74 +127,11 @@ public class Pojo_Incident implements Parcelable {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Incident: " + in_title + " (" + in_date.toString() + ")";
-    }
+    //---------------------------------------------------------------------------------------------
+    //endregion
 
-    public String getIn_id() {
-        return in_id;
-    }
-
-    public void setIn_id(String in_id) {
-        this.in_id = in_id;
-    }
-
-    public String getIn_userid() {
-        return in_userid;
-    }
-
-    public void setIn_userid(String in_userid) {
-        this.in_userid = in_userid;
-    }
-
-    public Date getIn_date() {
-        return in_date;
-    }
-
-    public void setIn_date(Date in_date) {
-        this.in_date = in_date;
-    }
-
-    public String getIn_title() {
-        return in_title;
-    }
-
-    public void setIn_title(String in_title) {
-        this.in_title = in_title;
-    }
-
-    public String getIn_description() {
-        return in_description;
-    }
-
-    public void setIn_description(String in_description) {
-        this.in_description = in_description;
-    }
-
-    public String getIn_photo() {
-        return in_photo;
-    }
-
-    public void setIn_photo(String in_photo) {
-        this.in_photo = in_photo;
-    }
-
-    public int getIn_stars() {
-        return in_stars;
-    }
-
-    public void setIn_stars(int in_stars) {
-        this.in_stars = in_stars;
-    }
-
-    public boolean isIn_deleted() {
-        return in_deleted;
-    }
-
-    public void setIn_deleted(boolean in_deleted) {
-        this.in_deleted = in_deleted;
-    }
+    //region List Comparators
+    //---------------------------------------------------------------------------------------------
 
     public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_TITLE = new Comparator<Pojo_Incident>() {
         @Override
@@ -155,10 +154,33 @@ public class Pojo_Incident implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Parcerable implementation
+    //---------------------------------------------------------------------------------------------
+
+    private Pojo_Incident(Parcel in) {
+        in_id = in.readString();
+        in_userid = in.readString();
+        in_title = in.readString();
+        in_description = in.readString();
+        in_photo = in.readString();
+        in_stars = in.readInt();
+        in_deleted = in.readByte() != 0;
     }
+
+    public static final Creator<Pojo_Incident> CREATOR = new Creator<Pojo_Incident>() {
+        @Override
+        public Pojo_Incident createFromParcel(Parcel in) {
+            return new Pojo_Incident(in);
+        }
+
+        @Override
+        public Pojo_Incident[] newArray(int size) {
+            return new Pojo_Incident[size];
+        }
+    };
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
@@ -170,4 +192,12 @@ public class Pojo_Incident implements Parcelable {
         parcel.writeInt(in_stars);
         parcel.writeByte((byte) (in_deleted ? 1 : 0));
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
 }

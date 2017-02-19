@@ -9,10 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jmed.condominapp.R;
+import com.jmed.condominapp.pojos.Pojo_User;
 
 public class List_User extends Fragment {
     private FragmentListUserListener homeCallback;
     public static final String TAG_FRAGMENT_LIST_USER = "fragmentListUserTag";
+
+    public interface FragmentListUserListener {
+        void onManageUserOpen();
+
+        void onManageUserOpen(Pojo_User user);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,8 +28,11 @@ public class List_User extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    public interface FragmentListUserListener {
-        void onManageUserOpen();
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_list_user, container, false);
+        return view;
     }
 
     @Override
@@ -31,20 +41,8 @@ public class List_User extends Fragment {
         homeCallback = (FragmentListUserListener) context;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_user, container, false);
-
-        /*
-        FloatingActionButton btnListIncicent = (FloatingActionButton) view.findViewById(R.id.btnListIncicent);
-        btnListIncicent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homeCallback.onManageIncidentOpen();
-            }
-        });
-        */
-        return view;
+    public void onDetach() {
+        super.onDetach();
     }
 }

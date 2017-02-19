@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,40 +33,20 @@ public class List_CBoard extends Fragment implements ICBoardPresenter.View {
     CBoardPresenterImpl cBoardPresenter;
     Adapter_CBoard adapter_cBoard;
 
+    /**
+     * Listener from the fragment to the Activity
+     */
+    public interface FragmentListCBoardListener {
+        void onManageCBoardOpen();
+
+        void onManageCBoardOpen(Pojo_Entry entry);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
-    }
-
-    public boolean recieveEntryFromHome(Pojo_Entry entry, boolean update) {
-        boolean result = false;
-        if (cBoardPresenter.validateSecondEntry(entry)) {
-            if (update) {
-                result = cBoardPresenter.updateSecondEntry(entry) == 0;
-            } else {
-                result = cBoardPresenter.insertSecondEntry(entry) == 0;
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public void showMessage(int msg, boolean error) {
-        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
-    }
-
-    public interface FragmentListCBoardListener {
-        void onManageCBoardOpen();
-
-        void onManageCBoardOpenEdit(Pojo_Entry entry);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        homeCallback = (FragmentListCBoardListener) context;
     }
 
     @Nullable
@@ -101,6 +80,38 @@ public class List_CBoard extends Fragment implements ICBoardPresenter.View {
         return view;
     }
 
+    /**
+     * Method that recieves an element from the Activity and insert or update it
+     *
+     * @param entry Entry to handle
+     * @param update Boolean to know if the element has to be inserted or updated
+     * @return True or False depending on the succes of the operation
+     */
+    public boolean recieveEntryFromHome(Pojo_Entry entry, boolean update) {
+        boolean result = false;
+        if (cBoardPresenter.validateSecondEntry(entry)) {
+            if (update) {
+                result = cBoardPresenter.updateSecondEntry(entry) == 0;
+            } else {
+                result = cBoardPresenter.insertSecondEntry(entry) == 0;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    /**
+     * Method to send a message to the Activity
+     */
+    public void showMessage(int msg, boolean error) {
+        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
+    }
+
+    /**
+     * Method that shows a detailed view of the element
+     *
+     * @param entry Element to be shown
+     */
     private void showDetailEntry(final Pojo_Entry entry) {
         MaterialDialog.Builder dialog = new MaterialDialog.Builder(getActivity())
                 .title(entry.getEn_title())
@@ -126,7 +137,7 @@ public class List_CBoard extends Fragment implements ICBoardPresenter.View {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        homeCallback.onManageCBoardOpenEdit(entry);
+                        homeCallback.onManageCBoardOpen(entry);
                     }
                 });
         View content = dialog.build().getCustomView();
@@ -140,6 +151,12 @@ public class List_CBoard extends Fragment implements ICBoardPresenter.View {
             txtDescription.setText(entry.getEn_content());
         }
         dialog.show();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homeCallback = (FragmentListCBoardListener) context;
     }
 
     @Override

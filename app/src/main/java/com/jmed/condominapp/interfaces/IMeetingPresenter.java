@@ -4,6 +4,9 @@ import com.jmed.condominapp.pojos.Pojo_Meeting;
 
 import java.util.List;
 
+/**
+ * Presenter for the meetings
+ */
 public interface IMeetingPresenter {
     List<Pojo_Meeting> selectMeetings();
 
@@ -17,6 +20,9 @@ public interface IMeetingPresenter {
 
     boolean validateMeeting(Pojo_Meeting meeting);
 
+    /**
+     * Presenter for the meetings list
+     */
     interface View {
         void showMessage(int msg, boolean error);
     }

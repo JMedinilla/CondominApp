@@ -26,9 +26,11 @@ public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
         this.context = context;
     }
 
-    public void sortIncidents(Comparator<Pojo_Incident> comparator) {
-        Collections.sort(Repository_Incident.getInstance(), comparator);
-        notifyDataSetChanged();
+    private class IncidentHolder {
+        ImageView imgPhoto;
+        TextView txtTitle;
+        TextView txtDate;
+        TextView txtContent;
     }
 
     @NonNull
@@ -71,10 +73,13 @@ public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
         return super.getItem(position);
     }
 
-    private class IncidentHolder {
-        ImageView imgPhoto;
-        TextView txtTitle;
-        TextView txtDate;
-        TextView txtContent;
+    /**
+     * Method to sort the list with a given comparator
+     *
+     * @param comparator Order criterion
+     */
+    public void sortIncidents(Comparator<Pojo_Incident> comparator) {
+        Collections.sort(Repository_Incident.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 }

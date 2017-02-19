@@ -19,7 +19,92 @@ public class Pojo_Point implements Parcelable {
         this.po_content = po_content;
     }
 
-    protected Pojo_Point(Parcel in) {
+    //region Getter
+    //---------------------------------------------------------------------------------------------
+
+    public String getPo_id() {
+        return po_id;
+    }
+
+    public int getPo_meeting() {
+        return po_meeting;
+    }
+
+    private String getPo_title() {
+        return po_title;
+    }
+
+    public String getPo_content() {
+        return po_content;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Setter
+    //---------------------------------------------------------------------------------------------
+
+    public void setPo_id(String po_id) {
+        this.po_id = po_id;
+    }
+
+    public void setPo_meeting(int po_meeting) {
+        this.po_meeting = po_meeting;
+    }
+
+    public void setPo_title(String po_title) {
+        this.po_title = po_title;
+    }
+
+    public void setPo_content(String po_content) {
+        this.po_content = po_content;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Override methods
+    //---------------------------------------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "Point: " + po_title;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+        if (obj != null) {
+            if (obj instanceof Pojo_Point) {
+                Pojo_Point another = (Pojo_Point) obj;
+                if (this.po_title.toUpperCase().equals(another.po_title.toUpperCase())) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region List Comparators
+    //---------------------------------------------------------------------------------------------
+
+    public static final Comparator<Pojo_Point> COMPARATOR_POINT_TITLE = new Comparator<Pojo_Point>() {
+        @Override
+        public int compare(Pojo_Point o1, Pojo_Point o2) {
+            return o1.getPo_title().toUpperCase().compareTo(o2.getPo_title().toUpperCase());
+        }
+    };
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Parcerable implementation
+    //---------------------------------------------------------------------------------------------
+
+    private Pojo_Point(Parcel in) {
         po_id = in.readString();
         po_meeting = in.readInt();
         po_title = in.readString();
@@ -39,73 +124,18 @@ public class Pojo_Point implements Parcelable {
     };
 
     @Override
-    public boolean equals(Object obj) {
-        boolean result = false;
-        if (obj != null) {
-            if (obj instanceof Pojo_Point) {
-                Pojo_Point another = (Pojo_Point) obj;
-                if (this.po_title.toUpperCase().equals(another.po_title.toUpperCase())) {
-                    result = true;
-                }
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Point: " + po_title;
-    }
-
-    public String getPo_id() {
-        return po_id;
-    }
-
-    public void setPo_id(String po_id) {
-        this.po_id = po_id;
-    }
-
-    public int getPo_meeting() {
-        return po_meeting;
-    }
-
-    public void setPo_meeting(int po_meeting) {
-        this.po_meeting = po_meeting;
-    }
-
-    public String getPo_title() {
-        return po_title;
-    }
-
-    public void setPo_title(String po_title) {
-        this.po_title = po_title;
-    }
-
-    public String getPo_content() {
-        return po_content;
-    }
-
-    public void setPo_content(String po_content) {
-        this.po_content = po_content;
-    }
-
-    public static final Comparator<Pojo_Point> COMPARATOR_POINT_TITLE = new Comparator<Pojo_Point>() {
-        @Override
-        public int compare(Pojo_Point o1, Pojo_Point o2) {
-            return o1.getPo_title().toUpperCase().compareTo(o2.getPo_title().toUpperCase());
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(po_id);
         parcel.writeInt(po_meeting);
         parcel.writeString(po_title);
         parcel.writeString(po_content);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
 }

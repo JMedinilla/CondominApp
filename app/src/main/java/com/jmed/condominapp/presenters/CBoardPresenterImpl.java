@@ -15,16 +15,25 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
     }
 
     @Override
+    /**
+     * Method to get all entries
+     */
     public List<Pojo_Entry> selectSecondEntries() {
         return Repository_Entry_Second.getInstance().getEntries();
     }
 
     @Override
+    /**
+     * Method to get an entry
+     */
     public Pojo_Entry selectSecondEntry(String id) {
         return null;
     }
 
     @Override
+    /**
+     * Method to add an entry
+     */
     public int insertSecondEntry(Pojo_Entry entry) {
         int result = -1;
         if (!Repository_Entry_Second.getInstance().contains(entry)) {
@@ -38,11 +47,17 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
     }
 
     @Override
+    /**
+     * Method to update an entry
+     */
     public int updateSecondEntry(Pojo_Entry entry) {
         return 0;
     }
 
     @Override
+    /**
+     * Method to delete an entry
+     */
     public int deleteSecondEntry(Pojo_Entry entry) {
         int result = -1;
         if (Repository_Entry_Second.getInstance().getEntries().remove(entry)) {
@@ -52,6 +67,9 @@ public class CBoardPresenterImpl implements ICBoardPresenter {
     }
 
     @Override
+    /**
+     * Method to validate an entry
+     */
     public boolean validateSecondEntry(Pojo_Entry entry) {
         boolean result;
         if (entry.getEn_title().length() == 0) {

@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,8 +26,6 @@ import com.jmed.condominapp.interfaces.IDiaryPresenter;
 import com.jmed.condominapp.pojos.Pojo_Note;
 import com.jmed.condominapp.presenters.DiaryPresenterImpl;
 
-import org.w3c.dom.Text;
-
 public class List_Diary extends Fragment implements IDiaryPresenter.View {
     private FragmentListDiaryListener homeCallback;
     public static final String TAG_FRAGMENT_LIST_DIARY = "fragmentListDiaryTag";
@@ -36,40 +33,20 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
     DiaryPresenterImpl diaryPresenter;
     Adapter_Diary adapter_diary;
 
+    /**
+     * Listener from the fragment to the Activity
+     */
+    public interface FragmentListDiaryListener {
+        void onManageDiaryOpen();
+
+        void onManageDiaryOpen(Pojo_Note note);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
-    }
-
-    public boolean recieveNoteFromHome(Pojo_Note note, boolean update) {
-        boolean result = false;
-        if (diaryPresenter.validateNote(note)) {
-            if (update) {
-                result = diaryPresenter.updateNote(note) == 0;
-            } else {
-                result = diaryPresenter.insertNote(note) == 0;
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public void showMessage(int msg, boolean error) {
-        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
-    }
-
-    public interface FragmentListDiaryListener {
-        void onManageDiaryOpen();
-
-        void onManageDiaryOpenEdit(Pojo_Note note);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        homeCallback = (FragmentListDiaryListener) context;
     }
 
     @Nullable
@@ -103,6 +80,38 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
         return view;
     }
 
+    /**
+     * Method that recieves an element from the Activity and insert or update it
+     *
+     * @param note Note to handle
+     * @param update Boolean to know if the element has to be inserted or updated
+     * @return True or False depending on the succes of the operation
+     */
+    public boolean recieveNoteFromHome(Pojo_Note note, boolean update) {
+        boolean result = false;
+        if (diaryPresenter.validateNote(note)) {
+            if (update) {
+                result = diaryPresenter.updateNote(note) == 0;
+            } else {
+                result = diaryPresenter.insertNote(note) == 0;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    /**
+     * Method to send a message to the Activity
+     */
+    public void showMessage(int msg, boolean error) {
+        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
+    }
+
+    /**
+     * Method that shows a detailed view of the element
+     *
+     * @param note Element to be shown
+     */
     private void showDetailNote(final Pojo_Note note) {
         MaterialDialog.Builder dialog = new MaterialDialog.Builder(getActivity())
                 .title(note.getNo_title())
@@ -128,7 +137,7 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        homeCallback.onManageDiaryOpenEdit(note);
+                        homeCallback.onManageDiaryOpen(note);
                     }
                 });
         View content = dialog.build().getCustomView();
@@ -140,6 +149,12 @@ public class List_Diary extends Fragment implements IDiaryPresenter.View {
             txtDescription.setText(note.getNo_content());
         }
         dialog.show();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homeCallback = (FragmentListDiaryListener) context;
     }
 
     @Override

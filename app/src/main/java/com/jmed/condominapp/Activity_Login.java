@@ -50,6 +50,9 @@ public class Activity_Login extends AppCompatActivity {
         activity_login_edtKey.clearFocus();
     }
 
+    /**
+     * Method that initializes the layout components, their values and listeners
+     */
     private void initializeComponents() {
         activity_login_edtKey = (EditText) findViewById(R.id.activity_login_edtKey);
         activity_login_chbRemember = (CheckBox) findViewById(R.id.activity_login_chbRemember);
@@ -78,24 +81,35 @@ public class Activity_Login extends AppCompatActivity {
         });
     }
 
+    /**
+     * OnClick method for login buttons
+     *
+     * @param view Button
+     */
     public void getOnClickLoginMain(View view) {
         switch (view.getId()) {
             case R.id.activity_login_btnScan:
-                //
+                qrCodeScan();
                 break;
             case R.id.activity_login_btnJoin:
-                //Si el usuario tiene categoría de administrador, se le pasa a la
-                //ventana de selección de comunidad
-                /*
-                startActivity(new Intent(Activity_Login_Main.this, Activity_Login_Admin.class));
-                finish();
-                */
-                //Si es un vecino, pos palante y tal
                 neighbourLogin(activity_login_edtKey.getText().toString());
                 break;
         }
     }
 
+    /**
+     * Method that executes a QR scan
+     */
+    private void qrCodeScan() {
+        //
+    }
+
+    /**
+     * Method that find an user with the given key
+     * It will start a different Activity if the user is an admin or not
+     *
+     * @param keyP User login key
+     */
     private void neighbourLogin(String keyP) {
         boolean result = false;
         Pojo_User tmpUser;
@@ -124,7 +138,11 @@ public class Activity_Login extends AppCompatActivity {
                 preferences_profile.setUserCategory(tmpUser.getUs_category());
 
                 result = true;
-                startActivity(new Intent(Activity_Login.this, Activity_Home.class));
+                if (preferences_profile.getUserCategory() == Pojo_User.ADMINISTRATOR) {
+                    startActivity(new Intent(Activity_Login.this, Activity_Home.class));
+                } else {
+                    startActivity(new Intent(Activity_Login.this, Activity_Home.class));
+                }
                 finish();
             }
         }
@@ -138,7 +156,7 @@ public class Activity_Login extends AppCompatActivity {
             preferences_profile.setUserMail(us.getUs_mail());
             preferences_profile.setUserName(us.getUs_name());
             preferences_profile.setUserCategory(us.getUs_category());
-            Snackbar.make(findViewById(R.id.activity_login), "El usuario no existe", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.activity_login), R.string.no_user, Snackbar.LENGTH_LONG).show();
         }
     }
 }

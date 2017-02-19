@@ -24,9 +24,8 @@ public class Adapter_Meeting extends ArrayAdapter<Pojo_Meeting> {
         this.context = context;
     }
 
-    public void sortMeetings(Comparator<Pojo_Meeting> comparator) {
-        Collections.sort(Repository_Meeting.getInstance(), comparator);
-        notifyDataSetChanged();
+    private class MeetingHolder {
+        TextView txtTitle;
     }
 
     @NonNull
@@ -61,7 +60,13 @@ public class Adapter_Meeting extends ArrayAdapter<Pojo_Meeting> {
         return super.getItemViewType(position);
     }
 
-    private class MeetingHolder {
-        TextView txtTitle;
+    /**
+     * Method to sort the list with a given comparator
+     *
+     * @param comparator Order criterion
+     */
+    public void sortMeetings(Comparator<Pojo_Meeting> comparator) {
+        Collections.sort(Repository_Meeting.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 }

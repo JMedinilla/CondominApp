@@ -19,7 +19,92 @@ public class Pojo_Meeting implements Parcelable {
         this.me_deleted = me_deleted;
     }
 
-    protected Pojo_Meeting(Parcel in) {
+    //region Getter
+    //---------------------------------------------------------------------------------------------
+
+    public int getMe_id() {
+        return me_id;
+    }
+
+    public int getMe_community() {
+        return me_community;
+    }
+
+    public Date getMe_date() {
+        return me_date;
+    }
+
+    public boolean isMe_deleted() {
+        return me_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Setter
+    //---------------------------------------------------------------------------------------------
+
+    public void setMe_id(int me_id) {
+        this.me_id = me_id;
+    }
+
+    public void setMe_community(int me_community) {
+        this.me_community = me_community;
+    }
+
+    public void setMe_date(Date me_date) {
+        this.me_date = me_date;
+    }
+
+    public void setMe_deleted(boolean me_deleted) {
+        this.me_deleted = me_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Override methods
+    //---------------------------------------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "Meeting (" + me_date.toString() + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+        if (obj != null) {
+            if (obj instanceof Pojo_Meeting) {
+                Pojo_Meeting another = (Pojo_Meeting) obj;
+                if (this.me_date.equals(another.me_date)) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region List Comparators
+    //---------------------------------------------------------------------------------------------
+
+    public static final Comparator<Pojo_Meeting> COMPARATOR_MEETING_DATE = new Comparator<Pojo_Meeting>() {
+        @Override
+        public int compare(Pojo_Meeting o1, Pojo_Meeting o2) {
+            return o1.getMe_date().compareTo(o2.getMe_date());
+        }
+    };
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Parcerable implementation
+    //---------------------------------------------------------------------------------------------
+
+    private Pojo_Meeting(Parcel in) {
         me_id = in.readInt();
         me_community = in.readInt();
         me_deleted = in.readByte() != 0;
@@ -38,72 +123,17 @@ public class Pojo_Meeting implements Parcelable {
     };
 
     @Override
-    public boolean equals(Object obj) {
-        boolean result = false;
-        if (obj != null) {
-            if (obj instanceof Pojo_Meeting) {
-                Pojo_Meeting another = (Pojo_Meeting) obj;
-                if (this.me_date.equals(another.me_date)) {
-                    result = true;
-                }
-            }
-        }
-        return result;
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(me_id);
+        parcel.writeInt(me_community);
+        parcel.writeByte((byte) (me_deleted ? 1 : 0));
     }
-
-    @Override
-    public String toString() {
-        return "Meeting (" + me_date.toString() + ")";
-    }
-
-    public int getMe_id() {
-        return me_id;
-    }
-
-    public void setMe_id(int me_id) {
-        this.me_id = me_id;
-    }
-
-    public int getMe_community() {
-        return me_community;
-    }
-
-    public void setMe_community(int me_community) {
-        this.me_community = me_community;
-    }
-
-    public Date getMe_date() {
-        return me_date;
-    }
-
-    public void setMe_date(Date me_date) {
-        this.me_date = me_date;
-    }
-
-    public boolean isMe_deleted() {
-        return me_deleted;
-    }
-
-    public void setMe_deleted(boolean me_deleted) {
-        this.me_deleted = me_deleted;
-    }
-
-    public static final Comparator<Pojo_Meeting> COMPARATOR_MEETING_DATE = new Comparator<Pojo_Meeting>() {
-        @Override
-        public int compare(Pojo_Meeting o1, Pojo_Meeting o2) {
-            return o1.getMe_date().compareTo(o2.getMe_date());
-        }
-    };
 
     @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(me_id);
-        parcel.writeInt(me_community);
-        parcel.writeByte((byte) (me_deleted ? 1 : 0));
-    }
+    //---------------------------------------------------------------------------------------------
+    //endregion
 }

@@ -15,16 +15,25 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
     }
 
     @Override
+    /**
+     * Method to get all incidents
+     */
     public List<Pojo_Incident> selectIncidents() {
         return Repository_Incident.getInstance().getIncidents();
     }
 
     @Override
+    /**
+     * Method to get an incident
+     */
     public Pojo_Incident selectIncident(String id) {
         return null;
     }
 
     @Override
+    /**
+     * Method to add an incident
+     */
     public int insertIncident(Pojo_Incident incident) {
         int result = -1;
         if (!Repository_Incident.getInstance().contains(incident)) {
@@ -38,11 +47,17 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
     }
 
     @Override
+    /**
+     * Method to update an incident
+     */
     public int updateIncident(Pojo_Incident incident) {
         return 0;
     }
 
     @Override
+    /**
+     * Method to delete an incident
+     */
     public int deleteIncident(Pojo_Incident incident) {
         int result = -1;
         if (Repository_Incident.getInstance().getIncidents().remove(incident)) {
@@ -52,6 +67,9 @@ public class IncidentPresenterImpl implements IIncidentPresenter {
     }
 
     @Override
+    /**
+     * Method to validate an incident
+     */
     public boolean validateIncident(Pojo_Incident incident) {
         boolean result;
         if (incident.getIn_title().length() == 0) {

@@ -29,21 +29,18 @@ public class Form_Diary extends Fragment {
     FloatingActionButton btn;
     Profile profile;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-        setHasOptionsMenu(true);
-    }
-
+    /**
+     * Listener from the fragment to the Activity
+     */
     public interface FragmentFormDiaryListener {
         void onAcceptDiary(Pojo_Note note, boolean update);
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listCallback = (FragmentFormDiaryListener) context;
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -79,6 +76,12 @@ public class Form_Diary extends Fragment {
         }
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listCallback = (FragmentFormDiaryListener) context;
     }
 
     @Override

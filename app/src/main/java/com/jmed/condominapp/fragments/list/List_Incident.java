@@ -35,40 +35,20 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
     IncidentPresenterImpl incidentPresenter;
     Adapter_Incident adapter_incident;
 
+    /**
+     * Listener from the fragment to the Activity
+     */
+    public interface FragmentListIncidentListener {
+        void onManageIncidentOpen();
+
+        void onManageIncidentOpen(Pojo_Incident incident);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
-    }
-
-    public boolean recieveIncidentFromHome(Pojo_Incident incident, boolean update) {
-        boolean result = false;
-        if (incidentPresenter.validateIncident(incident)) {
-            if (update) {
-                result = incidentPresenter.updateIncident(incident) == 0;
-            } else {
-                result = incidentPresenter.insertIncident(incident) == 0;
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public void showMessage(int msg, boolean error) {
-        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
-    }
-
-    public interface FragmentListIncidentListener {
-        void onManageIncidentOpen();
-
-        void onManageIncidentOpenEdit(Pojo_Incident incident);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        homeCallback = (FragmentListIncidentListener) context;
     }
 
     @Nullable
@@ -102,6 +82,38 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
         return view;
     }
 
+    /**
+     * Method that recieves an element from the Activity and insert or update it
+     *
+     * @param incident Incident to handle
+     * @param update Boolean to know if the element has to be inserted or updated
+     * @return True or False depending on the succes of the operation
+     */
+    public boolean recieveIncidentFromHome(Pojo_Incident incident, boolean update) {
+        boolean result = false;
+        if (incidentPresenter.validateIncident(incident)) {
+            if (update) {
+                result = incidentPresenter.updateIncident(incident) == 0;
+            } else {
+                result = incidentPresenter.insertIncident(incident) == 0;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    /**
+     * Method to send a message to the Activity
+     */
+    public void showMessage(int msg, boolean error) {
+        ((Activity_Home) getActivity()).showSnackbar(getString(msg), error);
+    }
+
+    /**
+     * Method that shows a detailed view of the element
+     *
+     * @param incident Element to be shown
+     */
     private void showDetailIncident(final Pojo_Incident incident) {
         MaterialDialog.Builder dialog = new MaterialDialog.Builder(getActivity())
                 .title(incident.getIn_title())
@@ -127,7 +139,7 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        homeCallback.onManageIncidentOpenEdit(incident);
+                        homeCallback.onManageIncidentOpen(incident);
                     }
                 });
         View content = dialog.build().getCustomView();
@@ -143,6 +155,12 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
             txtDescription.setText(incident.getIn_description());
         }
         dialog.show();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homeCallback = (FragmentListIncidentListener) context;
     }
 
     @Override

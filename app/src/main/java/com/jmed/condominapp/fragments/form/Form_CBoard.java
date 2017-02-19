@@ -29,21 +29,18 @@ public class Form_CBoard extends Fragment {
     FloatingActionButton btn;
     Profile profile;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-        setHasOptionsMenu(true);
-    }
-
+    /**
+     * Listener from the fragment to the Activity
+     */
     public interface FragmentFormCBoardListener {
         void onAcceptCBoard(Pojo_Entry entry, boolean update);
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listCallback = (FragmentFormCBoardListener) context;
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -79,6 +76,12 @@ public class Form_CBoard extends Fragment {
         }
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listCallback = (FragmentFormCBoardListener) context;
     }
 
     @Override

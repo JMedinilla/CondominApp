@@ -15,12 +15,6 @@ public class Home extends Fragment {
     private FragmentHomeListener homeCallback;
     public static final String TAG_FRAGMENT_HOME = "fragmentHomeTag";
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
-
     public interface FragmentHomeListener {
         void onHomeFragmentIncidentsButtonTap();
 
@@ -44,89 +38,26 @@ public class Home extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        homeCallback = (FragmentHomeListener) context;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        /*
-        Button btnHomeIncidents = (Button) view.findViewById(R.id.btnHomeIncidents);
-        btnHomeIncidents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homeCallback.onHomeFragmentIncidentsButtonTap();
-            }
-        });
-        Button btnHomeDiary = (Button) view.findViewById(R.id.btnHomeDiary);
-        btnHomeDiary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentDiaryButtonTap();
-            }
-        });
-        Button btnHomeBoard;
-        btnHomeBoard = (Button) view.findViewById(R.id.btnHomeBoard);
-        btnHomeBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentBoardButtonTap();
-            }
-        });
-        Button btnHomeCBoard = (Button) view.findViewById(R.id.btnHomeCBoard);
-        btnHomeCBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentCBoardButtonTap();
-            }
-        });
-        Button btnHomeDocuments = (Button) view.findViewById(R.id.btnHomeDocuments);
-        btnHomeDocuments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentDocumentsButtonTap();
-            }
-        });
-        Button btnHomeMeetings = (Button) view.findViewById(R.id.btnHomeMeetings);
-        btnHomeMeetings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentMeetingsButtonTap();
-            }
-        });
-        Button btnHomeInformation = (Button) view.findViewById(R.id.btnHomeInformation);
-        btnHomeInformation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentInformationButtonTap();
-            }
-        });
-        Button btnHomeUsers = (Button) view.findViewById(R.id.btnHomeUsers);
-        btnHomeUsers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentUsersButtonTap();
-            }
-        });
-        Button btnHomeCommunities = (Button) view.findViewById(R.id.btnHomeCommunities);
-        btnHomeCommunities.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentCommunitiesButtonTap();
-            }
-        });
-        Button btnHomeProfile = (Button) view.findViewById(R.id.btnHomeProfile);
-        btnHomeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeCallback.onHomeFragmentProfileButtonTap();
-            }
-        });
-        */
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homeCallback = (FragmentHomeListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 }

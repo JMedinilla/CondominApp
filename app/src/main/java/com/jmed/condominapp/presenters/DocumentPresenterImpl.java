@@ -15,16 +15,25 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
     }
 
     @Override
+    /**
+     * Method to get all documents
+     */
     public List<Pojo_Document> selectDocuments() {
         return Repository_Document.getInstance().getDocuments();
     }
 
     @Override
+    /**
+     * Method to get a document
+     */
     public Pojo_Document selectDocument(String id) {
         return null;
     }
 
     @Override
+    /**
+     * Method to add a document
+     */
     public int insertDocument(Pojo_Document document) {
         int result = -1;
         if (!Repository_Document.getInstance().contains(document)) {
@@ -38,11 +47,17 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
     }
 
     @Override
+    /**
+     * Method to update a document
+     */
     public int updateDocument(Pojo_Document document) {
         return 0;
     }
 
     @Override
+    /**
+     * Method to delete a document
+     */
     public int deleteDocument(Pojo_Document document) {
         int result = -1;
         if (Repository_Document.getInstance().getDocuments().remove(document)) {
@@ -52,6 +67,9 @@ public class DocumentPresenterImpl implements IDocumentPresenter {
     }
 
     @Override
+    /**
+     * Method to validate a document
+     */
     public boolean validateDocument(Pojo_Document document) {
         boolean result;
         if (document.getDo_title().length() == 0) {

@@ -1,6 +1,7 @@
 package com.jmed.condominapp;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -8,11 +9,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.jmed.condominapp.fragments.Home;
@@ -31,15 +35,16 @@ import com.jmed.condominapp.fragments.list.List_Incident;
 import com.jmed.condominapp.fragments.list.List_Information;
 import com.jmed.condominapp.fragments.list.List_Meeting;
 import com.jmed.condominapp.fragments.list.List_User;
+import com.jmed.condominapp.pojos.Pojo_Community;
 import com.jmed.condominapp.pojos.Pojo_Document;
 import com.jmed.condominapp.pojos.Pojo_Entry;
 import com.jmed.condominapp.pojos.Pojo_Incident;
 import com.jmed.condominapp.pojos.Pojo_Meeting;
 import com.jmed.condominapp.pojos.Pojo_Note;
+import com.jmed.condominapp.pojos.Pojo_User;
 import com.jmed.condominapp.preferences.application.Settings;
 
-public class Activity_Home extends AppCompatActivity
-        implements
+public class Activity_Home extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, Home.FragmentHomeListener,
         List_Board.FragmentListBoardListener, List_CBoard.FragmentListCBoardListener, List_Community.FragmentListCommunityListener,
         List_Diary.FragmentListDiaryListener, List_Document.FragmentListDocumentListener, List_Incident.FragmentListIncidentListener,
@@ -47,24 +52,22 @@ public class Activity_Home extends AppCompatActivity
         Form_Incident.FragmentFormIncidentListener, Form_Board.FragmentFormBoardListener, Form_CBoard.FragmentFormCBoardListener,
         Form_Diary.FragmentFormDiaryListener, Form_Document.FragmentFormDocumentListener, Form_Meeting.FragmentFormMeetingListener {
 
-    List_Incident list_incident;
-    List_Diary list_diary;
-    List_Board list_board;
-    List_CBoard list_cBoard;
-    List_Document list_document;
-    List_Meeting list_meeting;
-    List_Information list_information;
-    List_User list_user;
-    List_Community list_community;
-    Form_Board form_board;
-    Form_CBoard form_cBoard;
-    Form_Diary form_diary;
-    Form_Document form_document;
-    Form_Incident form_incident;
-    Form_Meeting form_meeting;
+    private List_Incident list_incident;
+    private List_Diary list_diary;
+    private List_Board list_board;
+    private List_CBoard list_cBoard;
+    private List_Document list_document;
+    private List_Meeting list_meeting;
+    private List_Information list_information;
+    private List_User list_user;
+    private List_Community list_community;
+    private Form_Board form_board;
+    private Form_CBoard form_cBoard;
+    private Form_Diary form_diary;
+    private Form_Document form_document;
+    private Form_Incident form_incident;
+    private Form_Meeting form_meeting;
 
-    private Toolbar homeToolbar;
-    private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private boolean exit = false;
 
@@ -72,6 +75,16 @@ public class Activity_Home extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_navigation);
+
+        Toolbar homeToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(homeToolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_36dp);
+        }
 
         list_incident = new List_Incident();
         list_diary = new List_Diary();
@@ -83,17 +96,34 @@ public class Activity_Home extends AppCompatActivity
         list_user = new List_User();
         list_community = new List_Community();
 
-        homeToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(homeToolbar);
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_36dp);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         setupDrawerContent();
         showHome();
     }
 
+    /**
+     * Method that show snackbar notifications to the user with different colors
+     * depending on the 2nd parameter if it is an error or not
+     */
+    public void showSnackbar(String msg, boolean error) {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.activity_home), msg, Snackbar.LENGTH_SHORT);
+        TextView textView = (TextView) snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+        View view = snackbar.getView();
+        textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+        textView.setGravity(Gravity.CENTER);
+        if (error) {
+            view.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorError));
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
+            params.gravity = Gravity.CENTER;
+            view.setLayoutParams(params);
+        } else {
+            view.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorSuccess));
+        }
+        snackbar.show();
+    }
+
+    /**
+     * Method that initializes the Home fragment at the start of the Activity
+     */
     public void showHome() {
         Home fragmentHome = new Home();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -101,7 +131,12 @@ public class Activity_Home extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    //region List Interfaces
+    //---------------------------------------------------------------------------------------------
     @Override
+    /**
+     * Method to open the incidents fragment
+     */
     public void onHomeFragmentIncidentsButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_incident, "list_incident");
@@ -109,6 +144,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the notes fragment
+     */
     public void onHomeFragmentDiaryButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_diary, "list_diary");
@@ -116,6 +154,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the entries fragment
+     */
     public void onHomeFragmentBoardButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_board, "list_board");
@@ -123,6 +164,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the second entries fragment
+     */
     public void onHomeFragmentCBoardButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_cBoard, "list_cBoard");
@@ -130,6 +174,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the documents fragment
+     */
     public void onHomeFragmentDocumentsButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_document, "list_document");
@@ -137,6 +184,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the meetings fragment
+     */
     public void onHomeFragmentMeetingsButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_meeting, "list_meeting");
@@ -144,6 +194,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the information fragment
+     */
     public void onHomeFragmentInformationButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_information, "list_information");
@@ -151,6 +204,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the users fragment
+     */
     public void onHomeFragmentUsersButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_user, "list_user");
@@ -158,6 +214,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the communities fragment
+     */
     public void onHomeFragmentCommunitiesButtonTap() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_home, list_community, "list_community");
@@ -165,6 +224,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open the profile fragment
+     */
     public void onHomeFragmentProfileButtonTap() {
         com.jmed.condominapp.fragments.Profile profile = new com.jmed.condominapp.fragments.Profile();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -172,7 +234,16 @@ public class Activity_Home extends AppCompatActivity
         fragmentTransaction.commit();
     }
 
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Form Interfaces
+    //---------------------------------------------------------------------------------------------
+
     @Override
+    /**
+     * Method to open an empty entry form
+     */
     public void onManageBoardOpen() {
         form_board = new Form_Board();
         Bundle bundle = new Bundle();
@@ -185,7 +256,10 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
-    public void onManageBoardOpenEdit(Pojo_Entry entry) {
+    /**
+     * Method to open an update entry form
+     */
+    public void onManageBoardOpen(Pojo_Entry entry) {
         form_board = new Form_Board();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojo_entryf", entry);
@@ -197,6 +271,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open an empty entry form
+     */
     public void onManageCBoardOpen() {
         form_cBoard = new Form_CBoard();
         Bundle bundle = new Bundle();
@@ -209,7 +286,10 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
-    public void onManageCBoardOpenEdit(Pojo_Entry entry) {
+    /**
+     * Method to open an update entry form
+     */
+    public void onManageCBoardOpen(Pojo_Entry entry) {
         form_cBoard = new Form_CBoard();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojo_entrys", entry);
@@ -221,11 +301,23 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open an empty community form
+     */
     public void onManageCommunityOpen() {
-        //Formulario COMMUNITY
     }
 
     @Override
+    /**
+     * Method to open an update community form
+     */
+    public void onManageCommunityOpen(Pojo_Community community) {
+    }
+
+    @Override
+    /**
+     * Method to open an empty note form
+     */
     public void onManageDiaryOpen() {
         form_diary = new Form_Diary();
         Bundle bundle = new Bundle();
@@ -238,7 +330,10 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
-    public void onManageDiaryOpenEdit(Pojo_Note note) {
+    /**
+     * Method to open an update note form
+     */
+    public void onManageDiaryOpen(Pojo_Note note) {
         form_diary = new Form_Diary();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojo_note", note);
@@ -250,6 +345,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open an empty document form
+     */
     public void onManageDocumentOpen() {
         form_document = new Form_Document();
         Bundle bundle = new Bundle();
@@ -262,7 +360,10 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
-    public void onManageDocumentOpenEdit(Pojo_Document document) {
+    /**
+     * Method to open an update document form
+     */
+    public void onManageDocumentOpen(Pojo_Document document) {
         form_document = new Form_Document();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojo_document", document);
@@ -274,6 +375,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open an empty incident form
+     */
     public void onManageIncidentOpen() {
         form_incident = new Form_Incident();
         Bundle bundle = new Bundle();
@@ -286,7 +390,10 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
-    public void onManageIncidentOpenEdit(Pojo_Incident incident) {
+    /**
+     * Method to open an update incident form
+     */
+    public void onManageIncidentOpen(Pojo_Incident incident) {
         form_incident = new Form_Incident();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojo_incident", incident);
@@ -298,6 +405,9 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open an empty meeting form
+     */
     public void onManageMeetingOpen() {
         form_meeting = new Form_Meeting();
         Bundle bundle = new Bundle();
@@ -310,7 +420,10 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
-    public void onManageMeetingOpenEdit(Pojo_Meeting meeting) {
+    /**
+     * Method to open an update meeting form
+     */
+    public void onManageMeetingOpen(Pojo_Meeting meeting) {
         form_meeting = new Form_Meeting();
         Bundle bundle = new Bundle();
         bundle.putParcelable("pojo_meeting", meeting);
@@ -322,53 +435,122 @@ public class Activity_Home extends AppCompatActivity
     }
 
     @Override
+    /**
+     * Method to open an empty user form
+     */
     public void onManageUserOpen() {
-        //Formulario USER
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START))
-            drawerLayout.closeDrawer(GravityCompat.START);
-        else if (getSupportFragmentManager().getBackStackEntryCount() > 0 || exit)
-            super.onBackPressed();
-        else {
-            exit = true;
-            Snackbar.make(findViewById(R.id.activity_home), getString(R.string.back_pressed_twice), Snackbar.LENGTH_SHORT)
-                    .addCallback(new Snackbar.Callback() {
-                        @Override
-                        public void onDismissed(Snackbar snackbar, int event) {
-                            super.onDismissed(snackbar, event);
-                            exit = false;
-                        }
-                    }).show();
+    /**
+     * Method to open an update user form
+     */
+    public void onManageUserOpen(Pojo_User user) {
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Form Click Interfaces
+    //---------------------------------------------------------------------------------------------
+
+    @Override
+    /**
+     * Method that sends to the incidents fragment an element for the presenter
+     * The 2nd parameter says if the element has to be added or updated
+     */
+    public void onAcceptIncident(Pojo_Incident incident, boolean update) {
+        if (list_incident.recieveIncidentFromHome(incident, update)) {
+            onBackPressed();
         }
+    }
+
+    @Override
+    /**
+     * Method that sends to the entries fragment an element for the presenter
+     * The 2nd parameter says if the element has to be added or updated
+     */
+    public void onAcceptBoard(Pojo_Entry entry, boolean update) {
+        if (list_board.recieveEntryFromHome(entry, update)) {
+            onBackPressed();
+        }
+    }
+
+    @Override
+    /**
+     * Method that sends to the entries fragment an element for the presenter
+     * The 2nd parameter says if the element has to be added or updated
+     */
+    public void onAcceptCBoard(Pojo_Entry entry, boolean update) {
+        if (list_cBoard.recieveEntryFromHome(entry, update)) {
+            onBackPressed();
+        }
+    }
+
+    @Override
+    /**
+     * Method that sends to the notes fragment an element for the presenter
+     * The 2nd parameter says if the element has to be added or updated
+     */
+    public void onAcceptDiary(Pojo_Note note, boolean update) {
+        if (list_diary.recieveNoteFromHome(note, update)) {
+            onBackPressed();
+        }
+    }
+
+    @Override
+    /**
+     * Method that sends to the documents fragment an element for the presenter
+     * The 2nd parameter says if the element has to be added or updated
+     */
+    public void onAcceptDocument(Pojo_Document document, boolean update) {
+        if (list_document.recieveDocumentFromHome(document, update)) {
+            onBackPressed();
+        }
+    }
+
+    @Override
+    /**
+     * Method that sends to the meetings fragment an element for the presenter
+     * The 2nd parameter says if the element has to be added or updated
+     */
+    public void onAcceptMeeting(Pojo_Meeting meeting, boolean update) {
 
     }
 
-    public void showSnackbar(String msg, boolean error) {
-        Snackbar snackbar;
-        snackbar = Snackbar.make(findViewById(R.id.activity_home), msg, Snackbar.LENGTH_SHORT);
-        View snackBarView = snackbar.getView();
-        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
-        if (error) {
-            snackBarView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorError));
-        } else {
-            snackBarView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorSuccess));
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Menu methods
+    //---------------------------------------------------------------------------------------------
+
+    @Override
+    /**
+     * Home menu options
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
         }
-        snackbar.show();
+        return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * NavigationDrawer implementation
+     */
     private void setupDrawerContent() {
-        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
+    /**
+     * NavigationDrawer menu options
+     */
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         item.setChecked(true);
-
         switch (item.getItemId()) {
             case R.id.navIncidents:
                 onHomeFragmentIncidentsButtonTap();
@@ -424,53 +606,33 @@ public class Activity_Home extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    //---------------------------------------------------------------------------------------------
+    //endregion
 
     @Override
-    public void onAcceptIncident(Pojo_Incident incident, boolean update) {
-        if (list_incident.recieveIncidentFromHome(incident, update)) {
-            onBackPressed();
+    /**
+     * OnBackPressed override method
+     */
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else if (getSupportFragmentManager().getBackStackEntryCount() > 0 || exit)
+            super.onBackPressed();
+        else {
+            exit = true;
+            Snackbar.make(
+                    findViewById(R.id.activity_home),
+                    getString(R.string.back_pressed_twice),
+                    Snackbar.LENGTH_SHORT)
+                    .addCallback(new Snackbar.Callback() {
+                        @Override
+                        public void onDismissed(Snackbar snackbar, int event) {
+                            super.onDismissed(snackbar, event);
+                            exit = false;
+                        }
+                    })
+                    .show();
         }
-    }
-
-    @Override
-    public void onAcceptBoard(Pojo_Entry entry, boolean update) {
-        if (list_board.recieveEntryFromHome(entry, update)) {
-            onBackPressed();
-        }
-    }
-
-    @Override
-    public void onAcceptCBoard(Pojo_Entry entry, boolean update) {
-        if (list_cBoard.recieveEntryFromHome(entry, update)) {
-            onBackPressed();
-        }
-    }
-
-    @Override
-    public void onAcceptDiary(Pojo_Note note, boolean update) {
-        if (list_diary.recieveNoteFromHome(note, update)) {
-            onBackPressed();
-        }
-    }
-
-    @Override
-    public void onAcceptDocument(Pojo_Document document, boolean update) {
-        if (list_document.recieveDocumentFromHome(document, update)) {
-            onBackPressed();
-        }
-    }
-
-    @Override
-    public void onAcceptMeeting(Pojo_Meeting meeting, boolean update) {
 
     }
 }

@@ -25,9 +25,9 @@ public class Adapter_Diary extends ArrayAdapter<Pojo_Note> {
         this.context = context;
     }
 
-    public void sortDiaries(Comparator<Pojo_Note> comparator) {
-        Collections.sort(Repository_Note.getInstance(), comparator);
-        notifyDataSetChanged();
+    private class DiaryHolder {
+        TextView txtTitle;
+        TextView txtDescription;
     }
 
     @NonNull
@@ -62,8 +62,13 @@ public class Adapter_Diary extends ArrayAdapter<Pojo_Note> {
         return super.getItem(position);
     }
 
-    private class DiaryHolder {
-        TextView txtTitle;
-        TextView txtDescription;
+    /**
+     * Method to sort the list with a given comparator
+     *
+     * @param comparator Order criterion
+     */
+    public void sortDiaries(Comparator<Pojo_Note> comparator) {
+        Collections.sort(Repository_Note.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 }

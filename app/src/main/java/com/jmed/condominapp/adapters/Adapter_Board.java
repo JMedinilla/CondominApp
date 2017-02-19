@@ -25,9 +25,10 @@ public class Adapter_Board extends ArrayAdapter<Pojo_Entry> {
         this.context = context;
     }
 
-    public void sortFirstEntries(Comparator<Pojo_Entry> comparator) {
-        Collections.sort(Repository_Entry_First.getInstance(), comparator);
-        notifyDataSetChanged();
+    private class BoardHolder {
+        TextView txtTitle;
+        TextView txtDate;
+        TextView txtDescription;
     }
 
     @NonNull
@@ -68,9 +69,13 @@ public class Adapter_Board extends ArrayAdapter<Pojo_Entry> {
         return super.getItem(position);
     }
 
-    private class BoardHolder {
-        TextView txtTitle;
-        TextView txtDate;
-        TextView txtDescription;
+    /**
+     * Method to sort the list with a given comparator
+     *
+     * @param comparator Order criterion
+     */
+    public void sortFirstEntries(Comparator<Pojo_Entry> comparator) {
+        Collections.sort(Repository_Entry_First.getInstance(), comparator);
+        notifyDataSetChanged();
     }
 }

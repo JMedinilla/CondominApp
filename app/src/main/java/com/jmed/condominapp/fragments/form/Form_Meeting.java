@@ -18,6 +18,13 @@ public class Form_Meeting extends Fragment {
     private FragmentFormMeetingListener listCallback;
     public static final String TAG_FRAGMENT_FORM_MEETING = "fragmentFormMeetingTag";
 
+    /**
+     * Listener from the fragment to the Activity
+     */
+    public interface FragmentFormMeetingListener {
+        void onAcceptMeeting(Pojo_Meeting meeting, boolean update);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,21 +32,17 @@ public class Form_Meeting extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    public interface FragmentFormMeetingListener {
-        void onAcceptMeeting(Pojo_Meeting meeting, boolean update);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_form_meeting, container, false);
+        return view;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         listCallback = (FragmentFormMeetingListener) context;
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_form_meeting, container, false);
-        return view;
     }
 
     @Override

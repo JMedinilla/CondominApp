@@ -4,6 +4,9 @@ import com.jmed.condominapp.pojos.Pojo_Document;
 
 import java.util.List;
 
+/**
+ * Presenter for the documents
+ */
 public interface IDocumentPresenter {
     List<Pojo_Document> selectDocuments();
 
@@ -17,6 +20,9 @@ public interface IDocumentPresenter {
 
     boolean validateDocument(Pojo_Document document);
 
+    /**
+     * Presenter for the documents list
+     */
     interface View {
         void showMessage(int msg, boolean error);
     }

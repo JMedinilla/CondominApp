@@ -30,6 +30,123 @@ public class Pojo_Entry implements Parcelable {
         this.en_deleted = en_deleted;
     }
 
+    //region Getter
+    //---------------------------------------------------------------------------------------------
+
+    public String getEn_id() {
+        return en_id;
+    }
+
+    public String getEn_userid() {
+        return en_userid;
+    }
+
+    public String getEn_title() {
+        return en_title;
+    }
+
+    public String getEn_content() {
+        return en_content;
+    }
+
+    public Date getEn_date() {
+        return en_date;
+    }
+
+    public int getEn_category() {
+        return en_category;
+    }
+
+    public boolean isEn_deleted() {
+        return en_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Setter
+    //---------------------------------------------------------------------------------------------
+
+    public void setEn_id(String en_id) {
+        this.en_id = en_id;
+    }
+
+    public void setEn_userid(String en_userid) {
+        this.en_userid = en_userid;
+    }
+
+    public void setEn_title(String en_title) {
+        this.en_title = en_title;
+    }
+
+    public void setEn_content(String en_content) {
+        this.en_content = en_content;
+    }
+
+    public void setEn_date(Date en_date) {
+        this.en_date = en_date;
+    }
+
+    public void setEn_category(int en_category) {
+        this.en_category = en_category;
+    }
+
+    public void setEn_deleted(boolean en_deleted) {
+        this.en_deleted = en_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Override methods
+    //---------------------------------------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "Pojo_Entry: " + en_title + " (" + en_date.toString() + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+        if (obj != null) {
+            if (obj instanceof Pojo_Entry) {
+                Pojo_Entry another = (Pojo_Entry) obj;
+                if (this.en_title.toUpperCase().equals(another.en_title.toUpperCase())
+                        && this.en_category == another.en_category
+                        && this.en_deleted == another.en_deleted) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region List Comparators
+    //---------------------------------------------------------------------------------------------
+
+    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_TITLE = new Comparator<Pojo_Entry>() {
+        @Override
+        public int compare(Pojo_Entry o1, Pojo_Entry o2) {
+            return o1.getEn_title().toUpperCase().compareTo(o2.getEn_title().toUpperCase());
+        }
+    };
+    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_DATE = new Comparator<Pojo_Entry>() {
+        @Override
+        public int compare(Pojo_Entry o1, Pojo_Entry o2) {
+            return o1.getEn_date().compareTo(o2.getEn_date());
+        }
+    };
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Parcerable implementation
+    //---------------------------------------------------------------------------------------------
+
     protected Pojo_Entry(Parcel in) {
         en_id = in.readString();
         en_userid = in.readString();
@@ -52,101 +169,6 @@ public class Pojo_Entry implements Parcelable {
     };
 
     @Override
-    public boolean equals(Object obj) {
-        boolean result = false;
-        if (obj != null) {
-            if (obj instanceof Pojo_Entry) {
-                Pojo_Entry another = (Pojo_Entry) obj;
-                if (this.en_title.toUpperCase().equals(another.en_title.toUpperCase())
-                        && this.en_category == another.en_category
-                        && this.en_deleted == another.en_deleted) {
-                    result = true;
-                }
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Pojo_Entry: " + en_title + " (" + en_date.toString() + ")";
-    }
-
-    public String getEn_id() {
-        return en_id;
-    }
-
-    public void setEn_id(String en_id) {
-        this.en_id = en_id;
-    }
-
-    public String getEn_userid() {
-        return en_userid;
-    }
-
-    public void setEn_userid(String en_userid) {
-        this.en_userid = en_userid;
-    }
-
-    public String getEn_title() {
-        return en_title;
-    }
-
-    public void setEn_title(String en_title) {
-        this.en_title = en_title;
-    }
-
-    public String getEn_content() {
-        return en_content;
-    }
-
-    public void setEn_content(String en_content) {
-        this.en_content = en_content;
-    }
-
-    public Date getEn_date() {
-        return en_date;
-    }
-
-    public void setEn_date(Date en_date) {
-        this.en_date = en_date;
-    }
-
-    public int getEn_category() {
-        return en_category;
-    }
-
-    public void setEn_category(int en_category) {
-        this.en_category = en_category;
-    }
-
-    public boolean isEn_deleted() {
-        return en_deleted;
-    }
-
-    public void setEn_deleted(boolean en_deleted) {
-        this.en_deleted = en_deleted;
-    }
-
-    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_TITLE = new Comparator<Pojo_Entry>() {
-        @Override
-        public int compare(Pojo_Entry o1, Pojo_Entry o2) {
-            return o1.getEn_title().toUpperCase().compareTo(o2.getEn_title().toUpperCase());
-        }
-    };
-    public static final Comparator<Pojo_Entry> COMPARATOR_ENTRY_DATE = new Comparator<Pojo_Entry>() {
-        @Override
-        public int compare(Pojo_Entry o1, Pojo_Entry o2) {
-            return o1.getEn_date().compareTo(o2.getEn_date());
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(en_id);
         parcel.writeString(en_userid);
@@ -155,4 +177,12 @@ public class Pojo_Entry implements Parcelable {
         parcel.writeInt(en_category);
         parcel.writeByte((byte) (en_deleted ? 1 : 0));
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
 }

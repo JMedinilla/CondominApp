@@ -4,6 +4,9 @@ import com.jmed.condominapp.pojos.Pojo_Note;
 
 import java.util.List;
 
+/**
+ * Presenter for the notes
+ */
 public interface IDiaryPresenter {
     List<Pojo_Note> selectNotes();
 
@@ -17,6 +20,9 @@ public interface IDiaryPresenter {
 
     boolean validateNote(Pojo_Note note);
 
+    /**
+     * Presenter for the notes list
+     */
     interface View {
         void showMessage(int msg, boolean error);
     }

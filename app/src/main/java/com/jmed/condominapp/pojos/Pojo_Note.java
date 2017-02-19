@@ -24,7 +24,115 @@ public class Pojo_Note implements Parcelable {
         this.no_deleted = no_deleted;
     }
 
-    protected Pojo_Note(Parcel in) {
+    //region Getter
+    //---------------------------------------------------------------------------------------------
+
+    public String getNo_id() {
+        return no_id;
+    }
+
+    public int getNo_community() {
+        return no_community;
+    }
+
+    public Date getNo_date() {
+        return no_date;
+    }
+
+    public String getNo_title() {
+        return no_title;
+    }
+
+    public String getNo_content() {
+        return no_content;
+    }
+
+    public boolean isNo_deleted() {
+        return no_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Setter
+    //---------------------------------------------------------------------------------------------
+
+    public void setNo_id(String no_id) {
+        this.no_id = no_id;
+    }
+
+    public void setNo_community(int no_community) {
+        this.no_community = no_community;
+    }
+
+    public void setNo_date(Date no_date) {
+        this.no_date = no_date;
+    }
+
+    public void setNo_title(String no_title) {
+        this.no_title = no_title;
+    }
+
+    public void setNo_content(String no_content) {
+        this.no_content = no_content;
+    }
+
+    public void setNo_deleted(boolean no_deleted) {
+        this.no_deleted = no_deleted;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Override methods
+    //---------------------------------------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "Note: " + no_title + " (" + no_date.toString() + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+        if (obj != null) {
+            if (obj instanceof Pojo_Note) {
+                Pojo_Note another = (Pojo_Note) obj;
+                if (this.no_title.toUpperCase().equals(another.no_title.toUpperCase())) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region List Comparators
+    //---------------------------------------------------------------------------------------------
+
+    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_DATE = new Comparator<Pojo_Note>() {
+        @Override
+        public int compare(Pojo_Note o1, Pojo_Note o2) {
+            return o1.getNo_date().compareTo(o2.getNo_date());
+        }
+    };
+
+    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_TITLE = new Comparator<Pojo_Note>() {
+        @Override
+        public int compare(Pojo_Note o1, Pojo_Note o2) {
+            return o1.getNo_title().toUpperCase().compareTo(o2.getNo_title().toUpperCase());
+        }
+    };
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
+
+    //region Parcerable implementation
+    //---------------------------------------------------------------------------------------------
+
+    private Pojo_Note(Parcel in) {
         no_id = in.readString();
         no_community = in.readInt();
         no_title = in.readString();
@@ -45,92 +153,6 @@ public class Pojo_Note implements Parcelable {
     };
 
     @Override
-    public boolean equals(Object obj) {
-        boolean result = false;
-        if (obj != null) {
-            if (obj instanceof Pojo_Note) {
-                Pojo_Note another = (Pojo_Note) obj;
-                if (this.no_title.toUpperCase().equals(another.no_title.toUpperCase())) {
-                    result = true;
-                }
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Note: " + no_title + " (" + no_date.toString() + ")";
-    }
-
-    public String getNo_id() {
-        return no_id;
-    }
-
-    public void setNo_id(String no_id) {
-        this.no_id = no_id;
-    }
-
-    public int getNo_community() {
-        return no_community;
-    }
-
-    public void setNo_community(int no_community) {
-        this.no_community = no_community;
-    }
-
-    public Date getNo_date() {
-        return no_date;
-    }
-
-    public void setNo_date(Date no_date) {
-        this.no_date = no_date;
-    }
-
-    public String getNo_title() {
-        return no_title;
-    }
-
-    public void setNo_title(String no_title) {
-        this.no_title = no_title;
-    }
-
-    public String getNo_content() {
-        return no_content;
-    }
-
-    public void setNo_content(String no_content) {
-        this.no_content = no_content;
-    }
-
-    public boolean isNo_deleted() {
-        return no_deleted;
-    }
-
-    public void setNo_deleted(boolean no_deleted) {
-        this.no_deleted = no_deleted;
-    }
-
-    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_DATE = new Comparator<Pojo_Note>() {
-        @Override
-        public int compare(Pojo_Note o1, Pojo_Note o2) {
-            return o1.getNo_date().compareTo(o2.getNo_date());
-        }
-    };
-
-    public static final Comparator<Pojo_Note> COMPARATOR_NOTE_TITLE = new Comparator<Pojo_Note>() {
-        @Override
-        public int compare(Pojo_Note o1, Pojo_Note o2) {
-            return o1.getNo_title().toUpperCase().compareTo(o2.getNo_title().toUpperCase());
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(no_id);
         parcel.writeInt(no_community);
@@ -138,4 +160,12 @@ public class Pojo_Note implements Parcelable {
         parcel.writeString(no_content);
         parcel.writeByte((byte) (no_deleted ? 1 : 0));
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //endregion
 }
