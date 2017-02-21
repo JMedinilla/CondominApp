@@ -9,6 +9,8 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
@@ -35,17 +37,22 @@ public class QR extends Fragment implements QRCodeReaderView.OnQRCodeReadListene
         View view = inflater.inflate(R.layout.fragment_qr, container, false);
         qrCodeReaderView = (QRCodeReaderView) view.findViewById(R.id.qrReader);
         flash = (Switch) view.findViewById(R.id.fragment_qr_swtFlash);
-        CardView cardView = (CardView) view.findViewById(R.id.fragment_qr_cardFlash);
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.fragment_qr_container);
         qrCodeReaderView.setOnQRCodeReadListener(this);
         qrCodeReaderView.setQRDecodingEnabled(true);
         qrCodeReaderView.setAutofocusInterval(2000L);
         qrCodeReaderView.setTorchEnabled(false);
         qrCodeReaderView.setBackCamera();
 
-        cardView.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 flash.setChecked(!flash.isChecked());
+            }
+        });
+        flash.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 qrCodeReaderView.setTorchEnabled(flash.isChecked());
             }
         });

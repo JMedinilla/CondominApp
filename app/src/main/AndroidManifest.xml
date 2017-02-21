@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jmed.condominapp">
 
-    <uses-feature android:name="android.hardware.camera2.CameraDevice" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
 
     <application
@@ -37,9 +34,6 @@
         <activity
             android:name=".preferences.application.Settings"
             android:theme="@style/AppTheme.ActionBar" />
-        <activity
-            android:name=".Activity_QR"
-            android:theme="@style/AppTheme.ActionBar" />
+        <activity android:name=".Activity_QR" />
     </application>
-
 </manifest>
