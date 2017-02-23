@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.jmed.condominapp.R;
 
 public class Profile extends Fragment {
-    public static final String TAG_FRAGMENT_PROFILE = "fragmentProfileTag";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

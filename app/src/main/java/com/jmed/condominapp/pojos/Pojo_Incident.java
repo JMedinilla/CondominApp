@@ -10,16 +10,18 @@ import java.util.UUID;
 public class Pojo_Incident implements Parcelable {
     private String in_id;
     private String in_userid;
+    private int in_usercommunity;
     private Date in_date;
     private String in_title;
     private String in_description;
     private String in_photo;
     private boolean in_deleted;
 
-    public Pojo_Incident(String in_userid, Date in_date, String in_title, String in_description,
-                         String in_photo, boolean in_deleted) {
+    public Pojo_Incident(String in_userid, int in_usercommunity, Date in_date, String in_title,
+                         String in_description, String in_photo, boolean in_deleted) {
         this.in_id = UUID.randomUUID().toString();
         this.in_userid = in_userid;
+        this.in_usercommunity = in_usercommunity;
         this.in_date = in_date;
         this.in_title = in_title;
         this.in_description = in_description;
@@ -36,6 +38,10 @@ public class Pojo_Incident implements Parcelable {
 
     public String getIn_userid() {
         return in_userid;
+    }
+
+    public int getIn_usercommunity() {
+        return in_usercommunity;
     }
 
     public Date getIn_date() {
@@ -70,6 +76,10 @@ public class Pojo_Incident implements Parcelable {
 
     public void setIn_userid(String in_userid) {
         this.in_userid = in_userid;
+    }
+
+    public void setIn_usercommunity(int in_usercommunity) {
+        this.in_usercommunity = in_usercommunity;
     }
 
     public void setIn_date(Date in_date) {
@@ -146,6 +156,7 @@ public class Pojo_Incident implements Parcelable {
     private Pojo_Incident(Parcel in) {
         in_id = in.readString();
         in_userid = in.readString();
+        in_usercommunity = in.readInt();
         in_title = in.readString();
         in_description = in.readString();
         in_photo = in.readString();
@@ -165,13 +176,14 @@ public class Pojo_Incident implements Parcelable {
     };
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(in_id);
-        parcel.writeString(in_userid);
-        parcel.writeString(in_title);
-        parcel.writeString(in_description);
-        parcel.writeString(in_photo);
-        parcel.writeByte((byte) (in_deleted ? 1 : 0));
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(in_id);
+        dest.writeString(in_userid);
+        dest.writeInt(in_usercommunity);
+        dest.writeString(in_title);
+        dest.writeString(in_description);
+        dest.writeString(in_photo);
+        dest.writeByte((byte) (in_deleted ? 1 : 0));
     }
 
     @Override

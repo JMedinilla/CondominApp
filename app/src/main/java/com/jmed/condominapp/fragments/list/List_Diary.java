@@ -29,7 +29,6 @@ import com.jmed.condominapp.presenters.DiaryPresenterImpl;
 
 public class List_Diary extends Fragment implements IDiaryPresenter.View {
     private FragmentListDiaryListener homeCallback;
-    public static final String TAG_FRAGMENT_LIST_DIARY = "fragmentListDiaryTag";
 
     DiaryPresenterImpl diaryPresenter;
     Adapter_Diary adapter_diary;

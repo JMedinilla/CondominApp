@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.jmed.condominapp.R;
 
 public class List_Information extends Fragment {
-    public static final String TAG_FRAGMENT_LIST_INFORMATION = "fragmentInformationTag";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

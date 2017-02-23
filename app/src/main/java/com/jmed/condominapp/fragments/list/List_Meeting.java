@@ -24,7 +24,6 @@ import com.jmed.condominapp.presenters.MeetingPresenterImpl;
 
 public class List_Meeting extends Fragment implements IMeetingPresenter.View {
     private FragmentListMeetingListener homeCallback;
-    public static final String TAG_FRAGMENT_LIST_MEETING = "fragmentListMeetingTag";
 
     MeetingPresenterImpl meetingPresenter;
     Adapter_Meeting adapter_meeting;

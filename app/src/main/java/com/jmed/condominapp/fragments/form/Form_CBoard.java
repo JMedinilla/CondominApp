@@ -61,7 +61,7 @@ public class Form_CBoard extends Fragment {
                 } else {
                     Calendar calendar = Calendar.getInstance();
                     Date date = new Date(calendar.getTimeInMillis());
-                    Pojo_Entry entry = new Pojo_Entry(profile.getUserId(), title.getText().toString(), description.getText().toString(), date, Pojo_Entry.SECOND, false);
+                    Pojo_Entry entry = new Pojo_Entry(profile.getUserId(), profile.getUserCommunity(), title.getText().toString(), description.getText().toString(), date, Pojo_Entry.SECOND, false);
                     listCallback.onAcceptCBoard(entry, false);
                 }
             }

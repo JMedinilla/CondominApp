@@ -60,7 +60,11 @@ public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
             String year = (String) DateFormat.format("yyyy", incident.getIn_date());
             String day = (String) DateFormat.format("dd", incident.getIn_date());
 
-            Picasso.with(getContext()).load(incident.getIn_photo()).fit().centerCrop().into(incidentHolder.imgPhoto);
+            if (incident.getIn_photo().isEmpty()) {
+                incidentHolder.imgPhoto.setImageResource(R.drawable.image);
+            } else {
+                Picasso.with(getContext()).load(incident.getIn_photo()).fit().centerCrop().into(incidentHolder.imgPhoto);
+            }
             incidentHolder.txtTitle.setText(incident.getIn_title());
             incidentHolder.txtDate.setText(day + " " + month + " " + year);
             incidentHolder.txtContent.setText(incident.getIn_description());

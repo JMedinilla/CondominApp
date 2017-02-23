@@ -22,10 +22,10 @@ public class Repository_Entry_First extends ArrayList<Pojo_Entry> {
         GregorianCalendar calendar_1 = new GregorianCalendar(2016, 3, 2);
         GregorianCalendar calendar_2 = new GregorianCalendar(2016, 3, 14);
 
-        add(new Pojo_Entry("12", "Ruidos nocturnos",
+        add(new Pojo_Entry("12", 0, "Ruidos nocturnos",
                 "Se recuerda a los vecinos que el ayuntamiento prohibe el ruido a partir de las 21.00",
                 new Date(calendar_1.getTimeInMillis()), Pojo_Entry.FIRST, false));
-        add(new Pojo_Entry("12", "Ascensor",
+        add(new Pojo_Entry("12", 0, "Ascensor",
                 "El ascensor está estropeado dessde el martes pasado. El revisor vendrá el mes que viene",
                 new Date(calendar_2.getTimeInMillis()), Pojo_Entry.FIRST, false));
     }

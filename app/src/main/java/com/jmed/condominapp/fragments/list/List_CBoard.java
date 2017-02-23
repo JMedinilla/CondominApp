@@ -29,7 +29,6 @@ import com.jmed.condominapp.presenters.CBoardPresenterImpl;
 
 public class List_CBoard extends Fragment implements ICBoardPresenter.View {
     private FragmentListCBoardListener homeCallback;
-    public static final String TAG_FRAGMENT_LIST_CBOARD = "fragmentListCBoardTag";
 
     CBoardPresenterImpl cBoardPresenter;
     Adapter_CBoard adapter_cBoard;

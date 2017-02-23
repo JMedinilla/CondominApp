@@ -71,7 +71,7 @@ public class Form_Incident extends Fragment {
                     Calendar calendar = Calendar.getInstance();
                     Date date = new Date(calendar.getTimeInMillis());
                     String url = "";
-                    Pojo_Incident incident = new Pojo_Incident(profile.getUserId(), date, title.getText().toString(), description.getText().toString(), url, false);
+                    Pojo_Incident incident = new Pojo_Incident(profile.getUserId(), profile.getUserCommunity(), date, title.getText().toString(), description.getText().toString(), url, false);
                     listCallback.onAcceptIncident(incident, false);
                 }
             }

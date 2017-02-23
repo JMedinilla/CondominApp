@@ -13,7 +13,6 @@ import com.jmed.condominapp.pojos.Pojo_Community;
 
 public class List_Community extends Fragment {
     private FragmentListCommunityListener homeCallback;
-    public static final String TAG_FRAGMENT_LIST_COMMUNITY = "fragmentListCommunityTag";
 
     public interface FragmentListCommunityListener {
         void onManageCommunityOpen();

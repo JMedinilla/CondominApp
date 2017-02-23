@@ -13,7 +13,6 @@ import com.jmed.condominapp.R;
 
 public class Home extends Fragment {
     private FragmentHomeListener homeCallback;
-    public static final String TAG_FRAGMENT_HOME = "fragmentHomeTag";
 
     public interface FragmentHomeListener {
         void onHomeFragmentIncidentsButtonTap();

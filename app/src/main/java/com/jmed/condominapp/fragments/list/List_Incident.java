@@ -2,7 +2,6 @@ package com.jmed.condominapp.fragments.list;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,7 +33,6 @@ import com.squareup.picasso.Picasso;
 
 public class List_Incident extends Fragment implements IIncidentPresenter.View {
     private FragmentListIncidentListener homeCallback;
-    public static final String TAG_FRAGMENT_LIST_INCIDENT = "fragmentListIncidentTag";
 
     IncidentPresenterImpl incidentPresenter;
     Adapter_Incident adapter_incident;
@@ -158,7 +156,11 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
             TextView txtDate = (TextView) content.findViewById(R.id.detail_incident_date);
             TextView txtDescription = (TextView) content.findViewById(R.id.detail_incident_description);
 
-            Picasso.with(getContext()).load(incident.getIn_photo()).fit().centerCrop().into(img);
+            if (incident.getIn_photo().isEmpty()) {
+                img.setImageResource(R.drawable.image);
+            } else {
+                Picasso.with(getContext()).load(incident.getIn_photo()).fit().centerCrop().into(img);
+            }
             txtUser.setText(incident.getIn_userid());
             txtDate.setText(day + " " + month + " " + year);
             txtDescription.setText(incident.getIn_description());
@@ -166,9 +168,11 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getContext(), Activity_ViewImage.class);
-                    intent.putExtra("image_view", imageUrl);
-                    startActivity(intent);
+                    if (!imageUrl.isEmpty()) {
+                        Intent intent = new Intent(getContext(), Activity_ViewImage.class);
+                        intent.putExtra("image_view", imageUrl);
+                        startActivity(intent);
+                    }
                 }
             });
         }

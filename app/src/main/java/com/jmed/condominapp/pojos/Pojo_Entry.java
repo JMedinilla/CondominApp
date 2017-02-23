@@ -13,16 +13,18 @@ public class Pojo_Entry implements Parcelable {
 
     private String en_id;
     private String en_userid;
+    private int en_usercommunity;
     private String en_title;
     private String en_content;
     private Date en_date;
     private int en_category;
     private boolean en_deleted;
 
-    public Pojo_Entry(String en_userid, String en_title, String en_content, Date en_date,
-                      int en_category, boolean en_deleted) {
+    public Pojo_Entry(String en_userid, int en_usercommunity, String en_title, String en_content,
+                      Date en_date, int en_category, boolean en_deleted) {
         this.en_id = UUID.randomUUID().toString();
         this.en_userid = en_userid;
+        this.en_usercommunity = en_usercommunity;
         this.en_title = en_title;
         this.en_content = en_content;
         this.en_date = en_date;
@@ -39,6 +41,10 @@ public class Pojo_Entry implements Parcelable {
 
     public String getEn_userid() {
         return en_userid;
+    }
+
+    public int getEn_usercommunity() {
+        return en_usercommunity;
     }
 
     public String getEn_title() {
@@ -73,6 +79,10 @@ public class Pojo_Entry implements Parcelable {
 
     public void setEn_userid(String en_userid) {
         this.en_userid = en_userid;
+    }
+
+    public void setEn_usercommunity(int en_usercommunity) {
+        this.en_usercommunity = en_usercommunity;
     }
 
     public void setEn_title(String en_title) {
@@ -147,9 +157,10 @@ public class Pojo_Entry implements Parcelable {
     //region Parcerable implementation
     //---------------------------------------------------------------------------------------------
 
-    protected Pojo_Entry(Parcel in) {
+    private Pojo_Entry(Parcel in) {
         en_id = in.readString();
         en_userid = in.readString();
+        en_usercommunity = in.readInt();
         en_title = in.readString();
         en_content = in.readString();
         en_category = in.readInt();
@@ -169,13 +180,14 @@ public class Pojo_Entry implements Parcelable {
     };
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(en_id);
-        parcel.writeString(en_userid);
-        parcel.writeString(en_title);
-        parcel.writeString(en_content);
-        parcel.writeInt(en_category);
-        parcel.writeByte((byte) (en_deleted ? 1 : 0));
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(en_id);
+        dest.writeString(en_userid);
+        dest.writeInt(en_usercommunity);
+        dest.writeString(en_title);
+        dest.writeString(en_content);
+        dest.writeInt(en_category);
+        dest.writeByte((byte) (en_deleted ? 1 : 0));
     }
 
     @Override

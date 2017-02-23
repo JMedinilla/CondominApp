@@ -13,7 +13,6 @@ import com.jmed.condominapp.pojos.Pojo_User;
 
 public class List_User extends Fragment {
     private FragmentListUserListener homeCallback;
-    public static final String TAG_FRAGMENT_LIST_USER = "fragmentListUserTag";
 
     public interface FragmentListUserListener {
         void onManageUserOpen();

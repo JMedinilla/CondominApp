@@ -30,7 +30,6 @@ import com.jmed.condominapp.presenters.DocumentPresenterImpl;
 
 public class List_Document extends Fragment implements IDocumentPresenter.View {
     private FragmentListDocumentListener homeCallback;
-    public static final String TAG_FRAGMENT_LIST_DOCUMENT = "fragmentListDocumentTag";
 
     DocumentPresenterImpl documentPresenter;
     Adapter_Document adapter_document;
