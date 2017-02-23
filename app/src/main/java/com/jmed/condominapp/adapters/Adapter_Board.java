@@ -3,6 +3,7 @@ package com.jmed.condominapp.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,9 @@ public class Adapter_Board extends ArrayAdapter<Pojo_Entry> {
 
         Pojo_Entry entry = getItem(position);
         if (entry != null) {
-            String month = (String) android.text.format.DateFormat.format("MMM", entry.getEn_date());
-            String year = (String) android.text.format.DateFormat.format("yyyy", entry.getEn_date());
-            String day = (String) android.text.format.DateFormat.format("dd", entry.getEn_date());
+            String month = (String) DateFormat.format("MMM", entry.getEn_date());
+            String year = (String) DateFormat.format("yyyy", entry.getEn_date());
+            String day = (String) DateFormat.format("dd", entry.getEn_date());
 
             boardHolder.txtTitle.setText(entry.getEn_title());
             boardHolder.txtDate.setText(day + " " + month + " " + year);

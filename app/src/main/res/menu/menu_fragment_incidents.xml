@@ -14,10 +14,4 @@
         android:title="@string/menuIncidents_title"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/menuIncidents_author"
-        android:orderInCategory="3"
-        android:title="@string/menuIncidents_author"
-        app:showAsAction="never" />
-
 </menu>

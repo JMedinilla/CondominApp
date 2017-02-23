@@ -2,6 +2,7 @@ package com.jmed.condominapp.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +47,9 @@ public class Adapter_Meeting extends ArrayAdapter<Pojo_Meeting> {
 
         Pojo_Meeting meeting = getItem(position);
         if (meeting != null) {
-            String month = (String) android.text.format.DateFormat.format("MMM", meeting.getMe_date());
-            String year = (String) android.text.format.DateFormat.format("yyyy", meeting.getMe_date());
-            String day = (String) android.text.format.DateFormat.format("dd", meeting.getMe_date());
+            String month = (String) DateFormat.format("MMM", meeting.getMe_date());
+            String year = (String) DateFormat.format("yyyy", meeting.getMe_date());
+            String day = (String) DateFormat.format("dd", meeting.getMe_date());
             meetingHolder.txtTitle.setText(day + " " + month + " " + year);
         }
 

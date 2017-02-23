@@ -3,6 +3,7 @@ package com.jmed.condominapp.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.repositories.Repository_Incident;
 import com.jmed.condominapp.pojos.Pojo_Incident;
+import com.squareup.picasso.Picasso;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -54,11 +56,11 @@ public class Adapter_Incident extends ArrayAdapter<Pojo_Incident> {
 
         Pojo_Incident incident = getItem(position);
         if (incident != null) {
-            String month = (String) android.text.format.DateFormat.format("MMM", incident.getIn_date());
-            String year = (String) android.text.format.DateFormat.format("yyyy", incident.getIn_date());
-            String day = (String) android.text.format.DateFormat.format("dd", incident.getIn_date());
+            String month = (String) DateFormat.format("MMM", incident.getIn_date());
+            String year = (String) DateFormat.format("yyyy", incident.getIn_date());
+            String day = (String) DateFormat.format("dd", incident.getIn_date());
 
-            incidentHolder.imgPhoto.setImageResource(R.drawable.image);
+            Picasso.with(getContext()).load(incident.getIn_photo()).fit().centerCrop().into(incidentHolder.imgPhoto);
             incidentHolder.txtTitle.setText(incident.getIn_title());
             incidentHolder.txtDate.setText(day + " " + month + " " + year);
             incidentHolder.txtContent.setText(incident.getIn_description());

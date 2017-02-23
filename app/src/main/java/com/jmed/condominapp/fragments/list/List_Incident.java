@@ -1,12 +1,15 @@
 package com.jmed.condominapp.fragments.list;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +24,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.jmed.condominapp.Activity_Home;
+import com.jmed.condominapp.Activity_ViewImage;
 import com.jmed.condominapp.R;
 import com.jmed.condominapp.adapters.Adapter_Incident;
 import com.jmed.condominapp.interfaces.IIncidentPresenter;
@@ -86,7 +90,7 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
      * Method that recieves an element from the Activity and insert or update it
      *
      * @param incident Incident to handle
-     * @param update Boolean to know if the element has to be inserted or updated
+     * @param update   Boolean to know if the element has to be inserted or updated
      * @return True or False depending on the succes of the operation
      */
     public boolean recieveIncidentFromHome(Pojo_Incident incident, boolean update) {
@@ -144,15 +148,29 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
                 });
         View content = dialog.build().getCustomView();
         if (content != null) {
+            final String imageUrl = incident.getIn_photo();
+            String month = (String) DateFormat.format("MMM", incident.getIn_date());
+            String year = (String) DateFormat.format("yyyy", incident.getIn_date());
+            String day = (String) DateFormat.format("dd", incident.getIn_date());
+
             ImageView img = (ImageView) content.findViewById(R.id.detail_incident_image);
             TextView txtUser = (TextView) content.findViewById(R.id.detail_incident_user);
             TextView txtDate = (TextView) content.findViewById(R.id.detail_incident_date);
             TextView txtDescription = (TextView) content.findViewById(R.id.detail_incident_description);
 
-            Picasso.with(getActivity()).load(incident.getIn_photo()).fit().centerCrop().into(img);
+            Picasso.with(getContext()).load(incident.getIn_photo()).fit().centerCrop().into(img);
             txtUser.setText(incident.getIn_userid());
-            txtDate.setText(incident.getIn_date().toString());
+            txtDate.setText(day + " " + month + " " + year);
             txtDescription.setText(incident.getIn_description());
+
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), Activity_ViewImage.class);
+                    intent.putExtra("image_view", imageUrl);
+                    startActivity(intent);
+                }
+            });
         }
         dialog.show();
     }
@@ -181,9 +199,6 @@ public class List_Incident extends Fragment implements IIncidentPresenter.View {
         switch (item.getItemId()) {
             case R.id.menuIncidents_date:
                 adapter_incident.sortIncidents(Pojo_Incident.COMPARATOR_INCIDENT_DATE);
-                break;
-            case R.id.menuIncidents_author:
-                adapter_incident.sortIncidents(Pojo_Incident.COMPARATOR_INCIDENT_AUTHOR);
                 break;
             case R.id.menuIncidents_title:
                 adapter_incident.sortIncidents(Pojo_Incident.COMPARATOR_INCIDENT_TITLE);

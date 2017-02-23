@@ -1,7 +1,6 @@
 package com.jmed.condominapp;
 
 import android.content.Intent;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -16,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.jmed.condominapp.fragments.Home;
@@ -112,9 +110,6 @@ public class Activity_Home extends AppCompatActivity implements
         textView.setGravity(Gravity.CENTER);
         if (error) {
             view.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorError));
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-            params.gravity = Gravity.CENTER;
-            view.setLayoutParams(params);
         } else {
             view.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorSuccess));
         }

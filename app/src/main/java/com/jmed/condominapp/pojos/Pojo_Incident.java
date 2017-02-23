@@ -14,18 +14,16 @@ public class Pojo_Incident implements Parcelable {
     private String in_title;
     private String in_description;
     private String in_photo;
-    private int in_stars;
     private boolean in_deleted;
 
     public Pojo_Incident(String in_userid, Date in_date, String in_title, String in_description,
-                         String in_photo, int in_stars, boolean in_deleted) {
+                         String in_photo, boolean in_deleted) {
         this.in_id = UUID.randomUUID().toString();
         this.in_userid = in_userid;
         this.in_date = in_date;
         this.in_title = in_title;
         this.in_description = in_description;
         this.in_photo = in_photo;
-        this.in_stars = in_stars;
         this.in_deleted = in_deleted;
     }
 
@@ -54,10 +52,6 @@ public class Pojo_Incident implements Parcelable {
 
     public String getIn_photo() {
         return in_photo;
-    }
-
-    public int getIn_stars() {
-        return in_stars;
     }
 
     public boolean isIn_deleted() {
@@ -92,10 +86,6 @@ public class Pojo_Incident implements Parcelable {
 
     public void setIn_photo(String in_photo) {
         this.in_photo = in_photo;
-    }
-
-    public void setIn_stars(int in_stars) {
-        this.in_stars = in_stars;
     }
 
     public void setIn_deleted(boolean in_deleted) {
@@ -147,13 +137,6 @@ public class Pojo_Incident implements Parcelable {
         }
     };
 
-    public static final Comparator<Pojo_Incident> COMPARATOR_INCIDENT_AUTHOR = new Comparator<Pojo_Incident>() {
-        @Override
-        public int compare(Pojo_Incident o1, Pojo_Incident o2) {
-            return o1.getIn_stars() - o2.getIn_stars();
-        }
-    };
-
     //---------------------------------------------------------------------------------------------
     //endregion
 
@@ -166,7 +149,6 @@ public class Pojo_Incident implements Parcelable {
         in_title = in.readString();
         in_description = in.readString();
         in_photo = in.readString();
-        in_stars = in.readInt();
         in_deleted = in.readByte() != 0;
     }
 
@@ -189,7 +171,6 @@ public class Pojo_Incident implements Parcelable {
         parcel.writeString(in_title);
         parcel.writeString(in_description);
         parcel.writeString(in_photo);
-        parcel.writeInt(in_stars);
         parcel.writeByte((byte) (in_deleted ? 1 : 0));
     }
 

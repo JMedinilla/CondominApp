@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -83,7 +84,7 @@ public class List_CBoard extends Fragment implements ICBoardPresenter.View {
     /**
      * Method that recieves an element from the Activity and insert or update it
      *
-     * @param entry Entry to handle
+     * @param entry  Entry to handle
      * @param update Boolean to know if the element has to be inserted or updated
      * @return True or False depending on the succes of the operation
      */
@@ -142,12 +143,16 @@ public class List_CBoard extends Fragment implements ICBoardPresenter.View {
                 });
         View content = dialog.build().getCustomView();
         if (content != null) {
+            String month = (String) DateFormat.format("MMM", entry.getEn_date());
+            String year = (String) DateFormat.format("yyyy", entry.getEn_date());
+            String day = (String) DateFormat.format("dd", entry.getEn_date());
+
             TextView txtUser = (TextView) content.findViewById(R.id.detail_entry_user);
             TextView txtDate = (TextView) content.findViewById(R.id.detail_entry_date);
             TextView txtDescription = (TextView) content.findViewById(R.id.detail_entry_description);
 
             txtUser.setText(entry.getEn_userid());
-            txtDate.setText(entry.getEn_date().toString());
+            txtDate.setText(day + " " + month + " " + year);
             txtDescription.setText(entry.getEn_content());
         }
         dialog.show();
